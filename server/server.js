@@ -1,4 +1,7 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({
+  path: process.env.NODE_ENV === 'production' ? path.join(__dirname, '.env') : path.join(__dirname, '.env.development')
+});
 const http = require('http');
 const { Server } = require('socket.io');
 const app = require('./app');

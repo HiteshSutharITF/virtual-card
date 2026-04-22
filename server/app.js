@@ -18,16 +18,17 @@ app.use(express.urlencoded({ extended: true }));
 
 // Serve Static Files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Routes
+// API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/whatsapp', whatsappRoutes);
 
-// Root Route
-app.get('/', (req, res) => {
-  res.send('WhatsApp QR Contact Sharing API is running...');
+// SPA Catch-all
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Error Handling Middleware

@@ -79,8 +79,16 @@ const UserDashboard = () => {
 
           <div className="flex items-center space-x-4">
              <div className="glass px-4 py-2 rounded-xl flex items-center space-x-3 border-slate-200 shadow-sm bg-white/50">
-              <Smartphone size={16} className={waStatus === 'connected' ? 'text-emerald-500' : 'text-slate-300'} />
-              <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">{waStatus}</span>
+              <Smartphone size={16} className={
+                waStatus === 'connected' ? 'text-emerald-500' : 
+                waStatus === 'disconnected' ? 'text-rose-500' : 
+                'text-amber-500'
+              } />
+              <span className={`text-[10px] font-black uppercase tracking-widest ${
+                waStatus === 'connected' ? 'text-emerald-600' : 
+                waStatus === 'disconnected' ? 'text-rose-600' : 
+                'text-amber-600'
+              }`}>{waStatus}</span>
             </div>
             <button
               onClick={downloadCard}
