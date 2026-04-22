@@ -1,0 +1,385 @@
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 16:21:51"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 16:21:51"}
+{"level":"error","message":"Auth Error: invalid signature","timestamp":"2026-04-22 16:21:51"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 16:23:43"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 16:23:43"}
+{"level":"info","message":"New client connected: Fy6lqQJdXvBzFJw1AAAB","timestamp":"2026-04-22 16:23:43"}
+{"level":"info","message":"Client disconnected: Fy6lqQJdXvBzFJw1AAAB","timestamp":"2026-04-22 16:23:45"}
+{"level":"info","message":"New client connected: a-3XphTlGVuPR1xSAAAE","timestamp":"2026-04-22 16:23:46"}
+{"level":"info","message":"Client disconnected: a-3XphTlGVuPR1xSAAAE","timestamp":"2026-04-22 16:24:41"}
+{"level":"info","message":"New client connected: zDIRl1uwsLh_HxhuAAAG","timestamp":"2026-04-22 16:25:19"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 16:25:26"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-22 16:25:44"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-22 16:26:43"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-22 16:27:03"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-22 16:27:23"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 16:27:52"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 16:27:52"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 16:27:52"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-04-22 16:27:56"}
+{"level":"info","message":"Client disconnected: zDIRl1uwsLh_HxhuAAAG","timestamp":"2026-04-22 16:27:58"}
+{"level":"info","message":"New client connected: 57tkNSDwAQK-T7_TAAAJ","timestamp":"2026-04-22 16:27:58"}
+{"level":"info","message":"Client disconnected: 57tkNSDwAQK-T7_TAAAJ","timestamp":"2026-04-22 16:28:18"}
+{"level":"info","message":"Received message:  from 192475050279026@lid","timestamp":"2026-04-22 16:28:34"}
+{"level":"info","message":"Received message:  from 120375165890687@lid","timestamp":"2026-04-22 16:28:34"}
+{"level":"info","message":"Received message:  from 199879204843757@lid","timestamp":"2026-04-22 16:28:34"}
+{"level":"info","message":"Received message:  from 248077361381424@lid","timestamp":"2026-04-22 16:28:35"}
+{"level":"info","message":"Received message:  from 80058358202494@lid","timestamp":"2026-04-22 16:28:35"}
+{"level":"info","message":"Received message:  from 116449465090155@lid","timestamp":"2026-04-22 16:28:35"}
+{"level":"info","message":"Received message:  from 87119166976197@lid","timestamp":"2026-04-22 16:28:35"}
+{"level":"info","message":"Received message: SOD: 22-04-2026\nDeveloper Name: vaibhav kotwad\nWorking Time: 4:30 PM  to 1:30 AM from 120363358495036902@g.us","timestamp":"2026-04-22 16:28:43"}
+{"level":"info","message":"New client connected: apsoNxB3I3GYuaijAAAL","timestamp":"2026-04-22 16:29:42"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 16:33:05"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-04-22 16:33:08"}
+{"level":"info","message":"Client disconnected: apsoNxB3I3GYuaijAAAL","timestamp":"2026-04-22 16:36:17"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 16:37:36"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 16:37:36"}
+{"level":"info","message":"New client connected: H7_oMr0UN8YJEghIAAAC","timestamp":"2026-04-22 16:38:09"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 16:44:00"}
+{"level":"error","message":"Auth Error: invalid signature","timestamp":"2026-04-22 16:44:00"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 16:44:00"}
+{"level":"info","message":"New client connected: 8BmiM97VI0-wI59lAAAB","timestamp":"2026-04-22 16:44:03"}
+{"level":"info","message":"Client disconnected: 8BmiM97VI0-wI59lAAAB","timestamp":"2026-04-22 16:44:18"}
+{"level":"info","message":"New client connected: aIw4a46YUifOqaOoAAAE","timestamp":"2026-04-22 16:44:18"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 16:44:53"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 16:45:21"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-04-22 16:45:23"}
+{"level":"info","message":"Client disconnected: aIw4a46YUifOqaOoAAAE","timestamp":"2026-04-22 16:56:44"}
+{"level":"info","message":"New client connected: uXldV-uIp2JUlchMAAAH","timestamp":"2026-04-22 16:56:45"}
+{"level":"info","message":"Client disconnected: uXldV-uIp2JUlchMAAAH","timestamp":"2026-04-22 16:57:47"}
+{"level":"info","message":"New client connected: TxMemPP2FkZy0Rx6AAAJ","timestamp":"2026-04-22 16:57:51"}
+{"level":"info","message":"Client disconnected: TxMemPP2FkZy0Rx6AAAJ","timestamp":"2026-04-22 17:01:18"}
+{"level":"info","message":"New client connected: aRdCQW9bnX-I7bR2AAAM","timestamp":"2026-04-22 17:01:19"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:02:43"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:02:43"}
+{"level":"info","message":"New client connected: ja3LRl6vartNQZa6AAAB","timestamp":"2026-04-22 17:02:43"}
+{"level":"info","message":"Client disconnected: ja3LRl6vartNQZa6AAAB","timestamp":"2026-04-22 17:02:44"}
+{"level":"info","message":"New client connected: kBDnZPCO2YRWsHc4AAAE","timestamp":"2026-04-22 17:02:45"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:02:59"}
+{"level":"info","message":"New client connected: X-I9WNpGkz-tOPNQAAAB","timestamp":"2026-04-22 17:02:59"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:02:59"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:03:24"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:03:25"}
+{"level":"info","message":"New client connected: 091NsW8539Ya2AIRAAAB","timestamp":"2026-04-22 17:03:25"}
+{"level":"info","message":"Client disconnected: 091NsW8539Ya2AIRAAAB","timestamp":"2026-04-22 17:03:27"}
+{"level":"info","message":"New client connected: PRCqeUVTUekaShlVAAAE","timestamp":"2026-04-22 17:03:28"}
+{"level":"info","message":"Client disconnected: PRCqeUVTUekaShlVAAAE","timestamp":"2026-04-22 17:06:22"}
+{"level":"info","message":"New client connected: By0RwLn7IaQOcUsIAAAG","timestamp":"2026-04-22 17:06:43"}
+{"level":"info","message":"Client disconnected: By0RwLn7IaQOcUsIAAAG","timestamp":"2026-04-22 17:07:35"}
+{"level":"info","message":"New client connected: X4-v1B4rc0O1_qLHAAAJ","timestamp":"2026-04-22 17:07:35"}
+{"level":"info","message":"Client disconnected: X4-v1B4rc0O1_qLHAAAJ","timestamp":"2026-04-22 17:07:51"}
+{"level":"info","message":"New client connected: 2vmbFVIZ0uEq__OUAAAL","timestamp":"2026-04-22 17:08:03"}
+{"level":"info","message":"Client disconnected: 2vmbFVIZ0uEq__OUAAAL","timestamp":"2026-04-22 17:08:37"}
+{"level":"info","message":"New client connected: L1Qcw_9Oaxfx4ZZ3AAAN","timestamp":"2026-04-22 17:09:29"}
+{"level":"info","message":"Client disconnected: L1Qcw_9Oaxfx4ZZ3AAAN","timestamp":"2026-04-22 17:09:40"}
+{"level":"info","message":"New client connected: 7O-AH7vVzAIJlarQAAAQ","timestamp":"2026-04-22 17:09:40"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:09:46"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:09:46"}
+{"level":"info","message":"New client connected: j3_cB-n4A-mxRuo9AAAB","timestamp":"2026-04-22 17:09:46"}
+{"level":"info","message":"Client disconnected: j3_cB-n4A-mxRuo9AAAB","timestamp":"2026-04-22 17:10:37"}
+{"level":"info","message":"New client connected: VdmzjXtMWeFe33OnAAAD","timestamp":"2026-04-22 17:10:43"}
+{"level":"info","message":"Client disconnected: VdmzjXtMWeFe33OnAAAD","timestamp":"2026-04-22 17:11:15"}
+{"level":"info","message":"New client connected: X-kWbp_twkNdFBtMAAAG","timestamp":"2026-04-22 17:11:16"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:12:17"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:12:17"}
+{"level":"info","message":"New client connected: G_VWUrTTawjfMXDpAAAB","timestamp":"2026-04-22 17:12:20"}
+{"level":"info","message":"Client disconnected: G_VWUrTTawjfMXDpAAAB","timestamp":"2026-04-22 17:12:32"}
+{"level":"info","message":"New client connected: yVH5m9PIb8bejQ1oAAAD","timestamp":"2026-04-22 17:13:09"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 17:13:26"}
+{"level":"info","message":"Client disconnected: yVH5m9PIb8bejQ1oAAAD","timestamp":"2026-04-22 17:13:42"}
+{"level":"info","message":"New client connected: K8lf8Dj4X-inCez2AAAG","timestamp":"2026-04-22 17:13:42"}
+{"level":"info","message":"Client disconnected: K8lf8Dj4X-inCez2AAAG","timestamp":"2026-04-22 17:13:47"}
+{"level":"info","message":"New client connected: G2a3hYhNxUWWMuoLAAAJ","timestamp":"2026-04-22 17:13:48"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 17:13:51"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-04-22 17:13:53"}
+{"level":"info","message":"Received message: Quizo is up. from 120363328765739816@g.us","timestamp":"2026-04-22 17:13:53"}
+{"level":"info","message":"Received message: Please share the contact of Parth -PArTH Corp 57501710 from 42936989392931@lid","timestamp":"2026-04-22 17:14:00"}
+{"level":"info","message":"Valid token found: 57501710 for user Parth","timestamp":"2026-04-22 17:14:00"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:15:01"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:15:01"}
+{"level":"info","message":"New client connected: IFAClzpNgjl41TJwAAAC","timestamp":"2026-04-22 17:15:01"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 17:16:12"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 17:16:25"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-04-22 17:16:29"}
+{"level":"info","message":"Client disconnected: IFAClzpNgjl41TJwAAAC","timestamp":"2026-04-22 17:16:31"}
+{"level":"info","message":"New client connected: y4PfBE0SuV42GJHIAAAF","timestamp":"2026-04-22 17:16:32"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:17:07"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:17:07"}
+{"level":"info","message":"New client connected: _OTTJhefGovIvtvdAAAB","timestamp":"2026-04-22 17:17:08"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:18:22"}
+{"level":"info","message":"New client connected: ezEu0ZCIrmi2dWfOAAAB","timestamp":"2026-04-22 17:18:22"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:18:22"}
+{"level":"info","message":"Restoring previous WhatsApp session...","timestamp":"2026-04-22 17:18:22"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 17:18:22"}
+{"level":"info","message":"Client disconnected: ezEu0ZCIrmi2dWfOAAAB","timestamp":"2026-04-22 17:18:31"}
+{"level":"info","message":"New client connected: qze1DhG9-RfVBbKsAAAE","timestamp":"2026-04-22 17:18:32"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:18:44"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:18:44"}
+{"level":"info","message":"Restoring previous WhatsApp session...","timestamp":"2026-04-22 17:18:44"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 17:18:44"}
+{"level":"info","message":"New client connected: gn5AbRQVWEobCdaiAAAB","timestamp":"2026-04-22 17:18:45"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 17:18:55"}
+{"level":"info","message":"Client disconnected: gn5AbRQVWEobCdaiAAAB","timestamp":"2026-04-22 17:18:59"}
+{"level":"info","message":"New client connected: q1xOPtbhSi7sGZdCAAAE","timestamp":"2026-04-22 17:18:59"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-04-22 17:19:00"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:22:50"}
+{"level":"info","message":"New client connected: vp3sgFuBQFon59geAAAB","timestamp":"2026-04-22 17:22:50"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:22:50"}
+{"level":"info","message":"Client disconnected: vp3sgFuBQFon59geAAAB","timestamp":"2026-04-22 17:22:52"}
+{"level":"info","message":"New client connected: k1mMauxl87eYBv58AAAE","timestamp":"2026-04-22 17:22:53"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:23:02"}
+{"level":"info","message":"New client connected: CEgi8DPNKxjJ1Yg3AAAB","timestamp":"2026-04-22 17:23:03"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:23:03"}
+{"level":"info","message":"Client disconnected: CEgi8DPNKxjJ1Yg3AAAB","timestamp":"2026-04-22 17:23:12"}
+{"level":"info","message":"New client connected: 7JkDe5DrU4FFO9MDAAAE","timestamp":"2026-04-22 17:23:12"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 17:23:22"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 17:23:33"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-04-22 17:23:37"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:24:53"}
+{"level":"info","message":"New client connected: L8buaFawHNfRTg8VAAAC","timestamp":"2026-04-22 17:24:53"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:24:53"}
+{"level":"info","message":"Restoring previous WhatsApp session...","timestamp":"2026-04-22 17:24:54"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 17:24:54"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 17:25:06"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-04-22 17:25:09"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:25:33"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:25:33"}
+{"level":"info","message":"Restoring previous WhatsApp session...","timestamp":"2026-04-22 17:25:33"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 17:25:33"}
+{"level":"info","message":"New client connected: 8Fg_vGK73MJkTuJ4AAAB","timestamp":"2026-04-22 17:25:34"}
+{"level":"info","message":"Client disconnected: 8Fg_vGK73MJkTuJ4AAAB","timestamp":"2026-04-22 17:25:36"}
+{"level":"info","message":"New client connected: Ih1rk-OrNJcvUK9UAAAE","timestamp":"2026-04-22 17:25:37"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 17:25:43"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-04-22 17:25:47"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:28:21"}
+{"level":"info","message":"New client connected: e1lCFSIAp8HZifCNAAAB","timestamp":"2026-04-22 17:28:21"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:28:21"}
+{"level":"info","message":"Restoring previous WhatsApp session...","timestamp":"2026-04-22 17:28:21"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 17:28:21"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 17:28:28"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-04-22 17:28:29"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:28:42"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:28:42"}
+{"level":"info","message":"Restoring previous WhatsApp session...","timestamp":"2026-04-22 17:28:42"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 17:28:42"}
+{"level":"info","message":"New client connected: Xy2KzPh6NssFdGz8AAAB","timestamp":"2026-04-22 17:28:43"}
+{"level":"info","message":"Client disconnected: Xy2KzPh6NssFdGz8AAAB","timestamp":"2026-04-22 17:28:45"}
+{"level":"info","message":"New client connected: 5Al6H1kXe2aKSqc9AAAE","timestamp":"2026-04-22 17:28:45"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 17:28:54"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-04-22 17:28:58"}
+{"level":"info","message":"Client disconnected: 5Al6H1kXe2aKSqc9AAAE","timestamp":"2026-04-22 17:29:01"}
+{"level":"info","message":"New client connected: S3VtA9kNiZGDrTx0AAAH","timestamp":"2026-04-22 17:29:02"}
+{"level":"info","message":"Client disconnected: S3VtA9kNiZGDrTx0AAAH","timestamp":"2026-04-22 17:29:08"}
+{"level":"info","message":"New client connected: cvdHiKfaZBVMCvDaAAAK","timestamp":"2026-04-22 17:29:08"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:31:12"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:31:12"}
+{"level":"info","message":"New client connected: PB25u-H-FbGFyAhNAAAB","timestamp":"2026-04-22 17:31:14"}
+{"level":"info","message":"Client disconnected: PB25u-H-FbGFyAhNAAAB","timestamp":"2026-04-22 17:31:16"}
+{"level":"info","message":"New client connected: -ljyZfhFS3Q_NRqMAAAE","timestamp":"2026-04-22 17:31:36"}
+{"level":"info","message":"Client disconnected: -ljyZfhFS3Q_NRqMAAAE","timestamp":"2026-04-22 17:31:40"}
+{"level":"info","message":"New client connected: 66q6mDHM8IPqHdbHAAAH","timestamp":"2026-04-22 17:31:41"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 17:31:49"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-22 17:31:58"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:32:06"}
+{"level":"info","message":"New client connected: oS4cvkN-aHWkuxTBAAAB","timestamp":"2026-04-22 17:32:06"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:32:06"}
+{"level":"info","message":"Client disconnected: oS4cvkN-aHWkuxTBAAAB","timestamp":"2026-04-22 17:32:19"}
+{"level":"info","message":"New client connected: 8DC8go-x55lfE1jvAAAE","timestamp":"2026-04-22 17:32:20"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 17:32:24"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-22 17:32:34"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:32:53"}
+{"level":"info","message":"New client connected: 1QtzoZCj-kdfD0KQAAAB","timestamp":"2026-04-22 17:32:53"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:32:53"}
+{"level":"info","message":"Client disconnected: 1QtzoZCj-kdfD0KQAAAB","timestamp":"2026-04-22 17:34:18"}
+{"level":"info","message":"New client connected: a10Oxn9QmiSHJRJLAAAE","timestamp":"2026-04-22 17:34:19"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 17:34:20"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-22 17:34:34"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 17:35:12"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 17:35:12"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 17:35:12"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-04-22 17:35:17"}
+{"level":"info","message":"Client disconnected: a10Oxn9QmiSHJRJLAAAE","timestamp":"2026-04-22 17:35:19"}
+{"level":"info","message":"New client connected: DIwCPwc437PE2PujAAAH","timestamp":"2026-04-22 17:35:20"}
+{"level":"info","message":"Received message: Please share the contact of Parth -PArTH Corp 57501710 from 42936989392931@lid","timestamp":"2026-04-22 17:35:48"}
+{"level":"info","message":"Valid token found: 57501710 for user Parth","timestamp":"2026-04-22 17:35:48"}
+{"level":"info","message":"Received message:  from 192475050279026@lid","timestamp":"2026-04-22 17:36:22"}
+{"level":"info","message":"Received message:  from 120375165890687@lid","timestamp":"2026-04-22 17:36:22"}
+{"level":"info","message":"Received message:  from 199879204843757@lid","timestamp":"2026-04-22 17:36:22"}
+{"level":"info","message":"Received message:  from 248077361381424@lid","timestamp":"2026-04-22 17:36:22"}
+{"level":"info","message":"Received message:  from 80058358202494@lid","timestamp":"2026-04-22 17:36:22"}
+{"level":"info","message":"Received message:  from 116449465090155@lid","timestamp":"2026-04-22 17:36:22"}
+{"level":"info","message":"Received message:  from 87119166976197@lid","timestamp":"2026-04-22 17:36:22"}
+{"level":"info","message":"Client disconnected: DIwCPwc437PE2PujAAAH","timestamp":"2026-04-22 17:37:03"}
+{"level":"info","message":"New client connected: USlAtLyaM3UDHAtdAAAJ","timestamp":"2026-04-22 17:37:14"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:39:48"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:39:49"}
+{"level":"info","message":"Restoring previous WhatsApp session...","timestamp":"2026-04-22 17:39:49"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 17:39:49"}
+{"level":"info","message":"New client connected: m_zdJr2KQZyHeoHQAAAB","timestamp":"2026-04-22 17:39:49"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 17:40:19"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-04-22 17:40:21"}
+{"level":"info","message":"Client disconnected: m_zdJr2KQZyHeoHQAAAB","timestamp":"2026-04-22 17:40:31"}
+{"level":"info","message":"New client connected: PVSqck4gUC-gnokKAAAE","timestamp":"2026-04-22 17:40:32"}
+{"level":"info","message":"Received message: Please share the contact of Parth -PArTH Corp 57501710 from 42936989392931@lid","timestamp":"2026-04-22 17:40:51"}
+{"level":"info","message":"Valid token found: 57501710 for user Parth","timestamp":"2026-04-22 17:40:51"}
+{"level":"info","message":"Scanner contact shared with holder: 8347325704","timestamp":"2026-04-22 17:40:53"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:41:09"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:41:09"}
+{"level":"info","message":"Restoring previous WhatsApp session...","timestamp":"2026-04-22 17:41:09"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 17:41:09"}
+{"level":"info","message":"New client connected: t4crmr0sHxEu6bKlAAAB","timestamp":"2026-04-22 17:41:09"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 17:41:19"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-04-22 17:41:22"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:42:16"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:42:16"}
+{"level":"info","message":"Restoring previous WhatsApp session...","timestamp":"2026-04-22 17:42:16"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 17:42:16"}
+{"level":"info","message":"New client connected: qHEEZNCscCZaOly7AAAB","timestamp":"2026-04-22 17:42:16"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:42:20"}
+{"level":"info","message":"New client connected: x-CEOa0RqbepzmAiAAAB","timestamp":"2026-04-22 17:42:21"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:42:21"}
+{"level":"info","message":"Client disconnected: x-CEOa0RqbepzmAiAAAB","timestamp":"2026-04-22 17:43:51"}
+{"level":"info","message":"New client connected: iCGvV0CwNTPyNETPAAAD","timestamp":"2026-04-22 17:44:06"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 17:44:11"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 17:44:25"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-04-22 17:44:27"}
+{"level":"info","message":"Received message: Please share the contact of Parth -PArTH Corp 57501710 from 42936989392931@lid","timestamp":"2026-04-22 17:44:38"}
+{"level":"info","message":"Valid token found: 57501710 for user Parth","timestamp":"2026-04-22 17:44:38"}
+{"level":"info","message":"Scanner contact shared with holder: 8347325704","timestamp":"2026-04-22 17:44:39"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:47:00"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:47:00"}
+{"level":"info","message":"Restoring previous WhatsApp session...","timestamp":"2026-04-22 17:47:00"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 17:47:00"}
+{"level":"info","message":"New client connected: Fik8nscvV0AhRimIAAAB","timestamp":"2026-04-22 17:47:03"}
+{"level":"info","message":"Client disconnected: Fik8nscvV0AhRimIAAAB","timestamp":"2026-04-22 17:47:10"}
+{"level":"info","message":"New client connected: GK0QiVERn8PF9SiuAAAE","timestamp":"2026-04-22 17:47:11"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 17:47:16"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-04-22 17:47:22"}
+{"level":"info","message":"Received message: Please share the contact of Parth -PArTH Corp 57501710 from 42936989392931@lid","timestamp":"2026-04-22 17:47:36"}
+{"level":"info","message":"Valid token found: 57501710 for user Parth","timestamp":"2026-04-22 17:47:36"}
+{"level":"info","message":"Scanner contact shared with holder: 8347325704","timestamp":"2026-04-22 17:47:38"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:49:45"}
+{"level":"info","message":"New client connected: IVeQkBQFqSk8oXH5AAAB","timestamp":"2026-04-22 17:49:45"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:49:45"}
+{"level":"info","message":"Restoring previous WhatsApp session...","timestamp":"2026-04-22 17:49:45"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 17:49:45"}
+{"level":"error","message":"WhatsApp Initialization Error: The browser is already running for C:\\Hitesh\\VIRTUAL CARD\\server\\sessions\\session. Use a different `userDataDir` or stop the running browser first.","timestamp":"2026-04-22 17:49:46"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 17:50:21"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 17:50:21"}
+{"level":"info","message":"New client connected: t_4IB0R24dcqdJQNAAAB","timestamp":"2026-04-22 17:50:25"}
+{"level":"info","message":"Client disconnected: t_4IB0R24dcqdJQNAAAB","timestamp":"2026-04-22 17:50:26"}
+{"level":"info","message":"New client connected: Ve2wNy5U38F3YhYPAAAE","timestamp":"2026-04-22 17:50:27"}
+{"level":"info","message":"Client disconnected: Ve2wNy5U38F3YhYPAAAE","timestamp":"2026-04-22 17:50:41"}
+{"level":"info","message":"New client connected: hKzIwIhpUx8HS9JGAAAH","timestamp":"2026-04-22 17:50:42"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 17:50:46"}
+{"level":"info","message":"Client disconnected: hKzIwIhpUx8HS9JGAAAH","timestamp":"2026-04-22 17:51:14"}
+{"level":"info","message":"New client connected: f6IJdEGdJ6xkMhlHAAAK","timestamp":"2026-04-22 17:51:14"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 17:51:21"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-04-22 17:51:22"}
+{"level":"info","message":"Received message: Please share the contact of Parth -PArTH Corp 57501710 from 42936989392931@lid","timestamp":"2026-04-22 17:51:32"}
+{"level":"info","message":"Valid token found: 57501710 for user Parth","timestamp":"2026-04-22 17:51:32"}
+{"level":"info","message":"Scanner contact shared with holder: 8347325704","timestamp":"2026-04-22 17:51:34"}
+{"level":"info","message":"Received message:  from 120363373824197586@g.us","timestamp":"2026-04-22 18:01:20"}
+{"level":"info","message":"Received message: 🚨 Looking for a job opportunity in Surat? Immediate joiners preferred!\n\nWe are hiring for the following positions:\n\n🔹 Laravel Developer (2–3 Years Experience)\nQualification: BE / B.Tech / MCA\n\n🔹 Graphic Designer (Fresher – 2 Years Experience)\nQualification: College Graduate (Regular)\n\n🔹 Client Service Executive\nQualification: BBA / B.Com\nRole: Pharma project coordination & client communication\n\n📍 Location: Lal Darwaja, Surat (Onsite)\n🎯 Preference: Local candidates & Immediate joiners\n\n📩 Send your CV to: imagicahealthhr@gmail.com\n📱 WhatsApp: 9213015529\n\n📢 Tag or share with someone who might be interested! from 120363373824197586@g.us","timestamp":"2026-04-22 18:01:20"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 18:01:34"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 18:01:34"}
+{"level":"info","message":"Restoring previous WhatsApp session...","timestamp":"2026-04-22 18:01:34"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 18:01:34"}
+{"level":"info","message":"New client connected: c6ob-0wVahceZNd_AAAB","timestamp":"2026-04-22 18:01:34"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 18:02:10"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-04-22 18:02:12"}
+{"level":"info","message":"Client disconnected: c6ob-0wVahceZNd_AAAB","timestamp":"2026-04-22 18:06:14"}
+{"level":"info","message":"New client connected: 1HsEtTLkrIeeNPcGAAAE","timestamp":"2026-04-22 18:06:14"}
+{"level":"info","message":"Received message: Please share the contact of Parth -PArTH Corp 57501710 from 42936989392931@lid","timestamp":"2026-04-22 18:06:34"}
+{"level":"info","message":"Valid token found: 57501710 for user Parth","timestamp":"2026-04-22 18:06:34"}
+{"level":"info","message":"Scanner contact (with photo) shared with holder: 8347325704","timestamp":"2026-04-22 18:06:35"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 18:09:40"}
+{"level":"info","message":"New client connected: M6vZ6hhuK2q6QXoDAAAB","timestamp":"2026-04-22 18:09:40"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 18:09:40"}
+{"level":"info","message":"Restoring previous WhatsApp session...","timestamp":"2026-04-22 18:09:40"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 18:09:40"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 18:09:51"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-04-22 18:09:55"}
+{"level":"info","message":"Received message: Please share the contact of Parth -PArTH Corp 57501710 from 42936989392931@lid","timestamp":"2026-04-22 18:13:34"}
+{"level":"info","message":"Valid token found: 57501710 for user Parth","timestamp":"2026-04-22 18:13:34"}
+{"level":"error","message":"Error sharing scanner contact: Cannot read properties of undefined (reading 'isNewsletter')\nObject.<anonymous> (https://static.whatsapp.net/rsrc.php/v4iQRS4/y0/l/en_US-j/flalRglzsKk.js:651:4722)\nGenerator.next (<anonymous>)","timestamp":"2026-04-22 18:13:35"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 18:14:54"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 18:14:54"}
+{"level":"info","message":"Restoring previous WhatsApp session...","timestamp":"2026-04-22 18:14:54"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 18:14:54"}
+{"level":"info","message":"New client connected: WtgkSAi0FS6QTwHpAAAB","timestamp":"2026-04-22 18:14:54"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 18:15:00"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-04-22 18:15:03"}
+{"level":"info","message":"Received message: Please share the contact of Parth -PArTH Corp 57501710 from 42936989392931@lid","timestamp":"2026-04-22 18:15:09"}
+{"level":"info","message":"Valid token found: 57501710 for user Parth","timestamp":"2026-04-22 18:15:09"}
+{"level":"info","message":"Scanner contact shared with holder: 8347325704","timestamp":"2026-04-22 18:15:10"}
+{"level":"info","message":"Received message: Please share the contact of Parth -PArTH Corp 57501710 from 42936989392931@lid","timestamp":"2026-04-22 18:15:52"}
+{"level":"info","message":"Valid token found: 57501710 for user Parth","timestamp":"2026-04-22 18:15:52"}
+{"level":"info","message":"Scanner contact shared with holder: 8347325704","timestamp":"2026-04-22 18:15:54"}
+{"level":"info","message":"Client disconnected: WtgkSAi0FS6QTwHpAAAB","timestamp":"2026-04-22 18:17:31"}
+{"level":"info","message":"New client connected: gfzQGyRNEUKdYDZMAAAD","timestamp":"2026-04-22 18:17:43"}
+{"level":"info","message":"Received message: Please share the contact of Parth -PArTH Corp 57501710 from 42936989392931@lid","timestamp":"2026-04-22 18:18:01"}
+{"level":"info","message":"Received message: Please share the contact of Parth -PArTH Corp 57501710 from 42936989392931@lid","timestamp":"2026-04-22 18:18:09"}
+{"level":"info","message":"Valid token found: 57501710 for user Parth","timestamp":"2026-04-22 18:18:09"}
+{"level":"info","message":"Scanner contact shared with holder: 8347325704","timestamp":"2026-04-22 18:18:11"}
+{"level":"info","message":"Received message: Please share the contact of Parth -PArTH Corp 57501710 from 42936989392931@lid","timestamp":"2026-04-22 18:18:18"}
+{"level":"info","message":"Valid token found: 57501710 for user Parth","timestamp":"2026-04-22 18:18:18"}
+{"level":"info","message":"Scanner contact shared with holder: 8347325704","timestamp":"2026-04-22 18:18:19"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 18:20:08"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 18:20:08"}
+{"level":"info","message":"Restoring previous WhatsApp session...","timestamp":"2026-04-22 18:20:08"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 18:20:08"}
+{"level":"info","message":"New client connected: -jWLin9v19k9mQN6AAAB","timestamp":"2026-04-22 18:20:08"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 18:20:43"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-04-22 18:20:45"}
+{"level":"info","message":"Received message: Please share the contact of Parth -PArTH Corp 57501710 from 42936989392931@lid","timestamp":"2026-04-22 18:20:51"}
+{"level":"info","message":"Valid token found: 57501710 for user Parth","timestamp":"2026-04-22 18:20:51"}
+{"level":"info","message":"Scanner contact shared with holder: 8347325704","timestamp":"2026-04-22 18:20:53"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 18:27:43"}
+{"level":"info","message":"New client connected: rjABkzB5841eLeF7AAAB","timestamp":"2026-04-22 18:27:43"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 18:27:43"}
+{"level":"info","message":"Restoring previous WhatsApp session...","timestamp":"2026-04-22 18:27:43"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 18:27:43"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 18:27:51"}
+{"level":"info","message":"New client connected: nNd6-KR2MgSQz4gsAAAB","timestamp":"2026-04-22 18:27:51"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 18:27:51"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 18:27:58"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 18:27:58"}
+{"level":"info","message":"New client connected: LKVZW3AUKV4cEv6yAAAB","timestamp":"2026-04-22 18:27:58"}
+{"level":"info","message":"Client disconnected: LKVZW3AUKV4cEv6yAAAB","timestamp":"2026-04-22 18:28:15"}
+{"level":"info","message":"New client connected: j0RCZDilEKoEhFAOAAAE","timestamp":"2026-04-22 18:28:16"}
+{"level":"info","message":"Client disconnected: j0RCZDilEKoEhFAOAAAE","timestamp":"2026-04-22 18:28:28"}
+{"level":"info","message":"New client connected: IYmREAO9I9Mu2bL3AAAH","timestamp":"2026-04-22 18:28:29"}
+{"level":"info","message":"Client disconnected: IYmREAO9I9Mu2bL3AAAH","timestamp":"2026-04-22 18:28:31"}
+{"level":"info","message":"New client connected: Jh3HQSqPJRd2TEUNAAAK","timestamp":"2026-04-22 18:28:31"}
+{"level":"info","message":"Client disconnected: Jh3HQSqPJRd2TEUNAAAK","timestamp":"2026-04-22 18:28:55"}
+{"level":"info","message":"New client connected: ltPkdbKWH8yUuUIFAAAN","timestamp":"2026-04-22 18:28:55"}
+{"level":"info","message":"Client disconnected: ltPkdbKWH8yUuUIFAAAN","timestamp":"2026-04-22 18:29:33"}
+{"level":"info","message":"New client connected: w1v7giRtNPymdKF9AAAQ","timestamp":"2026-04-22 18:29:33"}
+{"level":"info","message":"Client disconnected: w1v7giRtNPymdKF9AAAQ","timestamp":"2026-04-22 18:31:13"}
+{"level":"info","message":"New client connected: UKlURUe1Pwzwn8ejAAAT","timestamp":"2026-04-22 18:31:13"}
+{"level":"info","message":"Client disconnected: UKlURUe1Pwzwn8ejAAAT","timestamp":"2026-04-22 18:31:44"}
+{"level":"info","message":"New client connected: nslfQHVCYE_i7AV6AAAV","timestamp":"2026-04-22 18:32:04"}
+{"level":"info","message":"Client disconnected: nslfQHVCYE_i7AV6AAAV","timestamp":"2026-04-22 18:32:20"}
+{"level":"info","message":"New client connected: JC-zvGAm3ywqsvQAAAAX","timestamp":"2026-04-22 18:32:26"}
+{"level":"info","message":"Client disconnected: JC-zvGAm3ywqsvQAAAAX","timestamp":"2026-04-22 18:33:05"}
+{"level":"info","message":"New client connected: eK-UKkIqsOgFKrUoAAAa","timestamp":"2026-04-22 18:33:06"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 18:33:38"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 18:33:38"}
+{"level":"info","message":"New client connected: T4thtsoHV8EGyX2gAAAB","timestamp":"2026-04-22 18:33:38"}
+{"level":"info","message":"Client disconnected: T4thtsoHV8EGyX2gAAAB","timestamp":"2026-04-22 18:33:43"}
+{"level":"info","message":"New client connected: Kt_LxjIYS4twwnmzAAAE","timestamp":"2026-04-22 18:33:44"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-22 18:33:54"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-22 18:33:54"}
+{"level":"info","message":"New client connected: gXUyU9OMg8kGTKNjAAAB","timestamp":"2026-04-22 18:33:56"}
+{"level":"info","message":"Client disconnected: gXUyU9OMg8kGTKNjAAAB","timestamp":"2026-04-22 18:34:01"}
+{"level":"info","message":"New client connected: V4lEXXQyjhXiBpYHAAAE","timestamp":"2026-04-22 18:34:02"}
+{"level":"info","message":"Initializing WhatsApp Client...","timestamp":"2026-04-22 18:34:18"}
+{"level":"info","message":"Client disconnected: V4lEXXQyjhXiBpYHAAAE","timestamp":"2026-04-22 18:34:47"}
+{"level":"info","message":"New client connected: 1hCiXGJWJZNZ1sh4AAAH","timestamp":"2026-04-22 18:34:51"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-04-22 18:34:51"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-04-22 18:34:56"}
+{"level":"info","message":"Client disconnected: 1hCiXGJWJZNZ1sh4AAAH","timestamp":"2026-04-22 18:35:12"}
+{"level":"info","message":"New client connected: iOziwb9Znp7u-kXJAAAK","timestamp":"2026-04-22 18:35:48"}
+{"level":"info","message":"Client disconnected: iOziwb9Znp7u-kXJAAAK","timestamp":"2026-04-22 18:35:48"}
+{"level":"info","message":"New client connected: BwMzF7Z2MMO9NIUxAAAN","timestamp":"2026-04-22 18:35:49"}
