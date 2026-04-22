@@ -10,10 +10,11 @@ const {
 const router = express.Router();
 
 router.use(protect);
-router.use(isAdmin);
 
 router.get('/status', getWhatsAppStatus);
-router.post('/connect', connectWhatsApp);
-router.post('/disconnect', disconnectWhatsApp);
+
+// Restricted to Admins only
+router.post('/connect', isAdmin, connectWhatsApp);
+router.post('/disconnect', isAdmin, disconnectWhatsApp);
 
 module.exports = router;

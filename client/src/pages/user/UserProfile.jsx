@@ -18,6 +18,7 @@ const UserProfile = () => {
     customMessage: '',
     isActive: true,
     isContactSharingEnabled: true,
+    userToken: '',
   });
 
   const fetchProfile = async () => {
@@ -33,6 +34,7 @@ const UserProfile = () => {
           customMessage: p.customMessage || '',
           isActive: p.isActive,
           isContactSharingEnabled: p.isContactSharingEnabled,
+          userToken: p.userToken || '',
         });
       }
     } catch (error) {
@@ -194,6 +196,19 @@ const UserProfile = () => {
                       </div>
                     </div>
                     <div className="space-y-2">
+                      <label className="text-xs font-bold text-indigo-500 uppercase ml-1 flex items-center">
+                        <ShieldCheck size={12} className="mr-1" /> Security Token
+                      </label>
+                      <div className="relative">
+                        <ShieldCheck className="absolute left-4 top-1/2 -translate-y-1/2 text-indigo-400" size={18} />
+                        <input
+                          value={formData.userToken || '---'}
+                          readOnly
+                          className="w-full bg-indigo-50/50 rounded-2xl py-3 pl-12 pr-4 border-indigo-100 outline-none text-sm font-bold text-indigo-600 cursor-not-allowed"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2 md:col-span-2">
                       <label className="text-xs font-bold text-slate-500 uppercase ml-1 text-indigo-600 flex items-center">
                         <Lock size={12} className="mr-1" /> New Password
                       </label>

@@ -7,6 +7,7 @@ const {
   getAllUsers,
   updateUserStatus,
   getUserScannedContacts,
+  createUser,
 } = require('../controllers/admin.controller');
 
 const router = express.Router();
@@ -15,7 +16,7 @@ router.use(protect);
 router.use(isAdmin);
 
 router.route('/profile').get(getAdminProfile).put(updateAdminProfile);
-router.route('/users').get(getAllUsers);
+router.route('/users').get(getAllUsers).post(createUser);
 router.route('/users/:id/status').put(updateUserStatus);
 router.route('/users/:id/scanned').get(getUserScannedContacts);
 

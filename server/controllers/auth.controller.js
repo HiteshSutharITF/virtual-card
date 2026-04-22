@@ -48,9 +48,6 @@ const userLogin = async (req, res) => {
     const user = await User.findOne({ mobile, isDeleted: false });
 
     if (user) {
-      if (user.status === 'pending') {
-        return res.status(403).json({ success: false, message: 'Account pending approval' });
-      }
       if (user.status === 'rejected') {
         return res.status(403).json({ success: false, message: 'Account rejected by admin' });
       }
@@ -64,6 +61,7 @@ const userLogin = async (req, res) => {
             name: user.name,
             mobile: user.mobile,
             role: 'user',
+            status: user.status,
             token: generateToken(user._id),
           },
         });

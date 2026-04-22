@@ -80,6 +80,49 @@ const updateUserStatus = async (req, res) => {
   }
 };
 
+// @desc    Create New User (Admin)
+// @route   POST /api/admin/users
+const createUser = async (req, res) => {
+  const { name, mobile, businessName, password } = req.body;
+
+  try {
+    const userExists = await User.findOne({ mobile });
+
+    if (userExists) {
+      return res.status(400).json({ success: false, message: 'User already exists with this mobile number' });
+    }
+
+    const user = await User.create({
+      name,
+      mobile,
+      businessName,
+      password,
+      createdBy: 'admin',
+      status: 'approved',
+    });
+
+    if (user) {
+      res.status(201).json({
+        success: true,
+        message: 'Business user created and approved successfully',
+        data: {
+          _id: user._id,
+          name: user.name,
+          mobile: user.mobile,
+          businessName: user.businessName,
+          userToken: user.userToken,
+          status: user.status,
+        },
+      });
+    } else {
+      res.status(400).json({ success: false, message: 'Invalid user data' });
+    }
+  } catch (error) {
+    logger.error(`Admin Create User Error: ${error.message}`);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
 // @desc    Get User Scanned Contacts (For Admin)
 // @route   GET /api/admin/users/:id/scanned
 const getUserScannedContacts = async (req, res) => {
@@ -98,4 +141,5 @@ module.exports = {
   getAllUsers,
   updateUserStatus,
   getUserScannedContacts,
+  createUser,
 };

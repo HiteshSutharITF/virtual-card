@@ -2,6 +2,15 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const { v4: uuidv4 } = require('uuid');
 
+const generateAlphanumericToken = (length = 6) => {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // Exclude ambiguous characters like 0, O, I, 1
+  let token = '';
+  for (let i = 0; i < length; i++) {
+    token += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return token;
+};
+
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -24,7 +33,7 @@ const userSchema = new mongoose.Schema(
     userToken: {
       type: String,
       unique: true,
-      default: () => uuidv4().split('-')[0].toUpperCase(), // Short unique token
+      default: () => generateAlphanumericToken(),
     },
     customMessage: {
       type: String,
