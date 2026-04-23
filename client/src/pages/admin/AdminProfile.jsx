@@ -187,13 +187,20 @@ const AdminProfile = () => {
                   </div>
                 </div>
 
-                <div className="pt-6">
+                <div className="pt-8">
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="w-full py-4.5 bg-slate-800 text-white rounded-2xl font-bold flex items-center justify-center space-x-3 shadow-xl transition-all hover:bg-slate-900 hover:shadow-slate-200 hover:-translate-y-1 disabled:opacity-50"
+                    className="w-full py-4 bg-slate-900 text-white rounded-2xl font-black uppercase tracking-[0.2em] text-[10px] flex items-center justify-center space-x-3 shadow-2xl shadow-slate-200 hover:bg-slate-800 transition-all active:scale-[0.98] disabled:opacity-50"
                   >
-                    {submitting ? <Loader2 className="animate-spin" /> : <><Save size={20} /> <span>Save Administrative Changes</span></>}
+                    {submitting ? (
+                      <Loader2 className="animate-spin" />
+                    ) : (
+                      <>
+                        <Save size={18} />
+                        <span>Save Administrative Changes</span>
+                      </>
+                    )}
                   </button>
                   <p className="text-center text-[10px] text-slate-400 mt-6 font-bold uppercase tracking-tight italic">
                     Note: Changing the WhatsApp number will require a fresh engine scan.
