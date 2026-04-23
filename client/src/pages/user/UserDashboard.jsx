@@ -195,7 +195,7 @@ const UserDashboard = () => {
                     <div className="flex items-end justify-between pt-4">
                       <div className="grid grid-cols-1 gap-y-2">
                         <CardContactItem icon={<Phone size={12} />} value={`+91 ${profile?.mobile}`} />
-                        <CardContactItem icon={<Smartphone size={12} />} value="WhatsApp Link Active" />
+                        {/* <CardContactItem icon={<Smartphone size={12} />} value="WhatsApp Link Active" /> */}
                       </div>
                     </div>
                   </div>
