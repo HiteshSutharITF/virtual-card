@@ -73,7 +73,7 @@ class WhatsAppService {
       this.updateAdminStatus('disconnected');
     });
 
-    this.client.on('disconnected', (reason) => {
+    this.client.on('disconnected', async (reason) => {
       logger.warn(`WhatsApp Disconnected: ${reason}`);
       this.status = 'disconnected';
       this.updateAdminStatus('disconnected');
@@ -81,6 +81,14 @@ class WhatsAppService {
       if (global.io) {
         global.io.emit('whatsapp_status', { status: 'disconnected' });
       }
+      
+      // Cleanup client
+      try {
+        await this.client.destroy();
+      } catch (err) {
+        logger.error(`Error destroying client: ${err.message}`);
+      }
+      this.client = null;
       
       // Re-initialize after a delay
       setTimeout(() => this.initialize(), 5000);

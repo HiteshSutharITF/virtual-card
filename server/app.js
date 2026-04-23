@@ -27,7 +27,7 @@ app.use('/api/user', userRoutes);
 app.use('/api/whatsapp', whatsappRoutes);
 
 // SPA Catch-all
-app.get('*', (req, res) => {
+app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 

@@ -33,6 +33,8 @@ const Login = () => {
         login(response.data, response.data.token);
         toast.success(response.message);
         navigate(isAdmin ? '/admin' : '/user');
+      } else {
+        toast.error(response.message || 'Login failed');
       }
     } catch (error) {
       toast.error(error.message || 'Login failed');
