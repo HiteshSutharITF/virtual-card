@@ -60,12 +60,25 @@ server.listen(PORT, async () => {
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (err, promise) => {
   logger.error(`Unhandled Rejection: ${err.message}`);
-  // In production, we might want to stay alive, but typically it's safer to crash and let PM2 restart
-  // server.close(() => process.exit(1)); 
 });
 
 // Handle uncaught exceptions
 process.on('uncaughtException', (err) => {
   logger.error(`Uncaught Exception: ${err.message}`);
-  process.exit(1);
+  gracefulShutdown();
 });
+
+// Graceful shutdown
+const gracefulShutdown = async () => {
+  logger.info('Shutting down gracefully...');
+  try {
+    await whatsappService.destroyClient();
+    logger.info('WhatsApp client destroyed.');
+  } catch (err) {
+    logger.error('Error during WhatsApp client destruction:', err);
+  }
+  process.exit(0);
+};
+
+process.on('SIGINT', gracefulShutdown);
+process.on('SIGTERM', gracefulShutdown);
