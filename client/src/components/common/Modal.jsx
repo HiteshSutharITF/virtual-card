@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 
-const Modal = ({ isOpen, onClose, title, children, size = 'md' }) => {
+const Modal = ({ isOpen, onClose, title, children, footer, icon, size = 'md' }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -24,33 +24,44 @@ const Modal = ({ isOpen, onClose, title, children, size = 'md' }) => {
   };
 
   const modalContent = (
-    <div className="fixed inset-0 z-[9999] flex flex-col justify-end sm:justify-center overflow-hidden">
-      <div className="flex items-end sm:items-center justify-center sm:p-4 text-center min-h-screen">
-        {/* Backdrop */}
-        <div 
-          className="fixed inset-0 bg-slate-900/40 sm:bg-slate-900/60 backdrop-blur-sm sm:backdrop-blur-md transition-opacity animate-fade-in" 
-          onClick={onClose}
-        ></div>
+    <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-end sm:justify-center p-0 sm:p-6 overflow-hidden">
+      {/* Backdrop */}
+      <div 
+        className="fixed inset-0 bg-slate-900/60 backdrop-blur-md transition-opacity animate-fade-in" 
+        onClick={onClose}
+      ></div>
 
-        {/* Modal Content */}
-        <div className={`relative w-full ${sizeClasses[size]} glass rounded-t-[2.5rem] sm:rounded-[3rem] shadow-2xl px-6 py-5 sm:p-12 text-left animate-slide-up sm:animate-fade-in z-10 border-t border-x border-white/20 sm:border sm:rounded-b-[3rem] sm:my-8`}>
-          {/* Bottom Sheet Handle */}
-          <div className="w-12 h-1 bg-slate-400/20 rounded-full mx-auto mb-5 sm:hidden -mt-1"></div>
-          
-          <div className="flex items-center justify-between mb-6 sm:mb-8 pb-4 border-b border-slate-200/20">
-            <h3 className="text-xl sm:text-3xl font-black text-slate-900 tracking-tight leading-none">{title}</h3>
-            <button 
-              onClick={onClose}
-              className="p-2.5 sm:p-3 bg-slate-100/50 sm:bg-transparent hover:bg-slate-200/50 rounded-full sm:rounded-2xl transition-all text-slate-500 hover:text-slate-700 shadow-sm"
-            >
-              <X size={18} className="sm:w-6 sm:h-6" />
-            </button>
+      {/* Modal Content */}
+      <div className={`relative w-full ${sizeClasses[size]} bg-white sm:rounded-[2rem] shadow-2xl flex flex-col max-h-[90vh] animate-slide-up sm:animate-fade-in z-10 overflow-hidden border border-slate-200`}>
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50/50 shrink-0">
+          <div className="flex items-center space-x-3">
+            {icon && (
+              <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-600 shadow-sm">
+                {icon}
+              </div>
+            )}
+            <h3 className="text-lg font-black text-slate-800 tracking-tight">{title}</h3>
           </div>
-
-          <div className="max-h-[75vh] overflow-y-auto pr-2 custom-scrollbar">
-            {children}
-          </div>
+          <button 
+            onClick={onClose}
+            className="p-2 hover:bg-slate-200/50 rounded-xl transition-all text-slate-400 hover:text-slate-600"
+          >
+            <X size={20} />
+          </button>
         </div>
+
+        {/* Body */}
+        <div className="flex-1 overflow-y-auto p-6 scroll-smooth custom-scrollbar">
+          {children}
+        </div>
+
+        {/* Footer */}
+        {footer && (
+          <div className="px-6 py-4 bg-slate-50/80 border-t border-slate-100 shrink-0">
+            {footer}
+          </div>
+        )}
       </div>
     </div>
   );

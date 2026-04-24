@@ -3,7 +3,7 @@ import { useAuth } from '../../context/AuthContext';
 import { getAllUsers, updateUserStatus, adminCreateUser } from '../../services/admin.service';
 import Layout from '../../components/layout/Layout';
 import { toast } from 'react-hot-toast';
-import { Search, UserCheck, UserX, Clock, Eye, Briefcase, Phone, MessageSquare, UserPlus, Lock, Loader2 } from 'lucide-react';
+import { Search, UserCheck, UserX, Clock, Eye, Briefcase, Phone, MessageSquare, UserPlus, Lock, Loader2, User, AlertCircle, ArrowRight } from 'lucide-react';
 import Modal from '../../components/common/Modal';
 import { QRCodeSVG } from 'qrcode.react';
 import { Link } from 'react-router-dom';
@@ -24,6 +24,13 @@ const UsersManagement = () => {
     businessName: '',
     password: '',
   });
+  const [confirmModal, setConfirmModal] = useState({
+    isOpen: false,
+    userId: null,
+    status: '',
+    userName: '',
+    currentStatus: ''
+  });
 
   const fetchUsers = async () => {
     try {
@@ -42,16 +49,31 @@ const UsersManagement = () => {
     fetchUsers();
   }, []);
 
-  const handleStatusUpdate = async (id, status) => {
+  const handleStatusUpdate = async () => {
+    const { userId, status } = confirmModal;
+    setLoading(true);
     try {
-      const response = await updateUserStatus(id, status);
+      const response = await updateUserStatus(userId, status);
       if (response.success) {
         toast.success(response.message);
+        setConfirmModal({ ...confirmModal, isOpen: false });
         fetchUsers();
       }
     } catch (error) {
       toast.error('Failed to update status');
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const openConfirmModal = (user, status) => {
+    setConfirmModal({
+      isOpen: true,
+      userId: user._id,
+      status: status,
+      userName: user.name,
+      currentStatus: user.status
+    });
   };
 
   const handleViewUser = (user) => {
@@ -188,14 +210,14 @@ const UsersManagement = () => {
                           {user.status === 'pending' && (
                             <>
                               <button
-                                onClick={() => handleStatusUpdate(user._id, 'approved')}
+                                onClick={() => openConfirmModal(user, 'approved')}
                                 className="p-2.5 bg-emerald-50 text-emerald-600 rounded-xl hover:bg-emerald-600 hover:text-white transition-all shadow-sm"
                                 title="Approve Entry"
                               >
                                 <UserCheck size={18} />
                               </button>
                               <button
-                                onClick={() => handleStatusUpdate(user._id, 'rejected')}
+                                onClick={() => openConfirmModal(user, 'rejected')}
                                 className="p-2.5 bg-rose-50 text-rose-600 rounded-xl hover:bg-rose-600 hover:text-white transition-all shadow-sm"
                                 title="Reject Entry"
                               >
@@ -231,12 +253,32 @@ const UsersManagement = () => {
           isOpen={isCreateModalOpen}
           onClose={() => setIsCreateModalOpen(false)}
           title="Add Business User"
+          icon={<UserPlus size={20} className="text-indigo-600" />}
           size="md"
+          footer={
+            <div className="flex gap-4">
+              <button
+                type="button"
+                onClick={() => setIsCreateModalOpen(false)}
+                className="flex-1 py-3.5 bg-slate-100 text-slate-600 font-bold rounded-2xl hover:bg-slate-200 transition-all active:scale-[0.98] text-sm"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                form="create-user-form"
+                disabled={createLoading}
+                className="flex-1 py-3.5 bg-indigo-600 text-white font-bold rounded-2xl hover:bg-slate-900 shadow-xl shadow-indigo-100 transition-all flex items-center justify-center space-x-2 disabled:opacity-50 active:scale-[0.98] text-sm"
+              >
+                {createLoading ? <Loader2 size={18} className="animate-spin text-white" /> : <span>Create Account</span>}
+              </button>
+            </div>
+          }
         >
-          <form onSubmit={handleCreateUser} className="space-y-6 py-4">
+          <form id="create-user-form" onSubmit={handleCreateUser} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <InputBox
-                icon={<UserPlus size={18} />}
+                icon={<User size={18} />}
                 label="Full Name"
                 placeholder="John Doe"
                 value={newUser.name}
@@ -265,35 +307,28 @@ const UsersManagement = () => {
               value={newUser.password}
               onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
             />
-
-            <div className="pt-6 flex gap-4">
-              <button
-                type="button"
-                onClick={() => setIsCreateModalOpen(false)}
-                className="flex-1 py-4 bg-slate-100 text-slate-600 font-bold rounded-2xl hover:bg-slate-200 transition-all"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                disabled={createLoading}
-                className="flex-1 py-4 bg-indigo-600 text-white font-bold rounded-2xl hover:bg-slate-900 shadow-xl shadow-indigo-100 transition-all flex items-center justify-center space-x-2 disabled:opacity-50"
-              >
-                {createLoading ? <Loader2 size={18} className="animate-spin text-white" /> : <span>Create Account</span>}
-              </button>
-            </div>
           </form>
         </Modal>
 
-        {/* User View Modal */}
         <Modal
           isOpen={isViewModalOpen}
           onClose={() => setIsViewModalOpen(false)}
           title="Account Identity"
+          icon={<Eye size={20} className="text-slate-600" />}
           size="md"
+          footer={
+            <div className="flex justify-end">
+              <button
+                onClick={() => setIsViewModalOpen(false)}
+                className="px-8 py-3 bg-slate-100 text-slate-600 rounded-xl font-bold hover:bg-slate-200 transition-all active:scale-[0.98] text-sm"
+              >
+                Dismiss View
+              </button>
+            </div>
+          }
         >
           {selectedUser && (
-            <div className="space-y-8 py-4">
+            <div className="space-y-8">
               <div className="flex flex-col items-center text-center">
                 <div className="relative mb-6">
                   <div className="absolute -inset-2 bg-indigo-500/10 rounded-full blur-xl pointer-events-none"></div>
@@ -325,17 +360,82 @@ const UsersManagement = () => {
                   "{selectedUser.customMessage}"
                 </div>
               </div>
-
-              <div className="flex justify-end pt-4">
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="px-8 py-3 bg-slate-100 text-slate-600 rounded-2xl font-bold hover:bg-slate-200 transition-all"
-                >
-                  Close
-                </button>
-              </div>
             </div>
           )}
+        </Modal>
+        {/* Confirmation Modal */}
+        <Modal
+          isOpen={confirmModal.isOpen}
+          onClose={() => setConfirmModal({ ...confirmModal, isOpen: false })}
+          title="Identity Verification"
+          icon={confirmModal.status === 'approved' ? <UserCheck size={20} className="text-emerald-600" /> : <UserX size={20} className="text-rose-600" />}
+          size="sm"
+          footer={
+            <div className="flex gap-3">
+              <button
+                onClick={() => setConfirmModal({ ...confirmModal, isOpen: false })}
+                className="flex-1 py-3 bg-slate-100 text-slate-600 font-bold rounded-xl hover:bg-slate-200 transition-all active:scale-[0.98] text-sm"
+              >
+                No, Go Back
+              </button>
+              <button
+                onClick={handleStatusUpdate}
+                disabled={loading}
+                className={`flex-1 py-3 text-white font-bold rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 active:scale-[0.98] text-sm ${confirmModal.status === 'approved' ? 'bg-emerald-600 hover:bg-emerald-700 shadow-emerald-100' : 'bg-rose-600 hover:bg-rose-700 shadow-rose-100'}`}
+              >
+                {loading ? <Loader2 size={16} className="animate-spin" /> : <span>Confirm Action</span>}
+              </button>
+            </div>
+          }
+        >
+          <div className="space-y-6">
+            {/* Identity Bar */}
+            <div className="bg-slate-50 rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col">
+              {/* Row 1: Profile Info */}
+              <div className="p-4 flex items-center space-x-4 border-b border-white shadow-[0_1px_0_0_rgba(0,0,0,0.02)]">
+                <div className="w-11 h-11 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-black text-xs shadow-md">
+                  {confirmModal.userName?.split(' ').map(n => n[0]).join('').toUpperCase()}
+                </div>
+                <div className="space-y-1">
+                  <h4 className="text-base font-black text-slate-900 tracking-tight leading-none">{confirmModal.userName}</h4>
+                  <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none">Professional Account</p>
+                </div>
+              </div>
+
+              {/* Row 2: Status Transition */}
+              <div className="bg-white/50 px-5 py-4 flex items-center justify-between">
+                <div className="flex flex-col">
+                  <p className="text-[8px] font-black text-slate-300 uppercase tracking-[0.2em] mb-2">Current Status</p>
+                  <span className="text-[10px] font-black uppercase text-slate-400 bg-white border border-slate-100 px-3 py-1.5 rounded-xl shadow-sm self-start">
+                    {confirmModal.currentStatus}
+                  </span>
+                </div>
+                
+                <div className="text-slate-200">
+                  <ArrowRight size={18} />
+                </div>
+
+                <div className="flex flex-col items-end text-right">
+                  <p className="text-[8px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2">Update To</p>
+                  <span className={`px-5 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest border transition-all shadow-sm ${confirmModal.status === 'approved' ? 'bg-emerald-50 text-emerald-700 border-emerald-100' : 'bg-rose-50 text-rose-700 border-rose-100'}`}>
+                    {confirmModal.status}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Warning Box */}
+            <div className="bg-amber-50 rounded-2xl p-5 border border-amber-100 flex space-x-4">
+              <div className="shrink-0 pt-0.5">
+                <AlertCircle className="text-amber-600" size={20} />
+              </div>
+              <div className="space-y-1">
+                <p className="text-[13px] font-bold text-amber-900 leading-relaxed">
+                  This will grant the user access to professional features. This action can be reversed at any time from the management panel.
+                </p>
+              </div>
+            </div>
+          </div>
         </Modal>
       </div>
     </Layout>
