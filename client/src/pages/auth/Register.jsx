@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { registerUser } from '../../services/auth.service';
+import { useAuth } from '../../context/AuthContext';
 import { toast } from 'react-hot-toast';
 import { User, Phone, Briefcase, Lock, FileText, UserPlus, ArrowLeft, Loader2, QrCode } from 'lucide-react';
 import AuthIllustration from '../../components/illustrations/AuthIllustration';
@@ -13,17 +14,54 @@ const Register = () => {
     password: '',
     customMessage: '',
   });
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) newErrors.name = 'Full Name is required';
+    
+    if (!formData.mobile.trim()) {
+      newErrors.mobile = 'WhatsApp Mobile is required';
+    } else if (!/^\d{10}$/.test(formData.mobile.trim())) {
+      newErrors.mobile = 'Enter a valid 10-digit number';
+    }
+
+    if (!formData.businessName.trim()) newErrors.businessName = 'Business name is required';
+    
+    if (!formData.password.trim()) {
+      newErrors.password = 'Password is required';
+    } else if (formData.password.length < 6) {
+      newErrors.password = 'Minimum 6 characters required';
+    }
+
+    setErrors(newErrors);
+    
+    if (Object.keys(newErrors).length > 0) {
+      const firstErrorField = Object.keys(newErrors)[0];
+      const element = document.getElementsByName(firstErrorField)[0];
+      if (element) {
+        element.focus();
+      }
+      return false;
+    }
+    return true;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
+
     setLoading(true);
     try {
       const response = await registerUser(formData);
       if (response.success) {
         toast.success(response.message);
-        navigate('/login');
+        // Automatically login after registration
+        login(response.data, response.data.token);
+        navigate('/user');
       }
     } catch (error) {
       toast.error(error.message || 'Registration failed');
@@ -34,7 +72,20 @@ const Register = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Numeric only validation for mobile
+    if (name === 'mobile') {
+      const numericValue = value.replace(/\D/g, '');
+      if (numericValue.length > 10) return;
+      setFormData(prev => ({ ...prev, [name]: numericValue }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
+
+    // Clear error for this field when user types
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: '' }));
+    }
   };
 
   return (
@@ -67,12 +118,12 @@ const Register = () => {
 
             <form onSubmit={handleSubmit} className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <InputBox icon={<User size={18} />} label="Full Name" name="name" placeholder="John Doe" value={formData.name} onChange={handleChange} />
-                <InputBox icon={<Briefcase size={18} />} label="Business" name="businessName" placeholder="Acme Corp" value={formData.businessName} onChange={handleChange} />
+                <InputBox icon={<User size={18} />} label="Full Name" name="name" placeholder="John Doe" value={formData.name} onChange={handleChange} error={errors.name} required />
+                <InputBox icon={<Briefcase size={18} />} label="Business" name="businessName" placeholder="Acme Corp" value={formData.businessName} onChange={handleChange} error={errors.businessName} required />
               </div>
               
-              <InputBox icon={<Phone size={18} />} label="WhatsApp Mobile" name="mobile" placeholder="9876543210" value={formData.mobile} onChange={handleChange} />
-              <InputBox icon={<Lock size={18} />} label="Access Password" name="password" type="password" placeholder="••••••••" value={formData.password} onChange={handleChange} />
+              <InputBox icon={<Phone size={18} />} label="WhatsApp Mobile" name="mobile" placeholder="9876543210" value={formData.mobile} onChange={handleChange} error={errors.mobile} required maxLength={10} inputMode="numeric" />
+              <InputBox icon={<Lock size={18} />} label="Access Password" name="password" type="password" placeholder="••••••••" value={formData.password} onChange={handleChange} error={errors.password} required />
               
               <div className="space-y-3">
                 <label className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400 ml-1">Custom Welcome Reply</label>
@@ -134,19 +185,25 @@ const Register = () => {
   );
 };
 
-const InputBox = ({ icon, label, ...props }) => (
+const InputBox = ({ icon, label, error, required, ...props }) => (
   <div className="space-y-2 flex-1">
-    <label className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400 ml-1">{label}</label>
+    <label className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400 ml-1">
+      {label} {required && <span className="text-red-500">*</span>}
+    </label>
     <div className="relative group">
-      <div className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-indigo-600 transition-all duration-300">
+      <div className={`absolute left-5 top-1/2 -translate-y-1/2 transition-all duration-300 ${error ? 'text-red-500' : 'text-slate-300 group-focus-within:text-indigo-600'}`}>
         {icon}
       </div>
       <input
         {...props}
-        required
-        className="w-full bg-white border border-slate-200 rounded-2xl py-3.5 pl-14 pr-4 text-slate-900 placeholder-slate-300 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-600 transition-all font-bold text-sm shadow-sm group-hover:border-slate-300"
+        className={`w-full bg-white border rounded-2xl py-3.5 pl-14 pr-4 transition-all font-bold text-sm shadow-sm focus:outline-none ${
+          error 
+            ? 'border-red-500 focus:ring-4 focus:ring-red-500/10 focus:border-red-600' 
+            : 'border-slate-200 focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-600 group-hover:border-slate-300'
+        } text-slate-900 placeholder-slate-300`}
       />
     </div>
+    {error && <p className="text-[10px] text-red-500 font-bold ml-1 animate-fade-in">{error}</p>}
   </div>
 );
 

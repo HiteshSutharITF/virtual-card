@@ -102,7 +102,15 @@ const registerUser = async (req, res) => {
     if (user) {
       res.status(201).json({
         success: true,
-        message: 'Registration successful. Waiting for admin approval.',
+        message: 'Registration successful',
+        data: {
+          _id: user._id,
+          name: user.name,
+          mobile: user.mobile,
+          role: 'user',
+          status: user.status,
+          token: generateToken(user._id),
+        },
       });
     } else {
       res.status(400).json({ success: false, message: 'Invalid user data' });
