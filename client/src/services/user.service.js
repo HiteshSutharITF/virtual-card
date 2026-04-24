@@ -16,3 +16,9 @@ export const updateUserProfile = async (data) => {
 export const getScannedContacts = async () => {
   return await api.get(USER_ENDPOINTS.SCANNED);
 };
+
+export const exportScannedContacts = async () => {
+  return await api.get(USER_ENDPOINTS.SCANNED_EXPORT, {
+    responseType: 'blob',
+  });
+};

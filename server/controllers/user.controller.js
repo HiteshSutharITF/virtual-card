@@ -60,6 +60,8 @@ const updateUserProfile = async (req, res) => {
   }
 };
 
+const XLSX = require('xlsx');
+
 // @desc    Get User Scanned Contacts
 // @route   GET /api/user/scanned
 const getScannedContacts = async (req, res) => {
@@ -72,8 +74,38 @@ const getScannedContacts = async (req, res) => {
   }
 };
 
+// @desc    Export Scanned Contacts to Excel
+// @route   GET /api/user/scanned/export
+const exportScannedContacts = async (req, res) => {
+  try {
+    const contacts = await ScannedContact.find({ userId: req.user._id }).sort({ scannedAt: -1 });
+
+    const data = contacts.map((contact, index) => ({
+      'S.No': index + 1,
+      'Scanner Name': contact.scannerName,
+      'Mobile Number': contact.scannerMobile,
+      'Date': new Date(contact.scannedAt).toLocaleDateString(),
+      'Time': new Date(contact.scannedAt).toLocaleTimeString(),
+    }));
+
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Scanned Contacts');
+
+    const buffer = XLSX.write(workbook, { type: 'buffer', bookType: 'xlsx' });
+
+    res.header('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.attachment(`scanned_contacts_${new Date().toISOString().split('T')[0]}.xlsx`);
+    res.send(buffer);
+  } catch (error) {
+    logger.error(`Export Scanned Contacts Error: ${error.message}`);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
 module.exports = {
   getUserProfile,
   updateUserProfile,
   getScannedContacts,
+  exportScannedContacts,
 };

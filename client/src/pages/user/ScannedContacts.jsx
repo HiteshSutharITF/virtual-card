@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { getScannedContacts } from '../../services/user.service';
+import { getScannedContacts, exportScannedContacts } from '../../services/user.service';
 import Layout from '../../components/layout/Layout';
 import { toast } from 'react-hot-toast';
-import { Search, Calendar, Phone, User, Clock, Filter, ArrowUpRight } from 'lucide-react';
+import { Search, Calendar, Phone, User, Clock, Filter, ArrowUpRight, Download, Loader2 } from 'lucide-react';
 
 const ScannedContacts = () => {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [downloading, setDownloading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
   const fetchContacts = async () => {
@@ -26,6 +27,31 @@ const ScannedContacts = () => {
     fetchContacts();
   }, []);
 
+  const handleDownloadExcel = async () => {
+    if (contacts.length === 0) {
+      toast.error('No contacts to download');
+      return;
+    }
+    setDownloading(true);
+    try {
+      const response = await exportScannedContacts();
+      const url = window.URL.createObjectURL(new Blob([response]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `connections_report_${new Date().toISOString().split('T')[0]}.xlsx`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+      toast.success('Excel registry downloaded');
+    } catch (error) {
+      console.error('Download error:', error);
+      toast.error('Failed to download registry');
+    } finally {
+      setDownloading(false);
+    }
+  };
+
   const filteredContacts = contacts.filter(contact => 
     contact.scannerName.toLowerCase().includes(searchTerm.toLowerCase()) || 
     contact.scannerMobile.includes(searchTerm)
@@ -34,21 +60,36 @@ const ScannedContacts = () => {
   return (
     <Layout>
       <div className="space-y-8">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div>
-            <h1 className="text-3xl font-extrabold text-slate-800">Connection History</h1>
-            <p className="text-slate-500 font-medium">People who have scanned your QR code</p>
+            <h1 className="text-3xl font-extrabold text-slate-800 tracking-tight">Connection History</h1>
+            <p className="text-slate-500 font-medium">People who have scanned your professional QR code</p>
           </div>
           
-          <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-            <input 
-              type="text" 
-              placeholder="Search contacts..."
-              className="glass rounded-2xl py-3 pl-12 pr-6 border-slate-200 text-sm focus:ring-2 focus:ring-indigo-500/20 outline-none w-full sm:w-64 shadow-sm"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+          <div className="flex flex-wrap items-center gap-4">
+            <button
+              onClick={handleDownloadExcel}
+              disabled={downloading || contacts.length === 0}
+              className="flex items-center space-x-2 bg-slate-900 text-white px-6 py-3 rounded-2xl font-bold text-sm hover:bg-indigo-600 transition-all shadow-xl shadow-slate-200 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {downloading ? (
+                <Loader2 size={18} className="animate-spin" />
+              ) : (
+                <Download size={18} />
+              )}
+              <span>Download Registry</span>
+            </button>
+
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+              <input 
+                type="text" 
+                placeholder="Search index..."
+                className="glass rounded-2xl py-3.5 pl-12 pr-6 border-slate-200 text-sm focus:ring-4 focus:ring-indigo-500/10 outline-none w-full sm:w-64 transition-all shadow-sm"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
           </div>
         </div>
 

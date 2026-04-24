@@ -15,6 +15,7 @@ export const ADMIN_ENDPOINTS = {
 export const USER_ENDPOINTS = {
   PROFILE: '/user/profile',
   SCANNED: '/user/scanned',
+  SCANNED_EXPORT: '/user/scanned/export',
 };
 
 export const WHATSAPP_ENDPOINTS = {
