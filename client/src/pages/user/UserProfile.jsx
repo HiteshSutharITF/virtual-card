@@ -4,7 +4,7 @@ import { getUserProfile, updateUserProfile } from '../../services/user.service';
 import Layout from '../../components/layout/Layout';
 import Toggle from '../../components/common/Toggle';
 import { toast } from 'react-hot-toast';
-import { User, Briefcase, Phone, Lock, MessageSquare, Save, Loader2, ShieldCheck, Zap } from 'lucide-react';
+import { User, Briefcase, Phone, Lock, MessageSquare, Save, Loader2, ShieldCheck, Zap, Camera, Trash2, Image as ImageIcon } from 'lucide-react';
 
 const UserProfile = () => {
   const { user: authUser, updateUser } = useAuth();
@@ -19,7 +19,10 @@ const UserProfile = () => {
     isActive: true,
     isContactSharingEnabled: true,
     userToken: '',
+    logo: '',
   });
+  const [logoPreview, setLogoPreview] = useState('');
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const fetchProfile = async () => {
     try {
@@ -35,7 +38,12 @@ const UserProfile = () => {
           isActive: p.isActive,
           isContactSharingEnabled: p.isContactSharingEnabled,
           userToken: p.userToken || '',
+          logo: p.logo || '',
         });
+        if (p.logo) {
+          const baseUrl = import.meta.env.VITE_API_BASE_URL.split('/api')[0];
+          setLogoPreview(`${baseUrl}${p.logo}`);
+        }
       }
     } catch (error) {
       toast.error('Failed to load profile');
@@ -57,24 +65,62 @@ const UserProfile = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleLogoChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (file.size > 2000000) {
+        toast.error('Image size should be less than 2MB');
+        return;
+      }
+      setSelectedFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setLogoPreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeLogo = () => {
+    setFormData(prev => ({ ...prev, logo: '' }));
+    setLogoPreview('');
+    setSelectedFile(null);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
     try {
-      // Create a clean object for update (don't send password if empty)
-      const updateData = { ...formData };
-      if (!updateData.password) delete updateData.password;
+      // Use FormData for file upload
+      const data = new FormData();
+      data.append('name', formData.name);
+      data.append('businessName', formData.businessName);
+      data.append('mobile', formData.mobile);
+      data.append('customMessage', formData.customMessage);
+      data.append('isActive', formData.isActive);
+      data.append('isContactSharingEnabled', formData.isContactSharingEnabled);
+      
+      if (formData.password) {
+        data.append('password', formData.password);
+      }
 
-      const response = await updateUserProfile(updateData);
+      if (selectedFile) {
+        data.append('logo', selectedFile);
+      } else if (formData.logo === '') {
+        data.append('logo', '');
+      }
+
+      const response = await updateUserProfile(data);
       if (response.success) {
         toast.success('Profile updated successfully');
-        // Update local auth state if name or business changed
         updateUser({ 
           ...authUser, 
           name: response.data.name, 
-          businessName: response.data.businessName 
+          businessName: response.data.businessName,
+          logo: response.data.logo
         });
-        setFormData(prev => ({ ...prev, password: '' }));
+        setFormData(prev => ({ ...prev, password: '', logo: response.data.logo }));
+        setSelectedFile(null);
       }
     } catch (error) {
       toast.error(error.message || 'Failed to update profile');
@@ -106,11 +152,32 @@ const UserProfile = () => {
             {/* Left Column: Toggles & Status */}
             <div className="space-y-6">
               <div className="glass rounded-[2rem] p-6 text-center">
-                <div className="w-20 h-20 bg-indigo-50 text-indigo-600 rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-sm border border-indigo-100">
-                  <User size={40} />
+                <div className="relative w-24 h-24 mx-auto mb-4">
+                  <div className="w-24 h-24 bg-white rounded-3xl flex items-center justify-center shadow-lg border-4 border-indigo-50 overflow-hidden ring-1 ring-slate-100">
+                    {logoPreview ? (
+                      <img src={logoPreview} alt="Profile Logo" className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-indigo-500 to-slate-900 flex items-center justify-center text-white font-black italic text-2xl">
+                        VC
+                      </div>
+                    )}
+                  </div>
+                  <label className="absolute -bottom-2 -right-2 w-10 h-10 bg-indigo-600 text-white rounded-2xl flex items-center justify-center shadow-xl cursor-pointer hover:bg-slate-900 transition-colors border-2 border-white">
+                    <Camera size={18} />
+                    <input type="file" className="hidden" accept="image/*" onChange={handleLogoChange} />
+                  </label>
+                  {formData.logo && (
+                    <button 
+                      onClick={removeLogo}
+                      type="button"
+                      className="absolute -top-2 -right-2 w-8 h-8 bg-rose-500 text-white rounded-xl flex items-center justify-center shadow-lg hover:bg-rose-600 transition-colors border-2 border-white"
+                    >
+                      <Trash2 size={14} />
+                    </button>
+                  )}
                 </div>
-                <h3 className="text-xl font-bold text-slate-800">{formData.name}</h3>
-                <p className="text-xs text-slate-400 font-bold uppercase tracking-widest mt-1">Verified Member</p>
+                <h3 className="text-xl font-bold text-slate-800 truncate px-2">{formData.name}</h3>
+                <p className="text-[9px] text-slate-400 font-black uppercase tracking-[0.2em] mt-1">Verified Member</p>
               </div>
 
               <div className="space-y-4">

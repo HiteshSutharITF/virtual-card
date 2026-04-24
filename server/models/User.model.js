@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema(
     },
     customMessage: {
       type: String,
-      default: 'Hi {name}! Thanks for connecting. Here is my contact info.',
+      default: 'Hi {name}! Thanks for connecting.',
     },
     isActive: {
       type: Boolean,
@@ -60,6 +60,10 @@ const userSchema = new mongoose.Schema(
     isDeleted: {
       type: Boolean,
       default: false,
+    },
+    logo: {
+      type: String,
+      default: '',
     },
   },
   { timestamps: true }

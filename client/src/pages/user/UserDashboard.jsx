@@ -211,19 +211,46 @@ const UserDashboard = () => {
 
                   {/* Main Content Area */}
                   <div className="flex-1 flex flex-col p-10 justify-between">
-                    {/* Business Brand Header */}
-                    <div className="flex items-center justify-between border-b border-slate-100 pb-6 mb-4">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-indigo-600 via-slate-900 to-black rounded-xl flex items-center justify-center text-white font-black italic tracking-tighter shadow-lg ring-1 ring-white/20">VC</div>
-                        <span className="text-sm font-black uppercase tracking-[0.3em] text-slate-800">{profile?.businessName}</span>
-                      </div>
-                    </div>
+                    {profile?.logo ? (
+                      <>
+                        {/* Business Brand Header (Logo Only) */}
+                        <div className="flex items-center border-b border-slate-100 pb-6">
+                          <img
+                            src={`${import.meta.env.VITE_API_BASE_URL.split('/api')[0]}${profile.logo}`}
+                            alt="Logo"
+                            className="h-16 w-auto object-contain transition-all"
+                          />
+                        </div>
 
-                    {/* Personal Brand Section */}
-                    <div className="space-y-1">
-                      <h3 className="text-3xl font-bold text-slate-900 tracking-tight leading-tight">{profile?.name}</h3>
-                      <p className="text-indigo-600 text-[10px] font-black uppercase tracking-widest">Digital Connection &bull; Verified Partner</p>
-                    </div>
+                        {/* Personal Brand Section with Two Rows */}
+                        <div className="space-y-2">
+                          <div>
+                            <h3 className="text-3xl font-bold text-slate-900 tracking-tight leading-[1.1] max-w-[250px]">{profile?.name}</h3>
+                          </div>
+                          <div>
+                            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 block leading-tight max-w-[250px]">{profile?.businessName}</span>
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        {/* Default Business Brand Header */}
+                        <div className="flex items-center justify-between border-b border-slate-100 pb-6 mb-4">
+                          <div className="flex items-center space-x-3">
+                            <div className="min-w-10 min-h-10 max-w-10 max-h-10 bg-gradient-to-br from-indigo-600 via-slate-900 to-black rounded-xl flex items-center justify-center text-white font-black italic tracking-tighter shadow-lg ring-1 ring-white/20">
+                              VC
+                            </div>
+                            <span className="text-sm font-black uppercase tracking-[0.3em] text-slate-800">{profile?.businessName}</span>
+                          </div>
+                        </div>
+
+                        {/* Default Personal Brand Section */}
+                        <div className="space-y-1">
+                          <h3 className="text-3xl font-bold text-slate-900 tracking-tight leading-tight">{profile?.name}</h3>
+                          <p className="text-indigo-600 text-[10px] font-black uppercase tracking-widest">Digital Connection &bull; Verified Partner</p>
+                        </div>
+                      </>
+                    )}
 
                     {/* Contact Grid */}
                     <div className="flex items-end justify-between pt-4">

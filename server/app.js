@@ -17,10 +17,12 @@ app.use(helmet({
       ...helmet.contentSecurityPolicy.getDefaultDirectives(),
       "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       "font-src": ["'self'", "https://fonts.gstatic.com", "data:"],
-      "img-src": ["'self'", "data:", "blob:"],
-      "connect-src": ["'self'", "https://fonts.googleapis.com", "https://fonts.gstatic.com"],
+      "img-src": ["'self'", "data:", "blob:", "http://localhost:5000", "http://localhost:5173"],
+      "connect-src": ["'self'", "https://fonts.googleapis.com", "https://fonts.gstatic.com", "http://localhost:5000"],
     },
   },
+  crossOriginResourcePolicy: { policy: "cross-origin" },
+  crossOriginEmbedderPolicy: false,
 }));
 app.use(cors());
 app.use(express.json());

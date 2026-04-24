@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { adminLogin, userLogin } from '../../services/auth.service';
 import { toast } from 'react-hot-toast';
-import { Mail, Lock, Phone, LogIn, ArrowRight, Loader2, QrCode } from 'lucide-react';
+import { Mail, Lock, Phone, LogIn, ArrowRight, Loader2, QrCode, Eye, EyeOff } from 'lucide-react';
 import AuthIllustration from '../../components/illustrations/AuthIllustration';
 
 const Login = () => {
@@ -14,6 +14,7 @@ const Login = () => {
     password: '',
   });
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -132,20 +133,27 @@ const Login = () => {
               )}
 
               <div className="space-y-2">
-                <div className="flex items-center justify-between ml-1">
+                {/* <div className="flex items-center justify-between ml-1">
                   <label className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400">Security Key</label>
                   <button type="button" className="text-[9px] uppercase font-black text-indigo-500 hover:text-indigo-700 tracking-tighter transition-colors">Forgot Password?</button>
-                </div>
+                </div> */}
                 <div className="relative group">
                   <Lock className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-indigo-600 transition-all duration-300" size={18} />
                   <input
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     required
                     placeholder="••••••••"
-                    className="w-full bg-white border border-slate-200 rounded-2xl py-3.5 pl-14 pr-4 text-slate-900 placeholder-slate-300 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-600 transition-all font-bold text-sm shadow-sm"
+                    className="w-full bg-white border border-slate-200 rounded-2xl py-3.5 pl-14 pr-12 text-slate-900 placeholder-slate-300 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-600 transition-all font-bold text-sm shadow-sm"
                     value={formData.password}
                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-indigo-600 transition-colors"
+                  >
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
                 </div>
               </div>
 

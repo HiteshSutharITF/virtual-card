@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { registerUser } from '../../services/auth.service';
 import { useAuth } from '../../context/AuthContext';
 import { toast } from 'react-hot-toast';
-import { User, Phone, Briefcase, Lock, FileText, UserPlus, ArrowLeft, Loader2, QrCode } from 'lucide-react';
+import { User, Phone, Briefcase, Lock, FileText, UserPlus, ArrowLeft, Loader2, QrCode, Eye, EyeOff } from 'lucide-react';
 import AuthIllustration from '../../components/illustrations/AuthIllustration';
 
 const Register = () => {
@@ -12,12 +12,13 @@ const Register = () => {
     mobile: '',
     businessName: '',
     password: '',
-    customMessage: '',
+    customMessage: 'Hi {name}! Thanks for connecting.',
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { login } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
 
   const validateForm = () => {
     const newErrors = {};
@@ -123,7 +124,19 @@ const Register = () => {
               </div>
               
               <InputBox icon={<Phone size={18} />} label="WhatsApp Mobile" name="mobile" placeholder="9876543210" value={formData.mobile} onChange={handleChange} error={errors.mobile} required maxLength={10} inputMode="numeric" />
-              <InputBox icon={<Lock size={18} />} label="Access Password" name="password" type="password" placeholder="••••••••" value={formData.password} onChange={handleChange} error={errors.password} required />
+              <InputBox 
+                icon={<Lock size={18} />} 
+                label="Access Password" 
+                name="password" 
+                type={showPassword ? "text" : "password"} 
+                placeholder="••••••••" 
+                value={formData.password} 
+                onChange={handleChange} 
+                error={errors.password} 
+                required 
+                togglePassword={() => setShowPassword(!showPassword)}
+                showPassword={showPassword}
+              />
               
               <div className="space-y-3">
                 <label className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400 ml-1">Custom Welcome Reply</label>
@@ -185,7 +198,7 @@ const Register = () => {
   );
 };
 
-const InputBox = ({ icon, label, error, required, ...props }) => (
+const InputBox = ({ icon, label, error, required, type, togglePassword, showPassword, ...props }) => (
   <div className="space-y-2 flex-1">
     <label className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400 ml-1">
       {label} {required && <span className="text-red-500">*</span>}
@@ -196,12 +209,22 @@ const InputBox = ({ icon, label, error, required, ...props }) => (
       </div>
       <input
         {...props}
-        className={`w-full bg-white border rounded-2xl py-3.5 pl-14 pr-4 transition-all font-bold text-sm shadow-sm focus:outline-none ${
+        type={type}
+        className={`w-full bg-white border rounded-2xl py-3.5 pl-14 pr-12 transition-all font-bold text-sm shadow-sm focus:outline-none ${
           error 
             ? 'border-red-500 focus:ring-4 focus:ring-red-500/10 focus:border-red-600' 
             : 'border-slate-200 focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-600 group-hover:border-slate-300'
         } text-slate-900 placeholder-slate-300`}
       />
+      {togglePassword && (
+        <button
+          type="button"
+          onClick={togglePassword}
+          className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-indigo-600 transition-colors focus:outline-none"
+        >
+          {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+        </button>
+      )}
     </div>
     {error && <p className="text-[10px] text-red-500 font-bold ml-1 animate-fade-in">{error}</p>}
   </div>

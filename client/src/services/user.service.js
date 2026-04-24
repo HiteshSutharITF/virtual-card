@@ -6,7 +6,11 @@ export const getUserProfile = async () => {
 };
 
 export const updateUserProfile = async (data) => {
-  return await api.put(USER_ENDPOINTS.PROFILE, data);
+  return await api.put(USER_ENDPOINTS.PROFILE, data, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 };
 
 export const getScannedContacts = async () => {

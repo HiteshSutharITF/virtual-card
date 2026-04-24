@@ -7,12 +7,16 @@ const {
   getScannedContacts,
 } = require('../controllers/user.controller');
 
+const { upload } = require('../middlewares/upload.middleware');
+
 const router = express.Router();
 
 router.use(protect);
 router.use(isUser);
 
-router.route('/profile').get(getUserProfile).put(updateUserProfile);
+router.route('/profile')
+  .get(getUserProfile)
+  .put(upload.single('logo'), updateUserProfile);
 router.route('/scanned').get(getScannedContacts);
 
 module.exports = router;

@@ -1,5 +1,6 @@
 const User = require('../models/User.model');
 const ScannedContact = require('../models/ScannedContact.model');
+const { getSubfolder } = require('../middlewares/upload.middleware');
 const logger = require('../utils/logger');
 
 // @desc    Get User Profile
@@ -19,7 +20,7 @@ const getUserProfile = async (req, res) => {
 // @desc    Update User Profile
 // @route   PUT /api/user/profile
 const updateUserProfile = async (req, res) => {
-  const { name, mobile, businessName, password, customMessage, isActive, isContactSharingEnabled } = req.body;
+  const { name, mobile, businessName, password, customMessage, isActive, isContactSharingEnabled, logo } = req.body;
 
   try {
     const user = await User.findById(req.user._id);
@@ -29,8 +30,15 @@ const updateUserProfile = async (req, res) => {
       user.mobile = mobile || user.mobile;
       user.businessName = businessName || user.businessName;
       user.customMessage = customMessage !== undefined ? customMessage : user.customMessage;
-      user.isActive = isActive !== undefined ? isActive : user.isActive;
-      user.isContactSharingEnabled = isContactSharingEnabled !== undefined ? isContactSharingEnabled : user.isContactSharingEnabled;
+      user.isActive = isActive !== undefined ? (isActive === 'true' || isActive === true) : user.isActive;
+      user.isContactSharingEnabled = isContactSharingEnabled !== undefined ? (isContactSharingEnabled === 'true' || isContactSharingEnabled === true) : user.isContactSharingEnabled;
+      
+      if (req.file) {
+        const subfolder = getSubfolder(req.file.fieldname);
+        user.logo = `/uploads/${subfolder}/${req.file.filename}`;
+      } else if (logo === '') {
+        user.logo = '';
+      }
 
       if (password) {
         user.password = password;
