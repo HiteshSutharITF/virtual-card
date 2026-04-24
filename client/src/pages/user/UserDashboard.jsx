@@ -4,9 +4,10 @@ import { useAuth } from '../../context/AuthContext';
 import { getUserProfile } from '../../services/user.service';
 import Layout from '../../components/layout/Layout';
 import { toast } from 'react-hot-toast';
-import { Download, Share2, ShieldCheck, Info, Smartphone, Mail, Phone, MapPin, Globe, Loader2 } from 'lucide-react';
+import { Download, Share2, ShieldCheck, Info, Smartphone, Mail, Phone, MapPin, Globe, Loader2, QrCode, Image } from 'lucide-react';
 import { getWhatsAppStatus } from '../../services/whatsapp.service';
 import { toPng } from 'html-to-image';
+import Modal from '../../components/common/Modal';
 
 const UserDashboard = () => {
   const { user } = useAuth();
@@ -14,7 +15,9 @@ const UserDashboard = () => {
   const [waStatus, setWaStatus] = useState('disconnected');
   const [loading, setLoading] = useState(true);
   const [cardScale, setCardScale] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const cardRef = useRef(null);
+  const qrRef = useRef(null);
   const containerRef = useRef(null);
 
   const fetchData = async () => {
@@ -92,6 +95,37 @@ const UserDashboard = () => {
     } catch (err) {
       toast.error('Failed to generate card.', { id: loadingToast });
       console.error(err);
+    } finally {
+      setIsModalOpen(false);
+    }
+  };
+
+  const downloadQRCode = async () => {
+    if (qrRef.current === null) return;
+
+    const loadingToast = toast.loading('Generating high-resolution QR...');
+    try {
+      const dataUrl = await toPng(qrRef.current, {
+        pixelRatio: 4,
+        backgroundColor: '#ffffff',
+        style: {
+          padding: '12px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }
+      });
+
+      const link = document.createElement('a');
+      link.download = `${profile?.name?.replace(/\s+/g, '-')}-QR-Code.png`;
+      link.href = dataUrl;
+      link.click();
+      toast.success('QR Code downloaded!', { id: loadingToast });
+    } catch (err) {
+      toast.error('Failed to generate QR.', { id: loadingToast });
+      console.error(err);
+    } finally {
+      setIsModalOpen(false);
     }
   };
 
@@ -202,7 +236,7 @@ const UserDashboard = () => {
 
                   {/* Secure QR Section */}
                   <div className="w-[200px] bg-slate-50/50 border-l border-slate-50 flex flex-col items-center justify-center p-8">
-                    <div className="p-3 bg-white shadow-sm ring-1 ring-slate-100 rounded-lg mb-4">
+                    <div ref={qrRef} className="p-3 bg-white shadow-sm ring-1 ring-slate-100 rounded-lg mb-4">
                       <QRCodeSVG
                         id="user-qr"
                         value={qrValue}
@@ -226,7 +260,7 @@ const UserDashboard = () => {
 
             <div className="mt-8 flex flex-col items-center space-y-6">
               <button
-                onClick={downloadCard}
+                onClick={() => setIsModalOpen(true)}
                 className="bg-indigo-600 text-white px-10 py-4 rounded-2xl font-black uppercase tracking-[0.2em] text-[10px] shadow-2xl shadow-indigo-200 hover:bg-indigo-700 active:scale-95 transition-all flex items-center space-x-3 group"
               >
                 <Download size={18} className="group-hover:rotate-12 transition-transform" />
@@ -253,7 +287,7 @@ const UserDashboard = () => {
                 <div>
                   <h4 className="text-lg font-black text-slate-800 mb-2 tracking-tight">Verified Protocol</h4>
                   <p className="text-sm text-slate-500 leading-relaxed font-medium">
-                    Your digital card uses <span className="text-indigo-600 font-bold">Encrypted QR Bridge</span> technology. Scanners are automatically redirected to our secure contact exchange bot.
+                    Your Virtual card uses <span className="text-indigo-600 font-bold">Encrypted QR Bridge</span> technology. Scanners are automatically redirected to our secure contact exchange bot.
                   </p>
                 </div>
               </div>
@@ -268,6 +302,44 @@ const UserDashboard = () => {
           </div>
         </div>
       </div>
+
+      {/* Download Options Modal */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Download Options"
+      >
+        <div className="grid grid-cols-2 gap-4 sm:gap-6">
+          <button
+            onClick={downloadCard}
+            className="group flex flex-col items-center p-5 sm:p-8 bg-slate-50 hover:bg-indigo-50 border border-slate-100 hover:border-indigo-200 rounded-[1.5rem] sm:rounded-[2.5rem] transition-all duration-300 active:scale-[0.98]"
+          >
+            <div className="w-12 h-12 sm:w-20 sm:h-20 bg-white shadow-lg sm:shadow-xl shadow-slate-200/50 group-hover:shadow-indigo-200/50 rounded-2xl sm:rounded-3xl flex items-center justify-center text-slate-400 group-hover:text-indigo-600 transition-all duration-300 mb-4 sm:mb-6 group-hover:rotate-2">
+              <Image size={24} className="sm:w-8 sm:h-8" strokeWidth={2.5} />
+            </div>
+            <h4 className="text-xs sm:text-lg font-black text-slate-800 group-hover:text-indigo-900 transition-colors text-center">Virtual Card</h4>
+            <p className="hidden sm:block text-[10px] font-bold text-slate-400 group-hover:text-indigo-400 uppercase tracking-widest mt-2 text-center">Full Visual Identity</p>
+          </button>
+
+          <button
+            onClick={downloadQRCode}
+            className="group flex flex-col items-center p-5 sm:p-8 bg-slate-50 hover:bg-indigo-50 border border-slate-100 hover:border-indigo-200 rounded-[1.5rem] sm:rounded-[2.5rem] transition-all duration-300 active:scale-[0.98]"
+          >
+            <div className="w-12 h-12 sm:w-20 sm:h-20 bg-white shadow-lg sm:shadow-xl shadow-slate-200/50 group-hover:shadow-indigo-200/50 rounded-2xl sm:rounded-3xl flex items-center justify-center text-slate-400 group-hover:text-indigo-600 transition-all duration-300 mb-4 sm:mb-6 group-hover:-rotate-2">
+              <QrCode size={24} className="sm:w-8 sm:h-8" strokeWidth={2.5} />
+            </div>
+            <h4 className="text-xs sm:text-lg font-black text-slate-800 group-hover:text-indigo-900 transition-colors text-center">QR Code</h4>
+            <p className="hidden sm:block text-[10px] font-bold text-slate-400 group-hover:text-indigo-400 uppercase tracking-widest mt-2 text-center">Instant Connection</p>
+          </button>
+        </div>
+
+        <div className="mt-10 pt-6 border-t border-slate-100">
+          <div className="flex items-center justify-center space-x-2 text-[9px] font-black text-slate-500 uppercase tracking-[0.2em]">
+            <ShieldCheck size={12} className='min-h-[12px]' />
+            <span>High-Resolution Assets Generated on Demand</span>
+          </div>
+        </div>
+      </Modal>
     </Layout>
   );
 };

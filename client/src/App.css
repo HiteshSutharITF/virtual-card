@@ -53,8 +53,17 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes slideUp {
+  from { opacity: 1; transform: translateY(100%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Premium Buttons */
