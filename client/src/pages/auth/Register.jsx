@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { registerUser } from '../../services/auth.service';
 import { useAuth } from '../../context/AuthContext';
@@ -17,8 +17,14 @@ const Register = () => {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, token, user } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    if (token && user) {
+      navigate(user.role === 'admin' ? '/admin' : '/user');
+    }
+  }, [token, user, navigate]);
 
   const validateForm = () => {
     const newErrors = {};

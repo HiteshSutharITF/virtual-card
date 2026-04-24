@@ -17,6 +17,7 @@ import UserScannedContacts from './pages/admin/UserScannedContacts';
 import UserDashboard from './pages/user/UserDashboard';
 import ScannedContacts from './pages/user/ScannedContacts';
 import UserProfile from './pages/user/UserProfile';
+import NotFound from './pages/errors/NotFound';
 
 function App() {
   return (
@@ -47,6 +48,9 @@ function App() {
 
             {/* Redirects */}
             <Route path="/" element={<Navigate to="/login" replace />} />
+
+            {/* 404 Not Found - Catch All */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </SocketProvider>
       </AuthProvider>
