@@ -6,7 +6,13 @@ const logger = require('../utils/logger');
 // @desc    Get Admin Profile
 // @route   GET /api/admin/profile
 const getAdminProfile = async (req, res) => {
-  res.json({ success: true, data: req.user });
+  res.json({ 
+    success: true, 
+    data: {
+      ...req.user.toObject(),
+      role: req.user.role || 'admin'
+    } 
+  });
 };
 
 // @desc    Update Admin Profile

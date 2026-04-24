@@ -28,8 +28,13 @@ const adminSchema = new mongoose.Schema(
     },
     whatsappStatus: {
       type: String,
-      enum: ['disconnected', 'qr_ready', 'connected', 'reconnecting'],
+      enum: ['disconnected', 'qr_ready', 'connected', 'reconnecting', 'error'],
       default: 'disconnected',
+    },
+    role: {
+      type: String,
+      enum: ['admin'],
+      default: 'admin',
     },
   },
   { timestamps: true }

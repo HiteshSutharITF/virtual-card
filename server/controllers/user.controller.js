@@ -12,6 +12,7 @@ const getUserProfile = async (req, res) => {
     success: true, 
     data: { 
       ...req.user.toObject(), 
+      role: req.user.role || 'user',
       adminMobile: admin?.mobile || '' 
     } 
   });

@@ -13,11 +13,11 @@ const PendingApproval = ({ user }) => {
         <div className="absolute -inset-20 bg-amber-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
         
         <div className="relative">
-          <div className="w-32 h-32 bg-white rounded-[2.5rem] shadow-2xl border border-slate-100 flex items-center justify-center text-amber-500 ring-8 ring-amber-50/50">
-            <Clock size={64} className="animate-spin-slow" />
+          <div className={`w-32 h-32 bg-white rounded-[2.5rem] shadow-2xl border border-slate-100 flex items-center justify-center ${user?.status === 'rejected' ? 'text-rose-500 ring-8 ring-rose-50' : 'text-amber-500 ring-8 ring-amber-50/50'}`}>
+            <Clock size={64} className={user?.status === 'rejected' ? "" : "animate-spin-slow"} />
           </div>
-          <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-xl border-4 border-white">
-            <ShieldAlert size={20} />
+          <div className={`absolute -bottom-2 -right-2 w-12 h-12 ${user?.status === 'rejected' ? 'bg-rose-600' : 'bg-indigo-600'} rounded-2xl flex items-center justify-center text-white shadow-xl border-4 border-white`}>
+            {user?.status === 'rejected' ? <ShieldAlert size={20} /> : <ShieldAlert size={20} />}
           </div>
         </div>
       </div>
@@ -25,29 +25,43 @@ const PendingApproval = ({ user }) => {
       <div className="max-w-md space-y-6">
         <div className="space-y-4">
           <h2 className="text-4xl font-black text-slate-900 tracking-tight leading-tight">
-            Approval <span className="text-amber-500 underline decoration-amber-200 underline-offset-[8px]">Pending.</span>
+            {user?.status === 'rejected' ? (
+              <>Account <span className="text-rose-500 underline decoration-rose-200 underline-offset-[8px]">Rejected.</span></>
+            ) : (
+              <>Approval <span className="text-amber-500 underline decoration-amber-200 underline-offset-[8px]">Pending.</span></>
+            )}
           </h2>
           <p className="text-slate-500 font-medium text-lg leading-relaxed">
-            Hi {user?.name}, your professional account is currently under review by our administration team.
+            {user?.status === 'rejected' 
+              ? `Hi ${user?.name}, unfortunately your account application was not successful at this time.`
+              : `Hi ${user?.name}, your professional account is currently under review by our administration team.`
+            }
           </p>
         </div>
 
         <div className="bg-white border border-slate-200 rounded-[2rem] p-8 shadow-sm flex flex-col items-center space-y-6">
           <div className="flex items-start space-x-4 text-left">
-            <div className="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 flex-shrink-0">
+            <div className={`w-10 h-10 ${user?.status === 'rejected' ? 'bg-rose-50 text-rose-600' : 'bg-indigo-50 text-indigo-600'} rounded-xl flex items-center justify-center flex-shrink-0`}>
               <MessageSquare size={20} />
             </div>
             <div>
-              <h4 className="font-bold text-slate-800 tracking-tight">Identity Verification</h4>
+              <h4 className="font-bold text-slate-800 tracking-tight">
+                {user?.status === 'rejected' ? "Application Status" : "Identity Verification"}
+              </h4>
               <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                We are verifying your business details to ensure the security of the VirtualCard network. This typically takes 2-24 hours.
+                {user?.status === 'rejected'
+                  ? "Your application does not meet our current requirements. Please contact the administrator for more details regarding your account status."
+                  : "We are verifying your business details to ensure the security of the VirtualCard network. This typically takes 2-24 hours."
+                }
               </p>
             </div>
           </div>
 
-          <div className="w-full h-1 bg-slate-50 rounded-full overflow-hidden">
-            <div className="h-full bg-amber-500 w-2/3 animate-shimmer"></div>
-          </div>
+          {!user?.status === 'rejected' && (
+            <div className="w-full h-1 bg-slate-50 rounded-full overflow-hidden">
+              <div className="h-full bg-amber-500 w-2/3 animate-shimmer"></div>
+            </div>
+          )}
         </div>
 
         <div className="pt-6">

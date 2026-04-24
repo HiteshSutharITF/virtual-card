@@ -17,14 +17,14 @@ const Register = () => {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { login, token, user } = useAuth();
+  const { login, token, user, loading: authLoading } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
-    if (token && user) {
+    if (!authLoading && token && user) {
       navigate(user.role === 'admin' ? '/admin' : '/user');
     }
-  }, [token, user, navigate]);
+  }, [token, user, navigate, authLoading]);
 
   const validateForm = () => {
     const newErrors = {};

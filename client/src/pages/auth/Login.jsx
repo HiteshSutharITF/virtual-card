@@ -15,14 +15,14 @@ const Login = () => {
   });
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const { login, token, user } = useAuth();
+  const { login, token, user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (token && user) {
+    if (!authLoading && token && user) {
       navigate(user.role === 'admin' ? '/admin' : '/user');
     }
-  }, [token, user, navigate]);
+  }, [token, user, navigate, authLoading]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

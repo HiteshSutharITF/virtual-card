@@ -694,3 +694,36 @@
 {"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-24 16:10:27"}
 {"level":"info","message":"Server running on port 5000","timestamp":"2026-04-24 16:10:28"}
 {"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-24 16:10:28"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-24 18:22:15"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-24 18:22:15"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-24 18:22:15"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-24 18:22:20"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-24 18:22:20"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-24 18:22:20"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-24 18:22:35"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-24 18:22:35"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-24 18:22:35"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-24 18:22:41"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-24 18:22:41"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-24 18:22:41"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-24 18:24:16"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-24 18:24:16"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-24 18:24:16"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-24 18:24:22"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-24 18:24:22"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-24 18:24:22"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-24 18:25:47"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-24 18:25:47"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-24 18:25:47"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-24 18:25:57"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-24 18:25:57"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-24 18:25:57"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-24 18:26:08"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-24 18:26:08"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-24 18:26:08"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-24 18:28:28"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-24 18:28:28"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-24 18:28:28"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-24 18:28:37"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-24 18:28:37"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-24 18:28:37"}
