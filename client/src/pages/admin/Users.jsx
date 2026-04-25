@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { getAllUsers, updateUserStatus, adminCreateUser } from '../../services/admin.service';
+import { getAllUsers, updateUserStatus, adminCreateUser, adminUpdateUser } from '../../services/admin.service';
 import Layout from '../../components/layout/Layout';
 import { toast } from 'react-hot-toast';
-import { Search, UserCheck, UserX, Clock, Eye, Briefcase, Phone, MessageSquare, UserPlus, Lock, Loader2, User, AlertCircle, ArrowRight } from 'lucide-react';
+import { Search, UserCheck, UserX, Clock, Eye, Briefcase, Phone, MessageSquare, UserPlus, Lock, Loader2, User, AlertCircle, ArrowRight, Pencil, Save } from 'lucide-react';
 import Modal from '../../components/common/Modal';
 import { QRCodeSVG } from 'qrcode.react';
 import { Link } from 'react-router-dom';
+import Toggle from '../../components/common/Toggle';
 
 const UsersManagement = () => {
   const { user: currentUser } = useAuth();
@@ -30,6 +31,18 @@ const UsersManagement = () => {
     status: '',
     userName: '',
     currentStatus: ''
+  });
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editLoading, setEditLoading] = useState(false);
+  const [editUser, setEditUser] = useState(null);
+  const [editFormData, setEditFormData] = useState({
+    name: '',
+    mobile: '',
+    businessName: '',
+    password: '',
+    customMessage: '',
+    isActive: true,
+    isContactSharingEnabled: true,
   });
 
   const fetchUsers = async () => {
@@ -79,6 +92,37 @@ const UsersManagement = () => {
   const handleViewUser = (user) => {
     setSelectedUser(user);
     setIsViewModalOpen(true);
+  };
+
+  const handleEditClick = (user) => {
+    setEditUser(user);
+    setEditFormData({
+      name: user.name || '',
+      mobile: user.mobile || '',
+      businessName: user.businessName || '',
+      password: '',
+      customMessage: user.customMessage || '',
+      isActive: user.isActive ?? true,
+      isContactSharingEnabled: user.isContactSharingEnabled ?? true,
+    });
+    setIsEditModalOpen(true);
+  };
+
+  const handleUpdateUser = async (e) => {
+    e.preventDefault();
+    setEditLoading(true);
+    try {
+      const response = await adminUpdateUser(editUser._id, editFormData);
+      if (response.success) {
+        toast.success(response.message || 'User updated successfully');
+        setIsEditModalOpen(false);
+        fetchUsers();
+      }
+    } catch (error) {
+      toast.error(error.message || 'Failed to update user');
+    } finally {
+      setEditLoading(false);
+    }
   };
 
   const handleCreateUser = async (e) => {
@@ -235,8 +279,16 @@ const UsersManagement = () => {
                           <button
                             onClick={() => handleViewUser(user)}
                             className="p-2.5 bg-slate-50 text-slate-500 rounded-xl hover:bg-slate-800 hover:text-white transition-all shadow-sm"
+                            title="Quick View"
                           >
                             <Eye size={18} />
+                          </button>
+                          <button
+                            onClick={() => handleEditClick(user)}
+                            className="p-2.5 bg-amber-50 text-amber-600 rounded-xl hover:bg-amber-600 hover:text-white transition-all shadow-sm"
+                            title="Edit Details"
+                          >
+                            <Pencil size={18} />
                           </button>
                         </div>
                       </td>
@@ -307,6 +359,105 @@ const UsersManagement = () => {
               value={newUser.password}
               onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
             />
+          </form>
+        </Modal>
+
+        {/* Edit User Modal */}
+        <Modal
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(false)}
+          title="Update Account Details"
+          icon={<Pencil size={20} className="text-amber-600" />}
+          size="md"
+          footer={
+            <div className="flex gap-4">
+              <button
+                type="button"
+                onClick={() => setIsEditModalOpen(false)}
+                className="flex-1 py-3.5 bg-slate-100 text-slate-600 font-bold rounded-2xl hover:bg-slate-200 transition-all active:scale-[0.98] text-sm"
+              >
+                Discard
+              </button>
+              <button
+                type="submit"
+                form="edit-user-form"
+                disabled={editLoading}
+                className="flex-1 py-3.5 bg-indigo-600 text-white font-bold rounded-2xl hover:bg-slate-900 shadow-xl shadow-indigo-100 transition-all flex items-center justify-center space-x-2 disabled:opacity-50 active:scale-[0.98] text-sm"
+              >
+                {editLoading ? <Loader2 size={18} className="animate-spin text-white" /> : <><Save size={18} /> <span>Save Changes</span></>}
+              </button>
+            </div>
+          }
+        >
+          <form id="edit-user-form" onSubmit={handleUpdateUser} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <InputBox
+                icon={<User size={18} />}
+                label="Full Name"
+                placeholder="Name"
+                value={editFormData.name}
+                onChange={(e) => setEditFormData({ ...editFormData, name: e.target.value })}
+              />
+              <InputBox
+                icon={<Briefcase size={18} />}
+                label="Business Name"
+                placeholder="Business"
+                value={editFormData.businessName}
+                onChange={(e) => setEditFormData({ ...editFormData, businessName: e.target.value })}
+              />
+            </div>
+            <InputBox
+              icon={<Phone size={18} />}
+              label="WhatsApp Mobile"
+              placeholder="Mobile"
+              value={editFormData.mobile}
+              onChange={(e) => setEditFormData({ ...editFormData, mobile: e.target.value })}
+            />
+            <div className="bg-amber-50 rounded-2xl p-4 border border-amber-100">
+               <InputBox
+                icon={<Lock size={18} />}
+                label="Update Password"
+                type="password"
+                placeholder="Leave empty to keep current"
+                value={editFormData.password}
+                onChange={(e) => setEditFormData({ ...editFormData, password: e.target.value })}
+              />
+              <p className="text-[9px] text-amber-600 font-bold uppercase tracking-wider mt-2 ml-1 flex items-center gap-1.5">
+                <AlertCircle size={10} /> Password update will take effect on next login
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-1">Custom Reply Message</label>
+                <div className="relative">
+                  <div className="absolute left-4 top-4 text-slate-400">
+                    <MessageSquare size={18} />
+                  </div>
+                  <textarea
+                    value={editFormData.customMessage}
+                    onChange={(e) => setEditFormData({ ...editFormData, customMessage: e.target.value })}
+                    className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-3.5 pl-12 pr-4 text-sm font-medium focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all h-24 resize-none"
+                    placeholder="Message..."
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Toggle 
+                  label="Bot Status" 
+                  description="Enable/Disable bot"
+                  enabled={editFormData.isActive}
+                  onChange={(v) => setEditFormData({ ...editFormData, isActive: v })}
+                />
+                <Toggle 
+                  label="Sharing" 
+                  description="Contact sharing"
+                  enabled={editFormData.isContactSharingEnabled}
+                  onChange={(v) => setEditFormData({ ...editFormData, isContactSharingEnabled: v })}
+                />
+              </div>
+            </div>
           </form>
         </Modal>
 

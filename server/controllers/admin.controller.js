@@ -141,6 +141,51 @@ const getUserScannedContacts = async (req, res) => {
   }
 };
 
+// @desc    Update User (Admin)
+// @route   PUT /api/admin/users/:id
+const updateUser = async (req, res) => {
+  const { name, mobile, businessName, password, customMessage, isActive, isContactSharingEnabled } = req.body;
+
+  try {
+    const user = await User.findById(req.params.id);
+
+    if (user) {
+      user.name = name || user.name;
+      user.mobile = mobile || user.mobile;
+      user.businessName = businessName || user.businessName;
+      
+      if (customMessage !== undefined) user.customMessage = customMessage;
+      if (isActive !== undefined) user.isActive = isActive;
+      if (isContactSharingEnabled !== undefined) user.isContactSharingEnabled = isContactSharingEnabled;
+
+      if (password) {
+        user.password = password;
+      }
+
+      await user.save();
+      res.json({
+        success: true,
+        message: 'User updated successfully',
+        data: {
+          _id: user._id,
+          name: user.name,
+          mobile: user.mobile,
+          businessName: user.businessName,
+          status: user.status,
+        },
+      });
+    } else {
+      res.status(404).json({ success: false, message: 'User not found' });
+    }
+  } catch (error) {
+    logger.error(`Admin Update User Error: ${error.message}`);
+    if (error.code === 11000) {
+      return res.status(400).json({ success: false, message: 'Mobile number already in use' });
+    }
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
 module.exports = {
   getAdminProfile,
   updateAdminProfile,
@@ -148,4 +193,5 @@ module.exports = {
   updateUserStatus,
   getUserScannedContacts,
   createUser,
+  updateUser,
 };

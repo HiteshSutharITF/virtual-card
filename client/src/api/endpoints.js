@@ -8,6 +8,7 @@ export const ADMIN_ENDPOINTS = {
   PROFILE: '/admin/profile',
   USERS: '/admin/users',
   CREATE_USER: '/admin/users',
+  UPDATE_USER: (id) => `/admin/users/${id}`,
   USER_STATUS: (id) => `/admin/users/${id}/status`,
   USER_SCANNED: (id) => `/admin/users/${id}/scanned`,
 };
