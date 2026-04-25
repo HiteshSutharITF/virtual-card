@@ -760,3 +760,6 @@
 {"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-25 12:45:35"}
 {"level":"info","message":"Server running on port 5000","timestamp":"2026-04-25 12:45:35"}
 {"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-25 12:45:35"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-25 15:43:59"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-25 15:43:59"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-25 15:43:59"}
