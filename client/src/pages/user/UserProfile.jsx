@@ -4,7 +4,7 @@ import { getUserProfile, updateUserProfile } from '../../services/user.service';
 import Layout from '../../components/layout/Layout';
 import Toggle from '../../components/common/Toggle';
 import { toast } from 'react-hot-toast';
-import { User, Briefcase, Phone, Lock, MessageSquare, Save, Loader2, ShieldCheck, Zap, Camera, Trash2, Image as ImageIcon } from 'lucide-react';
+import { User, Briefcase, Phone, Lock, MessageSquare, Save, Loader2, ShieldCheck, Zap, Camera, Trash2, Image as ImageIcon, Pencil } from 'lucide-react';
 
 const UserProfile = () => {
   const { user: authUser, updateUser } = useAuth();
@@ -99,7 +99,7 @@ const UserProfile = () => {
       data.append('customMessage', formData.customMessage);
       data.append('isActive', formData.isActive);
       data.append('isContactSharingEnabled', formData.isContactSharingEnabled);
-      
+
       if (formData.password) {
         data.append('password', formData.password);
       }
@@ -113,13 +113,15 @@ const UserProfile = () => {
       const response = await updateUserProfile(data);
       if (response.success) {
         toast.success('Profile updated successfully');
-        updateUser({ 
-          ...authUser, 
-          name: response.data.name, 
+        updateUser({
+          ...authUser,
+          name: response.data.name,
           businessName: response.data.businessName,
           logo: response.data.logo
         });
         setFormData(prev => ({ ...prev, password: '', logo: response.data.logo }));
+        const baseUrl = import.meta.env.VITE_API_BASE_URL.split('/api')[0];
+        setLogoPreview(`${baseUrl}${response.data.logo}`);
         setSelectedFile(null);
       }
     } catch (error) {
@@ -153,26 +155,26 @@ const UserProfile = () => {
             <div className="space-y-6">
               <div className="glass rounded-[2rem] p-6 text-center">
                 <div className="relative w-24 h-24 mx-auto mb-4">
-                  <div className="w-24 h-24 bg-white rounded-3xl flex items-center justify-center shadow-lg border-4 border-indigo-50 overflow-hidden ring-1 ring-slate-100">
+                  <div className="w-24 h-24 bg-gray-100 rounded-3xl flex items-center justify-center shadow-lg border-4 border-indigo-50 overflow-hidden ring-1 ring-slate-100">
                     {logoPreview ? (
-                      <img src={logoPreview} alt="Profile Logo" className="w-full h-full object-cover" />
+                      <img src={logoPreview} alt="Profile Logo" className="w-full h-full object-contain p-2" />
                     ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-indigo-500 to-slate-900 flex items-center justify-center text-white font-black italic text-2xl">
-                        VC
+                      <div className="w-full h-full bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center text-white font-black italic text-3xl">
+                        {formData.name?.charAt(0) || 'V'}
                       </div>
                     )}
                   </div>
-                  <label className="absolute -bottom-2 -right-2 w-10 h-10 bg-indigo-600 text-white rounded-2xl flex items-center justify-center shadow-xl cursor-pointer hover:bg-slate-900 transition-colors border-2 border-white">
-                    <Camera size={18} />
+                  <label className="absolute -bottom-3 -right-3 w-11 h-11 bg-indigo-600 text-white rounded-[1.25rem] flex items-center justify-center shadow-2xl cursor-pointer hover:scale-105 transition-all border-4 border-white z-10">
+                    <Pencil size={20} />
                     <input type="file" className="hidden" accept="image/*" onChange={handleLogoChange} />
                   </label>
-                  {formData.logo && (
-                    <button 
+                  {logoPreview && (
+                    <button
                       onClick={removeLogo}
                       type="button"
-                      className="absolute -top-2 -right-2 w-8 h-8 bg-rose-500 text-white rounded-xl flex items-center justify-center shadow-lg hover:bg-rose-600 transition-colors border-2 border-white"
+                      className="absolute -top-3 -right-3 w-9 h-9 bg-rose-500 text-white rounded-[1rem] flex items-center justify-center shadow-xl hover:scale-105 transition-all border-4 border-white z-10"
                     >
-                      <Trash2 size={14} />
+                      <Trash2 size={16} />
                     </button>
                   )}
                 </div>
@@ -181,14 +183,14 @@ const UserProfile = () => {
               </div>
 
               <div className="space-y-4">
-                <Toggle 
-                  label="Bot Status" 
+                <Toggle
+                  label="Bot Status"
                   description="Enable or disable the entire automated engine."
                   enabled={formData.isActive}
                   onChange={(v) => handleToggle('isActive', v)}
                 />
-                <Toggle 
-                  label="Contact Sharing" 
+                <Toggle
+                  label="Contact Sharing"
                   description="Automatically share your vCard with scanners."
                   enabled={formData.isContactSharingEnabled}
                   onChange={(v) => handleToggle('isContactSharingEnabled', v)}
@@ -218,7 +220,7 @@ const UserProfile = () => {
                     </div>
                     <h4 className="text-lg font-bold text-slate-800">Primary Information</h4>
                   </div>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="text-xs font-bold text-slate-500 uppercase ml-1">Full Name</label>
@@ -314,7 +316,7 @@ const UserProfile = () => {
                       className="w-full glass rounded-[2rem] p-6 border-slate-200 focus:ring-2 focus:ring-indigo-500/20 outline-none text-sm font-medium leading-relaxed"
                       placeholder="Hi {name}! Thanks for connecting..."
                     ></textarea>
-                    
+
                     <div className="mt-4 p-5 bg-indigo-50/50 rounded-2xl border border-indigo-100">
                       <p className="text-[10px] uppercase tracking-widest font-bold text-indigo-400 mb-2">Live Preview Example</p>
                       <p className="text-sm text-slate-600 italic">

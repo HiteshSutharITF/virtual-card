@@ -1,37 +1,108 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import { useAuth } from '../../context/AuthContext';
-import { getUserProfile } from '../../services/user.service';
 import Layout from '../../components/layout/Layout';
 import { toast } from 'react-hot-toast';
-import { Download, Share2, ShieldCheck, Info, Smartphone, Mail, Phone, MapPin, Globe, Loader2, QrCode, Image } from 'lucide-react';
+import { Download, Save, ShieldCheck, Info, Smartphone, Loader2, QrCode, Image } from 'lucide-react';
 import { getWhatsAppStatus } from '../../services/whatsapp.service';
 import { toPng } from 'html-to-image';
+import { Phone } from 'lucide-react';
+import { updateUserProfile, getUserProfile } from '../../services/user.service';
 import Modal from '../../components/common/Modal';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Keyboard } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+const IdentityCard = React.forwardRef(function IdentityCard({ profile, qrValue, cardScale = 1, unscaled }, ref) {
+  return (
+    <div
+      ref={ref}
+      style={{
+        width: '480px',
+        height: '270px',
+        ...(!unscaled ? { transform: `scale(${cardScale})`, transformOrigin: 'top left' } : {}),
+      }}
+      className="bg-white border border-slate-100 shadow-sm flex overflow-hidden rounded-sm"
+    >
+      <div className="w-2.5 bg-indigo-600 flex-shrink-0" />
+      <div className="flex-1 flex flex-col px-6 py-5 justify-between relative">
+        {profile?.logo ? (
+          <>
+            <div className="pb-3 border-b border-slate-100">
+              <img src={`${import.meta.env.VITE_API_BASE_URL.split('/api')[0]}${profile.logo}`} alt="Logo" className="h-8 w-auto object-contain" />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-slate-900 tracking-tight leading-snug max-w-[220px]">{profile?.name}</h3>
+              <span className="text-[8px] font-extrabold uppercase tracking-[0.18em] text-slate-400 mt-0.5 block">{profile?.businessName}</span>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="flex items-center gap-2 pb-3 border-b border-slate-100">
+              <div className="w-7 h-7 bg-slate-900 rounded-md flex items-center justify-center text-white font-black text-[10px]">VC</div>
+              <span className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-slate-700">{profile?.businessName}</span>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-slate-900 tracking-tight">{profile?.name}</h3>
+              <p className="text-indigo-500 text-[8px] font-extrabold uppercase tracking-widest mt-0.5">Verified Digital Profile</p>
+            </div>
+          </>
+        )}
+        <div className="flex items-center gap-1.5 text-slate-500">
+          <Phone size={10} className="text-indigo-400" />
+          <span className="text-[10px] font-semibold">+91 {profile?.mobile}</span>
+        </div>
+      </div>
+      <div className="w-[140px] bg-slate-50 border-l border-slate-100 flex flex-col items-center justify-center gap-2 p-4 relative">
+        <div className="p-2 bg-white shadow-sm rounded">
+          <QRCodeSVG value={qrValue} size={100} level="M" includeMargin={false} />
+        </div>
+        <p className="text-[7px] font-bold uppercase tracking-[0.15em] text-slate-400">Scan to Connect</p>
+        <div className="absolute bottom-2 left-0 right-0 text-center text-[6px] font-bold uppercase tracking-wider text-slate-300/80">Powered by itfuturz</div>
+      </div>
+    </div>
+  );
+});
 
 const UserDashboard = () => {
   const { user } = useAuth();
+  const [activeSlide, setActiveSlide] = useState(0);
   const [profile, setProfile] = useState(null);
   const [waStatus, setWaStatus] = useState('disconnected');
   const [loading, setLoading] = useState(true);
   const [cardScale, setCardScale] = useState(1);
+  const [customMessage, setCustomMessage] = useState('');
+  const [isSaving, setIsSaving] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const cardRef = useRef(null);
-  const qrRef = useRef(null);
-  const containerRef = useRef(null);
+
+  const desktopCardRef = useRef(null);
+  const mobileCardRef = useRef(null);
+  const desktopQrRef = useRef(null);
+  const mobileQrRef = useRef(null);
+  const desktopContainerRef = useRef(null);
+  const mobileContainerRef = useRef(null);
+  const swiperRef = useRef(null);
+
+  const getVisibleNode = (desktopRef, mobileRef) => {
+    const d = desktopRef.current;
+    const m = mobileRef.current;
+    const visible = (n) => n && n.getClientRects().length > 0;
+    if (visible(d)) return d;
+    if (visible(m)) return m;
+    return d || m;
+  };
 
   const fetchData = async () => {
     try {
       const response = await getUserProfile();
       if (response.success) {
         setProfile(response.data);
+        setCustomMessage(response.data.customMessage || '');
       }
-
       const waRes = await getWhatsAppStatus();
-      if (waRes.success) {
-        setWaStatus(waRes.data.status);
-      }
-    } catch (error) {
+      if (waRes.success) setWaStatus(waRes.data.status);
+    } catch {
       toast.error('Failed to load dashboard data');
     } finally {
       setLoading(false);
@@ -39,343 +110,346 @@ const UserDashboard = () => {
   };
 
   const updateScale = () => {
-    if (containerRef.current) {
-      const containerWidth = containerRef.current.offsetWidth;
-      const cardWidth = 620; // Fixed internal width
-      if (containerWidth < cardWidth) {
-        setCardScale(containerWidth / cardWidth);
-      } else {
-        setCardScale(1);
-      }
+    const target = window.innerWidth >= 1024 ? desktopContainerRef.current : mobileContainerRef.current;
+    if (target) {
+      const w = target.offsetWidth;
+      const cardW = 480;
+      if (w > 0) setCardScale(w < cardW ? w / cardW : 1);
     }
   };
 
   useEffect(() => {
     fetchData();
+    updateScale();
     window.addEventListener('resize', updateScale);
     const interval = setInterval(fetchData, 10000);
-    return () => {
-      window.removeEventListener('resize', updateScale);
-      clearInterval(interval);
-    };
+    return () => { window.removeEventListener('resize', updateScale); clearInterval(interval); };
   }, []);
 
-  // Recalculate scale when loading is done
   useEffect(() => {
     if (!loading) {
-      // Small delay to ensure DOM is fully painted
-      const timer = setTimeout(updateScale, 100);
-      return () => clearTimeout(timer);
+      const t = setTimeout(updateScale, 150);
+      return () => clearTimeout(t);
     }
-  }, [loading]);
+  }, [loading, activeSlide, cardScale]);
 
   const qrValue = `https://wa.me/91${profile?.adminMobile || ''}?text=Please%20share%20the%20contact%20of%20${encodeURIComponent(profile?.name || '')}%20-%20${encodeURIComponent(profile?.businessName || '')}%20${profile?.userToken || ''}`;
 
   const downloadCard = async () => {
-    if (cardRef.current === null) return;
-
-    const loadingToast = toast.loading('Generating high-resolution card...');
+    const cardEl = getVisibleNode(desktopCardRef, mobileCardRef);
+    if (!cardEl) return;
+    const id = toast.loading('Generating card...');
     try {
-      // Ensure the capture happens at 1:1 scale even if preview is scaled
-      const dataUrl = await toPng(cardRef.current, {
+      const dataUrl = await toPng(cardEl, {
         cacheBust: true,
-        pixelRatio: 3,
+        pixelRatio: 4,
         backgroundColor: '#ffffff',
-        style: {
-          transform: 'scale(1)',
-          transformOrigin: 'top left',
-        }
+        style: { transform: 'scale(1)', transformOrigin: 'top left' }
       });
-
-      const link = document.createElement('a');
-      link.download = `${profile?.name?.replace(/\s+/g, '-')}-Visual-Identity.png`;
-      link.href = dataUrl;
-      link.click();
-      toast.success('Card downloaded successfully!', { id: loadingToast });
-    } catch (err) {
-      toast.error('Failed to generate card.', { id: loadingToast });
-      console.error(err);
-    } finally {
-      setIsModalOpen(false);
-    }
+      const a = document.createElement('a');
+      a.download = `${profile?.name?.split(' ')[0]}-Card.png`;
+      a.href = dataUrl; a.click();
+      toast.success('Downloaded!', { id });
+    } catch { toast.error('Failed.', { id }); }
+    finally { setIsModalOpen(false); }
   };
 
   const downloadQRCode = async () => {
-    if (qrRef.current === null) return;
-
-    const loadingToast = toast.loading('Generating high-resolution QR...');
+    const qrEl = getVisibleNode(desktopQrRef, mobileQrRef);
+    if (!qrEl) return;
+    const id = toast.loading('Generating QR...');
     try {
-      const dataUrl = await toPng(qrRef.current, {
+      const dataUrl = await toPng(qrEl, {
         pixelRatio: 4,
         backgroundColor: '#ffffff',
-        style: {
-          padding: '12px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }
+        style: { padding: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }
       });
-
-      const link = document.createElement('a');
-      link.download = `${profile?.name?.replace(/\s+/g, '-')}-QR-Code.png`;
-      link.href = dataUrl;
-      link.click();
-      toast.success('QR Code downloaded!', { id: loadingToast });
-    } catch (err) {
-      toast.error('Failed to generate QR.', { id: loadingToast });
-      console.error(err);
-    } finally {
-      setIsModalOpen(false);
-    }
+      const a = document.createElement('a');
+      a.download = `${profile?.name?.split(' ')[0]}-QR.png`;
+      a.href = dataUrl; a.click();
+      toast.success('Downloaded!', { id });
+    } catch { toast.error('Failed.', { id }); }
+    finally { setIsModalOpen(false); }
   };
 
-  if (loading) return <Layout><div className="flex justify-center py-20"><div className="w-12 h-12 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin"></div></div></Layout>;
+  const handleSaveMessage = async () => {
+    if (isSaving) return;
+    setIsSaving(true);
+    try {
+      const fd = new FormData();
+      fd.append('customMessage', customMessage);
+      const res = await updateUserProfile(fd);
+      if (res.success) {
+        toast.success('Saved!');
+        setProfile(p => ({ ...p, customMessage }));
+      }
+    } catch { toast.error('Failed to save'); }
+    finally { setIsSaving(false); }
+  };
+
+  if (loading) return (
+    <Layout>
+      <div className="flex justify-center items-center h-64">
+        <div className="w-7 h-7 border-2 border-indigo-100 border-t-indigo-600 rounded-full animate-spin" />
+      </div>
+    </Layout>
+  );
 
   return (
     <Layout>
-      <div className="space-y-12 max-w-6xl mx-auto sm:px-4">
-        {/* Header with WhatsApp Status */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-4">
+      <div className="max-w-4xl mx-auto px-3 sm:px-5 py-4 space-y-4 pb-12">
+
+        {/* ── Header ── */}
+        <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-4xl font-black text-slate-900 tracking-tighter">Business Hub</h1>
-            <div className="flex items-center space-x-2 text-slate-500 mt-1">
-              <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
-              <p className="font-semibold text-sm">Active Session: {profile?.name}</p>
+            <div className="flex items-center gap-1 mb-0.5">
+              <ShieldCheck size={10} className="text-indigo-500" />
+              <span className="text-[9px] font-bold uppercase tracking-widest text-indigo-500">Secure Portal</span>
+            </div>
+            <h1 className="text-xl font-extrabold text-slate-900 tracking-tight leading-tight">My Dashboard</h1>
+            <p className="hidden lg:flex text-slate-400 text-xs mt-0.5">Digital identity &amp; connectivity</p>
+          </div>
+          <StatusBadge status={waStatus} />
+        </div>
+
+        {/* ── DESKTOP: side-by-side ── */}
+        <div className="hidden lg:grid lg:grid-cols-12 gap-4 items-start">
+          {/* QR */}
+          <div className="lg:col-span-4">
+            <div className="bg-white rounded-xl border border-slate-100 shadow-sm p-4 flex flex-col items-center">
+              <div className="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-3 self-start">QR Code</div>
+              <div ref={desktopQrRef} className="p-3 bg-white border border-slate-100 rounded-lg shadow-sm">
+                <QRCodeSVG value={qrValue} size={180} level="H" includeMargin={false} />
+              </div>
+              <p className="text-[10px] text-slate-400 text-center mt-2.5 leading-relaxed max-w-[160px]">
+                Scanner instantly receives your business contact
+              </p>
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="mt-4 w-full flex items-center justify-center gap-2 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-[11px] font-bold uppercase tracking-wider transition-colors"
+              >
+                <Download size={13} /> Download
+              </button>
             </div>
           </div>
 
-          <div className="flex flex-col items-center md:items-end w-full md:w-auto">
-            {waStatus === 'connected' ? (
-              <div className="flex items-center space-x-3 bg-emerald-50 border border-emerald-100 px-5 py-2.5 rounded-2xl shadow-sm">
-                <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                <span className="text-[10px] font-black text-emerald-600 uppercase tracking-widest leading-none">
-                  Systems Active &bull; Ready to Connect
-                </span>
-              </div>
-            ) : waStatus === 'reconnecting' ? (
-              <div className="flex items-center space-x-3 bg-amber-50 border border-amber-100 px-5 py-2.5 rounded-2xl shadow-sm">
-                <Loader2 className="w-3 h-3 text-amber-500 animate-spin" />
-                <span className="text-[10px] font-black text-amber-600 uppercase tracking-widest leading-none">
-                  Initializing Bridge... Please Wait
-                </span>
-              </div>
-            ) : (
-              <div className="flex flex-col items-center md:items-end space-y-2">
-                <div className="flex items-center space-x-3 bg-rose-50 border border-rose-100 px-5 py-2.5 rounded-2xl shadow-sm">
-                  <Smartphone size={14} className="text-rose-500" />
-                  <span className="text-[9px] font-black text-rose-600 uppercase tracking-widest leading-none">
-                    Company Offline &bull; Action Required
-                  </span>
+          {/* Card */}
+          <div className="lg:col-span-8">
+            <div className="bg-white rounded-xl border border-slate-100 shadow-sm p-4">
+              <div className="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-3">Identity Card</div>
+              <div ref={desktopContainerRef} className="w-full flex justify-center">
+                <div style={{ width: 480 * cardScale, height: 270 * cardScale, position: 'relative' }}>
+                  <IdentityCard ref={desktopCardRef} profile={profile} qrValue={qrValue} cardScale={cardScale} />
                 </div>
-                <p className="text-[9px] font-bold text-slate-400 uppercase tracking-[0.1em] text-center md:text-right">
-                  WhatsApp Support: <span className="text-rose-500 tracking-normal">+91 {profile?.adminMobile || 'ADMIN'}</span>
-                </p>
               </div>
-            )}
+            </div>
           </div>
         </div>
 
-        <div className="space-y-16">
-          {/* Authentic Business Card Display */}
-          <div className="flex flex-col items-center justify-center w-full overflow-hidden">
-            <div
-              ref={containerRef}
-              className="w-full flex justify-center py-6 sm:py-10"
-            >
-              {/* Outer sizing container that defines the layout space */}
-              <div
-                style={{
-                  width: 620 * cardScale,
-                  height: 360 * cardScale,
-                  position: 'relative',
-                  transition: 'all 0.3s ease-out'
-                }}
-                className="flex-shrink-0"
+        {/* ── MOBILE: Swiper ── */}
+        <div className="lg:hidden">
+          {/* Pill tabs */}
+          <div className="flex p-1 bg-slate-50/50 rounded-full mb-4 border border-slate-100">
+            {['QR Code', 'Identity Card'].map((label, i) => (
+              <button
+                key={i}
+                onClick={() => { setActiveSlide(i); swiperRef.current?.slideTo(i); }}
+                className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 text-[10px] font-bold uppercase tracking-wider transition-all 
+                  ${i === 0 ? 'rounded-l-full' : 'rounded-r-full'} 
+                  ${activeSlide === i
+                    ? 'bg-indigo-600 text-white shadow-sm ring-1 ring-indigo-700'
+                    : 'bg-indigo-50/40 text-indigo-400'}`}
               >
-                {/* Fixed-size card that is scaled down to fit the outer container */}
-                <div
-                  ref={cardRef}
-                  style={{
-                    width: '620px',
-                    height: '360px',
-                    transform: `scale(${cardScale})`,
-                    transformOrigin: 'top left',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0
-                  }}
-                  className="bg-white shadow-[0_40px_80px_-15px_rgba(0,0,0,0.12)] rounded-sm border border-slate-100 flex overflow-hidden group hover:shadow-2xl transition-shadow duration-500"
-                >
-                  {/* Left Accent Bar */}
-                  <div className="w-4 bg-indigo-600 h-full"></div>
+                {i === 0 ? <QrCode size={12} /> : <Image size={12} />}
+                {label}
+              </button>
+            ))}
+          </div>
 
-                  {/* Main Content Area */}
-                  <div className="flex-1 flex flex-col p-10 justify-between">
-                    {profile?.logo ? (
-                      <>
-                        {/* Business Brand Header (Logo Only) */}
-                        <div className="flex items-center border-b border-slate-100 pb-6">
-                          <img
-                            src={`${import.meta.env.VITE_API_BASE_URL.split('/api')[0]}${profile.logo}`}
-                            alt="Logo"
-                            className="h-16 w-auto object-contain transition-all"
-                          />
-                        </div>
-
-                        {/* Personal Brand Section with Two Rows */}
-                        <div className="space-y-2">
-                          <div>
-                            <h3 className="text-3xl font-bold text-slate-900 tracking-tight leading-[1.1] max-w-[250px]">{profile?.name}</h3>
-                          </div>
-                          <div>
-                            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 block leading-tight max-w-[250px]">{profile?.businessName}</span>
-                          </div>
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        {/* Default Business Brand Header */}
-                        <div className="flex items-center justify-between border-b border-slate-100 pb-6 mb-4">
-                          <div className="flex items-center space-x-3">
-                            <div className="min-w-10 min-h-10 max-w-10 max-h-10 bg-gradient-to-br from-indigo-600 via-slate-900 to-black rounded-xl flex items-center justify-center text-white font-black italic tracking-tighter shadow-lg ring-1 ring-white/20">
-                              VC
-                            </div>
-                            <span className="text-sm font-black uppercase tracking-[0.3em] text-slate-800">{profile?.businessName}</span>
-                          </div>
-                        </div>
-
-                        {/* Default Personal Brand Section */}
-                        <div className="space-y-1">
-                          <h3 className="text-3xl font-bold text-slate-900 tracking-tight leading-tight">{profile?.name}</h3>
-                          <p className="text-indigo-600 text-[10px] font-black uppercase tracking-widest">Digital Connection &bull; Verified Partner</p>
-                        </div>
-                      </>
-                    )}
-
-                    {/* Contact Grid */}
-                    <div className="flex items-end justify-between pt-4">
-                      <div className="grid grid-cols-1 gap-y-2">
-                        <CardContactItem icon={<Phone size={12} />} value={`+91 ${profile?.mobile}`} />
-                        {/* <CardContactItem icon={<Smartphone size={12} />} value="WhatsApp Link Active" /> */}
-                      </div>
+          <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
+            <Swiper
+              modules={[Pagination, Keyboard]}
+              spaceBetween={0}
+              slidesPerView={1}
+              keyboard={{ enabled: true }}
+              onSwiper={s => (swiperRef.current = s)}
+              onSlideChange={s => setActiveSlide(s.activeIndex)}
+              className="w-full mobile-swiper-equal-slides"
+            >
+              {/* Slide 1: QR — panel height matches taller slide; content centered if shorter */}
+              <SwiperSlide className="!flex !h-auto min-w-0 max-w-full flex-col self-stretch overflow-x-hidden">
+                <div className="flex min-h-0 min-w-0 max-w-full flex-1 w-full flex-col items-center justify-center px-4 py-5">
+                  <div className="flex flex-col items-center">
+                    <div ref={mobileQrRef} className="p-3 bg-white border border-slate-100 rounded-lg shadow-sm inline-block">
+                      <QRCodeSVG value={qrValue} size={200} level="H" includeMargin={false} />
                     </div>
-                  </div>
-
-                  {/* Secure QR Section */}
-                  <div className="w-[200px] bg-slate-50/50 border-l border-slate-50 flex flex-col items-center justify-center p-8">
-                    <div ref={qrRef} className="p-3 bg-white shadow-sm ring-1 ring-slate-100 rounded-lg mb-4">
-                      <QRCodeSVG
-                        id="user-qr"
-                        value={qrValue}
-                        size={130}
-                        level="H"
-                        includeMargin={false}
-                      />
-                    </div>
-                    <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-slate-400">SCAN FOR CONTACT</p>
-                  </div>
-
-                  {/* Secure Watermark */}
-                  <div className="absolute bottom-6 right-8 opacity-40">
-                    <p className="text-[8px] font-black uppercase tracking-[0.2em] text-slate-300">
-                      Powered by <span className="text-slate-400">itfuturz</span>
+                    <p className="text-[10px] text-slate-400 text-center mt-2.5 leading-relaxed max-w-[200px]">
+                      Scanner instantly receives your shared business contact
                     </p>
                   </div>
                 </div>
-              </div>
+              </SwiperSlide>
+
+              {/* Slide 2: Card — same panel height as QR slide; clip so 480px layout cannot bleed into adjacent slide */}
+              <SwiperSlide className="!flex !h-auto min-w-0 max-w-full flex-col self-stretch overflow-x-hidden">
+                <div className="flex min-h-0 min-w-0 max-w-full flex-1 w-full flex-col items-center justify-center px-3 py-5">
+                  <div className="flex min-w-0 max-w-full w-full flex-col items-center">
+                    <div ref={mobileContainerRef} className="flex w-full min-w-0 max-w-full justify-center">
+                      <div className="relative mx-auto shrink-0 overflow-hidden rounded-sm" style={{ width: 480 * cardScale, height: 270 * cardScale, maxWidth: '100%' }}>
+                        <div
+                          className="absolute left-0 top-0"
+                          style={{
+                            width: 480,
+                            height: 270,
+                            transform: `scale(${cardScale})`,
+                            transformOrigin: 'top left',
+                          }}
+                        >
+                          <IdentityCard ref={mobileCardRef} profile={profile} qrValue={qrValue} unscaled />
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-[10px] text-slate-400 text-center mt-2.5 leading-relaxed max-w-[200px]">
+                      Your verified visual identity card
+                    </p>
+                  </div>
+                </div>
+              </SwiperSlide>
+            </Swiper>
+
+            {/* Dot nav */}
+            <div className="flex justify-center gap-1.5 py-2.5">
+              {[0, 1].map(i => (
+                <button
+                  key={i}
+                  onClick={() => { setActiveSlide(i); swiperRef.current?.slideTo(i); }}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${activeSlide === i ? 'bg-indigo-600 w-5' : 'bg-slate-200 w-1.5'}`}
+                />
+              ))}
             </div>
 
-            <div className="mt-8 flex flex-col items-center space-y-6">
+            {/* Download button */}
+            <div className="px-4 pb-4">
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="bg-indigo-600 text-white px-10 py-4 rounded-2xl font-black uppercase tracking-[0.2em] text-[10px] shadow-2xl shadow-indigo-200 hover:bg-indigo-700 active:scale-95 transition-all flex items-center space-x-3 group"
+                className="w-full flex items-center justify-center gap-2 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-[11px] font-bold uppercase tracking-wider transition-colors"
               >
-                <Download size={18} className="group-hover:rotate-12 transition-transform" />
-                <span>Save Card</span>
+                <Download size={13} />
+                Download {activeSlide === 0 ? 'QR Code' : 'Identity Card'}
               </button>
-
-              <div className="flex flex-col items-center space-y-2">
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest text-center">
-                  Visual Identity Signature &bull; {cardScale < 1 ? 'Scaled to Viewport' : 'Native High-Res'}
-                </p>
-                <div className="flex items-center space-x-2 text-[9px] font-black text-indigo-400 uppercase tracking-[0.3em]">
-                  <ShieldCheck size={10} />
-                  <span>Encrypted Connection Enabled</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Utility & Info Section */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full mt-16">
-              <div className="glass rounded-[2rem] p-8 border-slate-200/60 bg-white/40 shadow-sm flex items-start space-x-6">
-                <div className="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 shadow-sm flex-shrink-0">
-                  <ShieldCheck size={28} />
-                </div>
-                <div>
-                  <h4 className="text-lg font-black text-slate-800 mb-2 tracking-tight">Verified Protocol</h4>
-                  <p className="text-sm text-slate-500 leading-relaxed font-medium">
-                    Your Virtual card uses <span className="text-indigo-600 font-bold">Encrypted QR Bridge</span> technology. Scanners are automatically redirected to our secure contact exchange bot.
-                  </p>
-                </div>
-              </div>
-
-              <div className="glass rounded-[2rem] p-8 border-slate-200/60 bg-white/40 shadow-sm">
-                <p className="text-[10px] uppercase tracking-widest font-black text-slate-400 mb-4">Digital Identity Signature</p>
-                <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-inner italic text-slate-600 text-sm leading-relaxed">
-                  "{profile?.customMessage}"
-                </div>
-              </div>
             </div>
           </div>
         </div>
+
+        {/* ── Custom Reply Message ── */}
+        <div className="bg-white rounded-xl border border-slate-100 shadow-sm p-4">
+          <div className="flex items-center justify-between mb-3">
+            <div>
+              <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-700">Custom Reply Message</h4>
+              <p className="hidden lg:block text-[10px] text-slate-400 mt-0.5">Sent automatically when someone scans your QR</p>
+            </div>
+            <button
+              onClick={handleSaveMessage}
+              disabled={isSaving}
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-50 hover:bg-indigo-600 text-indigo-600 hover:text-white rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all disabled:opacity-50"
+            >
+              {isSaving ? <Loader2 size={11} className="animate-spin" /> : <Save size={11} />}
+              Save
+            </button>
+          </div>
+          <textarea
+            value={customMessage}
+            onChange={e => setCustomMessage(e.target.value)}
+            placeholder="Enter auto-reply message..."
+            className="w-full bg-slate-50 border border-slate-100 rounded-lg px-3 py-2.5 text-[12px] text-slate-600 placeholder:text-slate-300 focus:bg-white focus:border-indigo-200 focus:ring-2 focus:ring-indigo-50 outline-none transition-all resize-none h-20"
+          />
+          <div className="flex items-center gap-1.5 mt-2">
+            <Info size={10} className="text-indigo-400 flex-shrink-0" />
+            <p className="text-[10px] text-slate-400 italic">Appears in scanner's WhatsApp upon scan.</p>
+          </div>
+        </div>
+
+        {/* ── Status Banner ── */}
+        <StatusBanner status={waStatus} adminMobile={profile?.adminMobile} />
+
       </div>
 
-      {/* Download Options Modal */}
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        title="Download Options"
-      >
-        <div className="grid grid-cols-2 gap-4 sm:gap-6">
+      {/* ── Download Modal ── */}
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Download Asset">
+        <div className="grid grid-cols-2 gap-3">
           <button
             onClick={downloadCard}
-            className="group flex flex-col items-center p-5 sm:p-8 bg-slate-50 hover:bg-indigo-50 border border-slate-100 hover:border-indigo-200 rounded-[1.5rem] sm:rounded-[2.5rem] transition-all duration-300 active:scale-[0.98]"
+            className="group flex flex-col items-center p-4 bg-slate-50 hover:bg-indigo-50 border border-slate-100 hover:border-indigo-200 rounded-xl transition-all"
           >
-            <div className="w-12 h-12 sm:w-20 sm:h-20 bg-white shadow-lg sm:shadow-xl shadow-slate-200/50 group-hover:shadow-indigo-200/50 rounded-2xl sm:rounded-3xl flex items-center justify-center text-slate-400 group-hover:text-indigo-600 transition-all duration-300 mb-4 sm:mb-6 group-hover:rotate-2">
-              <Image size={24} className="sm:w-8 sm:h-8" strokeWidth={2.5} />
+            <div className="w-10 h-10 bg-white shadow-sm rounded-lg flex items-center justify-center text-slate-400 group-hover:text-indigo-600 transition-colors mb-2">
+              <Image size={20} strokeWidth={2} />
             </div>
-            <h4 className="text-xs sm:text-lg font-black text-slate-800 group-hover:text-indigo-900 transition-colors text-center">Virtual Card</h4>
-            <p className="hidden sm:block text-[10px] font-bold text-slate-400 group-hover:text-indigo-400 uppercase tracking-widest mt-2 text-center">Full Visual Identity</p>
+            <span className="text-[11px] font-bold text-slate-700 group-hover:text-indigo-700">Identity Card</span>
+            <span className="text-[9px] text-slate-400 mt-0.5">PNG · 4× resolution</span>
           </button>
-
           <button
             onClick={downloadQRCode}
-            className="group flex flex-col items-center p-5 sm:p-8 bg-slate-50 hover:bg-indigo-50 border border-slate-100 hover:border-indigo-200 rounded-[1.5rem] sm:rounded-[2.5rem] transition-all duration-300 active:scale-[0.98]"
+            className="group flex flex-col items-center p-4 bg-slate-50 hover:bg-indigo-50 border border-slate-100 hover:border-indigo-200 rounded-xl transition-all"
           >
-            <div className="w-12 h-12 sm:w-20 sm:h-20 bg-white shadow-lg sm:shadow-xl shadow-slate-200/50 group-hover:shadow-indigo-200/50 rounded-2xl sm:rounded-3xl flex items-center justify-center text-slate-400 group-hover:text-indigo-600 transition-all duration-300 mb-4 sm:mb-6 group-hover:-rotate-2">
-              <QrCode size={24} className="sm:w-8 sm:h-8" strokeWidth={2.5} />
+            <div className="w-10 h-10 bg-white shadow-sm rounded-lg flex items-center justify-center text-slate-400 group-hover:text-indigo-600 transition-colors mb-2">
+              <QrCode size={20} strokeWidth={2} />
             </div>
-            <h4 className="text-xs sm:text-lg font-black text-slate-800 group-hover:text-indigo-900 transition-colors text-center">QR Code</h4>
-            <p className="hidden sm:block text-[10px] font-bold text-slate-400 group-hover:text-indigo-400 uppercase tracking-widest mt-2 text-center">Instant Connection</p>
+            <span className="text-[11px] font-bold text-slate-700 group-hover:text-indigo-700">QR Code</span>
+            <span className="text-[9px] text-slate-400 mt-0.5">PNG · 4× resolution</span>
           </button>
         </div>
-
-        <div className="mt-10 pt-6 border-t border-slate-100">
-          <div className="flex items-center justify-center space-x-2 text-[9px] font-black text-slate-500 uppercase tracking-[0.2em]">
-            <ShieldCheck size={12} className='min-h-[12px]' />
-            <span>High-Resolution Assets Generated on Demand</span>
-          </div>
+        <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-center gap-1.5 text-[10px] text-slate-400">
+          <ShieldCheck size={10} className="text-emerald-500" />
+          High-resolution assets generated on demand
         </div>
       </Modal>
     </Layout>
   );
 };
 
-const CardContactItem = ({ icon, value }) => (
-  <div className="flex items-center space-x-2 text-slate-500">
-    <div className="text-indigo-600">{icon}</div>
-    <span className="text-[10px] font-bold tracking-tight">{value}</span>
-  </div>
-);
+/* ── Status Badge ── */
+const StatusBadge = ({ status }) => {
+  const cfg = {
+    connected: { cls: 'bg-emerald-50 border-emerald-100', dot: 'bg-emerald-500 animate-pulse', label: 'Live', color: 'text-emerald-600' },
+    reconnecting: { cls: 'bg-amber-50 border-amber-100', dot: '', label: 'Sync', color: 'text-amber-600', spin: true },
+    disconnected: { cls: 'bg-rose-50 border-rose-100', dot: 'bg-rose-500', label: 'Offline', color: 'text-rose-600' },
+  };
+  const s = cfg[status] || cfg.disconnected;
+  return (
+    <div className={`flex items-center gap-1.5 border px-2.5 py-1 rounded-full ${s.cls}`}>
+      {s.spin
+        ? <Loader2 size={9} className={`${s.color} animate-spin`} />
+        : <div className={`w-1.5 h-1.5 rounded-full ${s.dot}`} />}
+      <span className={`text-[10px] font-bold uppercase tracking-wider ${s.color}`}>{s.label}</span>
+    </div>
+  );
+};
+
+/* ── Status Banner ── */
+const StatusBanner = ({ status, adminMobile }) => {
+  if (status === 'connected') return (
+    <div className="flex items-center gap-2 bg-emerald-50 border border-emerald-100 px-3 py-2 rounded-lg">
+      <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse flex-shrink-0" />
+      <span className="text-[11px] font-semibold text-emerald-700">WhatsApp Bridge Active — Ready to receive contact requests</span>
+    </div>
+  );
+  if (status === 'reconnecting') return (
+    <div className="flex items-center gap-2 bg-amber-50 border border-amber-100 px-3 py-2 rounded-lg">
+      <Loader2 size={11} className="text-amber-500 animate-spin flex-shrink-0" />
+      <span className="text-[11px] font-semibold text-amber-700">Initializing bridge… please wait</span>
+    </div>
+  );
+  return (
+    <div className="flex flex-col sm:flex-row sm:items-center gap-0.5 bg-rose-50 border border-rose-100 px-3 py-2.5 rounded-lg">
+      <div className="flex items-center gap-2">
+        <Smartphone size={12} className="text-rose-400 flex-shrink-0" />
+        <span className="text-[11px] font-semibold text-rose-700">System Offline — Action required</span>
+      </div>
+      <span className="sm:ml-auto text-[10px] text-slate-400">
+        Support: <span className="text-rose-500 font-bold">+91 {adminMobile || '6354390540'}</span>
+      </span>
+    </div>
+  );
+};
 
 export default UserDashboard;
