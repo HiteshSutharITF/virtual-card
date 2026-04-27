@@ -2,6 +2,7 @@ const Admin = require('../models/Admin.model');
 const User = require('../models/User.model');
 const ScannedContact = require('../models/ScannedContact.model');
 const OtpLog = require('../models/OtpLog.model');
+const Settings = require('../models/Settings.model');
 const logger = require('../utils/logger');
 
 // @desc    Get Admin Profile
@@ -278,6 +279,101 @@ const getReferralsByUserId = async (req, res) => {
   }
 };
 
+// @desc    Get Global Settings
+// @route   GET /api/admin/settings
+const getGlobalSettings = async (req, res) => {
+  try {
+    const settings = await Settings.findOne() || await Settings.create({});
+    res.json({ success: true, data: settings });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+// @desc    Update Global Settings
+// @route   PUT /api/admin/settings
+const updateGlobalSettings = async (req, res) => {
+  try {
+    const settings = await Settings.findOneAndUpdate({}, req.body, { new: true, upsert: true });
+    res.json({ success: true, data: settings, message: 'Settings updated successfully' });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+// @desc    Get All Subscriptions (Earnings)
+// @route   GET /api/admin/subscriptions
+const getAllSubscriptions = async (req, res) => {
+  try {
+    const users = await User.find({ isDeleted: false }, 'name mobile businessName subscriptionExpiresAt payments status')
+      .sort({ subscriptionExpiresAt: 1 });
+    res.json({ success: true, data: users });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+// @desc    Add Payment and Extend Subscription
+// @route   POST /api/admin/users/:id/payment
+const addPayment = async (req, res) => {
+  const { amount, description, status, durationValue, durationUnit } = req.body;
+  let receiptImage = '';
+
+  if (req.file) {
+    receiptImage = `/uploads/${req.file.filename}`;
+  }
+
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ success: false, message: 'User not found' });
+
+    // Add payment record
+    user.payments.push({ 
+      amount: parseFloat(amount) || 0, 
+      description, 
+      status, 
+      receiptImage, 
+      date: new Date() 
+    });
+
+    // Extend subscription if status is done
+    if (status === 'done') {
+      const currentExpiry = user.subscriptionExpiresAt && new Date(user.subscriptionExpiresAt) > new Date() 
+        ? new Date(user.subscriptionExpiresAt) 
+        : new Date();
+      
+      const newExpiry = new Date(currentExpiry);
+      if (durationUnit === 'minutes') newExpiry.setMinutes(newExpiry.getMinutes() + parseInt(durationValue));
+      else if (durationUnit === 'hours') newExpiry.setHours(newExpiry.getHours() + parseInt(durationValue));
+      else if (durationUnit === 'days') newExpiry.setDate(newExpiry.getDate() + parseInt(durationValue));
+      else if (durationUnit === 'years') newExpiry.setFullYear(newExpiry.getFullYear() + parseInt(durationValue));
+
+      user.subscriptionExpiresAt = newExpiry;
+    }
+
+    await user.save();
+    res.json({ success: true, message: 'Payment added and subscription updated' });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+// @desc    Update Subscription Expiry Directly
+// @route   PUT /api/admin/users/:id/expiry
+const updateSubscriptionExpiry = async (req, res) => {
+  const { expiryDate } = req.body;
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ success: false, message: 'User not found' });
+
+    user.subscriptionExpiresAt = new Date(expiryDate);
+    await user.save();
+    res.json({ success: true, message: 'Subscription expiry updated successfully' });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
 module.exports = {
   getAdminProfile,
   updateAdminProfile,
@@ -289,4 +385,9 @@ module.exports = {
   getOtpLogs,
   deleteAllOtpLogs,
   getReferralsByUserId,
+  getGlobalSettings,
+  updateGlobalSettings,
+  getAllSubscriptions,
+  addPayment,
+  updateSubscriptionExpiry,
 };

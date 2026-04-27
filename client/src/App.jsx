@@ -15,6 +15,7 @@ import AdminProfile from './pages/admin/AdminProfile';
 import UserScannedContacts from './pages/admin/UserScannedContacts';
 import AdminOtpLogs from './pages/admin/OtpLogs';
 import AffiliateManagement from './pages/admin/AffiliateManagement';
+import Earnings from './pages/admin/Earnings';
 
 import UserDashboard from './pages/user/UserDashboard';
 import ScannedContacts from './pages/user/ScannedContacts';
@@ -49,6 +50,7 @@ function App() {
               <Route path="/admin/users/:id/scanned" element={<UserScannedContacts />} />
               <Route path="/admin/otp-logs" element={<AdminOtpLogs />} />
               <Route path="/admin/affiliate" element={<AffiliateManagement />} />
+              <Route path="/admin/earnings" element={<Earnings />} />
             </Route>
 
             {/* User Routes */}

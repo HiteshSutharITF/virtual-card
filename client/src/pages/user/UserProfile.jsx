@@ -4,7 +4,8 @@ import { getUserProfile, updateUserProfile } from '../../services/user.service';
 import Layout from '../../components/layout/Layout';
 import Toggle from '../../components/common/Toggle';
 import { toast } from 'react-hot-toast';
-import { User, Briefcase, Phone, Lock, MessageSquare, Save, Loader2, ShieldCheck, Zap, Camera, Trash2, Image as ImageIcon, Pencil } from 'lucide-react';
+import { User, Briefcase, Phone, Lock, MessageSquare, Save, Loader2, ShieldCheck, Zap, Camera, Trash2, Image as ImageIcon, Pencil, Gift, Clock } from 'lucide-react';
+import { format } from 'date-fns';
 
 const UserProfile = () => {
   const { user: authUser, updateUser } = useAuth();
@@ -20,6 +21,7 @@ const UserProfile = () => {
     isContactSharingEnabled: true,
     userToken: '',
     logo: '',
+    subscriptionExpiresAt: null,
   });
   const [logoPreview, setLogoPreview] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
@@ -39,6 +41,7 @@ const UserProfile = () => {
           isContactSharingEnabled: p.isContactSharingEnabled,
           userToken: p.userToken || '',
           logo: p.logo || '',
+          subscriptionExpiresAt: p.subscriptionExpiresAt,
         });
         if (p.logo) {
           const baseUrl = import.meta.env.VITE_API_BASE_URL.split('/api')[0];
@@ -198,14 +201,71 @@ const UserProfile = () => {
               </div>
 
               <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-[2rem] p-6 text-white shadow-xl">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 bg-white/10 rounded-xl flex items-center justify-center">
+                      <Gift size={18} className="text-amber-400" />
+                    </div>
+                    <h4 className="font-bold text-sm">Subscription</h4>
+                  </div>
+                  {formData.subscriptionExpiresAt && new Date(formData.subscriptionExpiresAt) > new Date() ? (
+                    <span className="text-[10px] font-black uppercase tracking-widest bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded-lg">Active</span>
+                  ) : (
+                    <span className="text-[10px] font-black uppercase tracking-widest bg-rose-500/20 text-rose-400 px-2 py-1 rounded-lg">Expired</span>
+                  )}
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2 text-slate-400">
+                      <Clock size={14} />
+                      <span className="text-xs font-medium">Valid Until</span>
+                    </div>
+                    <span className="text-xs font-bold">
+                      {formData.subscriptionExpiresAt ? format(new Date(formData.subscriptionExpiresAt), 'MMM dd, yyyy') : 'N/A'}
+                    </span>
+                  </div>
+
+                  {formData.subscriptionExpiresAt && (
+                    <div className="pt-2">
+                       <p className="text-[10px] text-slate-500 font-bold uppercase tracking-[0.2em] mb-2">Remaining Access</p>
+                       <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                          <div 
+                            className={`h-full ${new Date(formData.subscriptionExpiresAt) > new Date() ? 'bg-indigo-500' : 'bg-rose-500'}`}
+                            style={{ width: '100%' }}
+                          ></div>
+                       </div>
+                       <p className="text-xs mt-2 text-slate-300 font-medium">
+                         {(() => {
+                           if (!formData.subscriptionExpiresAt) return 'No active subscription';
+                           const now = new Date();
+                           const expDate = new Date(formData.subscriptionExpiresAt);
+                           if (expDate < now) return 'Please contact admin to renew';
+                           
+                           const diffMs = expDate - now;
+                           const diffMins = Math.floor(diffMs / 60000);
+                           const diffHours = Math.floor(diffMs / 3600000);
+                           const diffDays = Math.floor(diffMs / 86400000);
+
+                           if (diffMins < 60) return `${diffMins} minutes remaining`;
+                           if (diffHours < 24) return `${diffHours} hours remaining`;
+                           return `${diffDays} days remaining`;
+                         })()}
+                       </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="bg-slate-50 rounded-[2rem] p-6 border border-slate-100">
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-8 h-8 bg-white/10 rounded-xl flex items-center justify-center">
+                  <div className="w-8 h-8 bg-white rounded-xl flex items-center justify-center shadow-sm border border-slate-100">
                     <Zap size={18} className="text-amber-400" />
                   </div>
-                  <h4 className="font-bold text-sm">Pro Tips</h4>
+                  <h4 className="font-bold text-sm text-slate-800">Pro Tips</h4>
                 </div>
-                <p className="text-xs text-slate-400 leading-relaxed font-medium">
-                  Use the <span className="text-indigo-400">{"{name}"}</span> variable in your message to greet scanners by their WhatsApp name!
+                <p className="text-xs text-slate-500 leading-relaxed font-medium">
+                  Use the <span className="text-indigo-600 font-bold">{"{name}"}</span> variable in your message to greet scanners by their WhatsApp name!
                 </p>
               </div>
             </div>

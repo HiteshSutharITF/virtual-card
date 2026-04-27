@@ -2,24 +2,35 @@ import React, { useState, useEffect } from 'react';
 import { getScannedContacts, exportScannedContacts } from '../../services/user.service';
 import Layout from '../../components/layout/Layout';
 import { toast } from 'react-hot-toast';
-import { Search, Calendar, Phone, User, Clock, Filter, ArrowUpRight, Download, Loader2 } from 'lucide-react';
+import { Search, Calendar, Phone, User, Clock, Filter, ArrowUpRight, Download, Loader2, RefreshCcw, AlertCircle } from 'lucide-react';
 
 const ScannedContacts = () => {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [refreshing, setRefreshing] = useState(false);
   const [downloading, setDownloading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
-  const fetchContacts = async () => {
+  const fetchContacts = async (isRefresh = false) => {
+    if (isRefresh) setRefreshing(true);
+    else setLoading(true);
+    setError(null);
+    
     try {
       const response = await getScannedContacts();
       if (response.success) {
         setContacts(response.data);
+        if (isRefresh) toast.success('Registry updated');
+      } else {
+        setError(response.message || 'Failed to load contacts');
       }
-    } catch (error) {
-      toast.error('Failed to load contacts');
+    } catch (err) {
+      console.error('Fetch error:', err);
+      setError(err.message || 'Failed to load connection history. Please try again.');
     } finally {
       setLoading(false);
+      setRefreshing(false);
     }
   };
 
@@ -53,8 +64,8 @@ const ScannedContacts = () => {
   };
 
   const filteredContacts = contacts.filter(contact => 
-    contact.scannerName.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    contact.scannerMobile.includes(searchTerm)
+    contact.scannerName?.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    contact.scannerMobile?.includes(searchTerm)
   );
 
   return (
@@ -68,9 +79,18 @@ const ScannedContacts = () => {
           
           <div className="flex flex-wrap items-center gap-4">
             <button
+              onClick={() => fetchContacts(true)}
+              disabled={refreshing || loading}
+              className="p-3.5 bg-white border border-slate-200 rounded-2xl text-slate-600 hover:text-indigo-600 hover:border-indigo-100 transition-all shadow-sm active:scale-95 disabled:opacity-50"
+              title="Refresh Registry"
+            >
+              <RefreshCcw size={20} className={refreshing ? 'animate-spin' : ''} />
+            </button>
+
+            <button
               onClick={handleDownloadExcel}
               disabled={downloading || contacts.length === 0}
-              className="flex items-center space-x-2 bg-slate-900 text-white px-6 py-3 rounded-2xl font-bold text-sm hover:bg-indigo-600 transition-all shadow-xl shadow-slate-200 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center space-x-2 bg-slate-900 text-white px-6 py-3.5 rounded-2xl font-bold text-sm hover:bg-indigo-600 transition-all shadow-xl shadow-slate-200 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {downloading ? (
                 <Loader2 size={18} className="animate-spin" />
@@ -84,7 +104,7 @@ const ScannedContacts = () => {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
               <input 
                 type="text" 
-                placeholder="Search index..."
+                placeholder="Search Index..."
                 className="glass rounded-2xl py-3.5 pl-12 pr-6 border-slate-200 text-sm focus:ring-4 focus:ring-indigo-500/10 outline-none w-full sm:w-64 transition-all shadow-sm"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -103,13 +123,51 @@ const ScannedContacts = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {loading ? (
             Array(6).fill(0).map((_, i) => <SkeletonCard key={i} />)
+          ) : error ? (
+            <div className={`col-span-full py-20 text-center glass rounded-[2.5rem] ${error.includes('subscription') ? 'border-amber-100 bg-amber-50/10' : 'border-red-100 bg-red-50/10'}`}>
+              <div className={`w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-4 ${error.includes('subscription') ? 'bg-amber-50 text-amber-500' : 'bg-red-50 text-red-500'}`}>
+                {error.includes('subscription') ? <AlertCircle size={32} /> : <RefreshCcw size={32} />}
+              </div>
+              <h3 className="text-slate-800 font-bold text-xl mb-2 px-4">
+                {error.includes('subscription') ? 'Subscription Required' : error}
+              </h3>
+              {error.includes('subscription') ? (
+                <p className="text-slate-500 mb-6 max-w-sm mx-auto font-medium">{error}</p>
+              ) : (
+                <p className="text-slate-400 text-sm mb-6">We encountered an issue while fetching your connections.</p>
+              )}
+              {error.includes('subscription') ? (
+                <a 
+                  href="mailto:info@itfuturz.com"
+                  className="inline-flex items-center space-x-2 bg-indigo-600 text-white px-8 py-3 rounded-xl font-bold text-sm hover:bg-slate-900 transition-all shadow-lg active:scale-95"
+                >
+                  <Phone size={16} />
+                  <span>Contact Support</span>
+                </a>
+              ) : (
+                <button 
+                  onClick={() => fetchContacts()}
+                  className="inline-flex items-center space-x-2 bg-slate-900 text-white px-8 py-3 rounded-xl font-bold text-sm hover:bg-indigo-600 transition-all shadow-lg active:scale-95"
+                >
+                  <RefreshCcw size={16} />
+                  <span>Retry Now</span>
+                </button>
+              )}
+            </div>
           ) : filteredContacts.length === 0 ? (
             <div className="col-span-full py-20 text-center glass rounded-[2.5rem]">
               <div className="w-16 h-16 bg-slate-50 rounded-3xl flex items-center justify-center text-slate-300 mx-auto mb-4">
                 <User size={32} />
               </div>
-              <p className="text-slate-400 font-bold">No connections found yet.</p>
-              <p className="text-slate-400 text-xs mt-1">Share your QR code to start getting scans!</p>
+              <h3 className="text-slate-800 font-bold text-xl mb-2">No connections found yet</h3>
+              <p className="text-slate-400 text-sm mb-6">Share your QR code to start building your professional network!</p>
+              <button 
+                onClick={() => fetchContacts(true)}
+                className="inline-flex items-center space-x-2 text-indigo-600 font-bold hover:underline"
+              >
+                <RefreshCcw size={14} />
+                <span>Refresh Registry</span>
+              </button>
             </div>
           ) : (
             filteredContacts.map((contact) => (

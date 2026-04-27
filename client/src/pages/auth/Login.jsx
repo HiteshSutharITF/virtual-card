@@ -183,7 +183,7 @@ const Login = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               {!isAdmin && !showOtpInput && (
                 <div className="flex justify-center space-x-4 mb-4">
-                  <button
+                  {/* <button
                     type="button"
                     onClick={() => setLoginMethod('password')}
                     className={`px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${loginMethod === 'password' ? 'bg-indigo-100 text-indigo-600 shadow-sm' : 'text-slate-400'}`}
@@ -196,7 +196,7 @@ const Login = () => {
                     className={`px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${loginMethod === 'otp' ? 'bg-indigo-100 text-indigo-600 shadow-sm' : 'text-slate-400'}`}
                   >
                     OTP Login
-                  </button>
+                  </button> */}
                 </div>
               )}
 
@@ -267,7 +267,7 @@ const Login = () => {
                         onClick={handleForgotPassword}
                         className="text-[9px] uppercase font-black text-indigo-500 hover:text-indigo-700 tracking-tighter transition-colors"
                       >
-                        Forgot Password?
+                        Login with OTP?
                       </button>
                     )}
                   </div>

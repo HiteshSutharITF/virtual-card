@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { getAllUsers, updateUserStatus, adminCreateUser, adminUpdateUser } from '../../services/admin.service';
+import { getAllUsers, updateUserStatus, adminCreateUser, adminUpdateUser, updateSubscriptionExpiry } from '../../services/admin.service';
 import Layout from '../../components/layout/Layout';
 import { toast } from 'react-hot-toast';
 import { Search, UserCheck, UserX, Clock, Eye, EyeOff, Briefcase, Phone, MessageSquare, UserPlus, Lock, Loader2, User, AlertCircle, ArrowRight, Pencil, Save, RefreshCw, Gift, Copy } from 'lucide-react';
@@ -31,7 +31,9 @@ const UsersManagement = () => {
     userId: null,
     status: '',
     userName: '',
-    currentStatus: ''
+    currentStatus: '',
+    expiryDate: '',
+    isCustomExpiry: false
   });
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editLoading, setEditLoading] = useState(false);
@@ -44,6 +46,7 @@ const UsersManagement = () => {
     customMessage: '',
     isActive: true,
     isContactSharingEnabled: true,
+    subscriptionExpiresAt: '',
   });
 
   const fetchUsers = async () => {
@@ -63,30 +66,67 @@ const UsersManagement = () => {
     fetchUsers();
   }, []);
 
+  const formatForDateTimeLocal = (date) => {
+    if (!date) return '';
+    const d = new Date(date);
+    const tzOffset = d.getTimezoneOffset() * 60000;
+    return new Date(d.getTime() - tzOffset).toISOString().slice(0, 16);
+  };
+
+  const getTimeLeftLabel = (expiry) => {
+    if (!expiry) return 'Not Set';
+    const now = new Date();
+    const expDate = new Date(expiry);
+    const isExpired = expDate < now;
+    
+    const diffMs = Math.abs(expDate - now);
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMs / 3600000);
+    const diffDays = Math.floor(diffMs / 86400000);
+
+    if (isExpired) return 'Expired';
+    if (diffMins < 60) return `${diffMins}m left`;
+    if (diffHours < 24) return `${diffHours}h left`;
+    return `${diffDays}d left`;
+  };
+
   const handleStatusUpdate = async () => {
-    const { userId, status } = confirmModal;
+    const { userId, status, expiryDate } = confirmModal;
     setLoading(true);
     try {
+      // Step 1: Update Status
       const response = await updateUserStatus(userId, status);
       if (response.success) {
+        // Step 2: If approved and expiry date is set, update expiry
+        if (status === 'approved' && expiryDate) {
+          await updateSubscriptionExpiry(userId, { expiryDate });
+        }
+        
         toast.success(response.message);
         setConfirmModal({ ...confirmModal, isOpen: false });
         fetchUsers();
       }
     } catch (error) {
-      toast.error('Failed to update status');
+      toast.error(error.message || 'Failed to update status');
     } finally {
       setLoading(false);
     }
   };
 
   const openConfirmModal = (user, status) => {
+    // Default expiry: 1 Year from now if status is approved
+    const defaultExpiry = status === 'approved' 
+      ? formatForDateTimeLocal(new Date(Date.now() + 365 * 24 * 60 * 60 * 1000))
+      : '';
+
     setConfirmModal({
       isOpen: true,
       userId: user._id,
       status: status,
       userName: user.name,
-      currentStatus: user.status
+      currentStatus: user.status,
+      expiryDate: defaultExpiry,
+      isCustomExpiry: false
     });
   };
 
@@ -105,6 +145,8 @@ const UsersManagement = () => {
       customMessage: user.customMessage || '',
       isActive: user.isActive ?? true,
       isContactSharingEnabled: user.isContactSharingEnabled ?? true,
+      status: user.status || 'pending',
+      subscriptionExpiresAt: user.subscriptionExpiresAt ? formatForDateTimeLocal(user.subscriptionExpiresAt) : '',
     });
     setIsEditModalOpen(true);
   };
@@ -115,6 +157,11 @@ const UsersManagement = () => {
     try {
       const response = await adminUpdateUser(editUser._id, editFormData);
       if (response.success) {
+        // Also update expiry if changed
+        if (editFormData.subscriptionExpiresAt) {
+          await updateSubscriptionExpiry(editUser._id, { expiryDate: editFormData.subscriptionExpiresAt });
+        }
+        
         toast.success(response.message || 'User updated successfully');
         setIsEditModalOpen(false);
         fetchUsers();
@@ -222,6 +269,7 @@ const UsersManagement = () => {
                   <th className="px-8 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Profile</th>
                   <th className="px-8 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Business</th>
                   <th className="px-8 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Status</th>
+                  <th className="px-8 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Expiry</th>
                   <th className="px-8 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Scans</th>
                   <th className="px-8 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Affiliate</th>
                   <th className="px-8 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] text-right">Actions</th>
@@ -232,7 +280,7 @@ const UsersManagement = () => {
                   Array(5).fill(0).map((_, i) => <SkeletonRow key={i} />)
                 ) : filteredUsers.length === 0 ? (
                   <tr>
-                    <td colSpan="6" className="px-8 py-24 text-center">
+                    <td colSpan="7" className="px-8 py-24 text-center">
                       <div className="flex flex-col items-center">
                         <div className="w-16 h-16 bg-slate-50 text-slate-300 rounded-2xl flex items-center justify-center mb-4">
                           <Search size={32} />
@@ -243,7 +291,12 @@ const UsersManagement = () => {
                   </tr>
                 ) : (
                   filteredUsers.map((user) => (
-                    <tr key={user._id} className="hover:bg-slate-50/50 transition-colors group">
+                    <tr 
+                      key={user._id} 
+                      className={`hover:bg-slate-50/50 transition-colors group ${
+                        user.subscriptionExpiresAt && new Date(user.subscriptionExpiresAt) < new Date() ? 'bg-rose-50/70' : ''
+                      }`}
+                    >
                       <td className="px-8 py-6">
                         <div className="flex items-center space-x-4">
                           <div className="w-11 h-11 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center font-black text-sm ring-4 ring-indigo-50/50 group-hover:ring-white transition-all">
@@ -261,6 +314,19 @@ const UsersManagement = () => {
                       </td>
                       <td className="px-8 py-6">
                         <StatusBadge status={user.status} />
+                      </td>
+                      <td className="px-8 py-6">
+                        <div className="flex flex-col">
+                          <p className="text-sm font-black text-slate-700 tracking-tight">
+                            {user.subscriptionExpiresAt ? new Date(user.subscriptionExpiresAt).toLocaleDateString() : 'Not Set'}
+                          </p>
+                          <p className={`text-[9px] font-black uppercase tracking-[0.1em] ${
+                            !user.subscriptionExpiresAt ? 'text-slate-300' :
+                            new Date(user.subscriptionExpiresAt) < new Date() ? 'text-rose-500' : 'text-emerald-500'
+                          }`}>
+                            {getTimeLeftLabel(user.subscriptionExpiresAt)}
+                          </p>
+                        </div>
                       </td>
                       <td className="px-8 py-6">
                         <span className="text-sm font-black text-indigo-600 bg-indigo-50/50 px-3 py-1.5 rounded-lg border border-indigo-100/50">{user.scansCount || 0}</span>
@@ -518,6 +584,16 @@ const UsersManagement = () => {
                   <option value="rejected">Rejected</option>
                 </select>
               </div>
+
+              <div className="space-y-2">
+                <label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-1">Subscription Expiry</label>
+                <input
+                  type="datetime-local"
+                  value={editFormData.subscriptionExpiresAt}
+                  onChange={(e) => setEditFormData({ ...editFormData, subscriptionExpiresAt: e.target.value })}
+                  className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-3.5 px-4 text-sm font-bold focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all"
+                />
+              </div>
             </div>
           </form>
         </Modal>
@@ -670,6 +746,61 @@ const UsersManagement = () => {
               </div>
             </div>
 
+            {/* Expiry Selection for Approval */}
+            {confirmModal.status === 'approved' && (
+              <div className="bg-white rounded-2xl border border-slate-100 p-5 space-y-4">
+                <div className="flex items-center justify-between">
+                  <label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-1">Set Subscription Expiry</label>
+                  <button 
+                    onClick={() => setConfirmModal(p => ({ ...p, isCustomExpiry: !p.isCustomExpiry }))}
+                    className="text-[9px] font-black uppercase tracking-widest text-indigo-600 hover:text-indigo-700"
+                  >
+                    {confirmModal.isCustomExpiry ? 'Use Presets' : 'Custom Date'}
+                  </button>
+                </div>
+
+                {!confirmModal.isCustomExpiry ? (
+                  <div className="grid grid-cols-2 gap-2">
+                    {[
+                      { label: '7 Days', days: 7 },
+                      { label: '1 Month', days: 30 },
+                      { label: '1 Year', days: 365 },
+                      { label: '2 Years', days: 730 },
+                    ].map((d) => {
+                      const date = new Date(Date.now() + d.days * 24 * 60 * 60 * 1000);
+                      const isSelected = confirmModal.expiryDate === formatForDateTimeLocal(date);
+                      return (
+                        <button
+                          key={d.label}
+                          onClick={() => setConfirmModal(p => ({ ...p, expiryDate: formatForDateTimeLocal(date) }))}
+                          className={`py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest border transition-all ${
+                            isSelected 
+                              ? 'bg-indigo-600 text-white border-indigo-600 shadow-lg' 
+                              : 'bg-slate-50 text-slate-600 border-slate-100 hover:border-indigo-200'
+                          }`}
+                        >
+                          {d.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <input
+                    type="datetime-local"
+                    value={confirmModal.expiryDate}
+                    onChange={(e) => setConfirmModal(p => ({ ...p, expiryDate: e.target.value }))}
+                    className="w-full bg-slate-50 border border-slate-100 rounded-xl py-3 px-4 text-sm font-bold focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all"
+                  />
+                )}
+                <div className="flex items-center gap-2 px-1">
+                  <Clock size={12} className="text-slate-300" />
+                  <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">
+                    Expires: <span className="text-indigo-600 font-black">{new Date(confirmModal.expiryDate).toLocaleDateString()}</span>
+                  </p>
+                </div>
+              </div>
+            )}
+
             {/* Warning Box */}
             <div className="bg-amber-50 rounded-2xl p-5 border border-amber-100 flex space-x-4">
               <div className="shrink-0 pt-0.5">
@@ -677,7 +808,9 @@ const UsersManagement = () => {
               </div>
               <div className="space-y-1">
                 <p className="text-[13px] font-bold text-amber-900 leading-relaxed">
-                  This will grant the user access to professional features. This action can be reversed at any time from the management panel.
+                  {confirmModal.status === 'approved' 
+                    ? 'This will grant professional access until the selected expiry date.' 
+                    : 'This will deny professional access to this user.'}
                 </p>
               </div>
             </div>
@@ -717,7 +850,9 @@ const SkeletonRow = () => (
     <td className="px-8 py-5"><div className="flex items-center space-x-4"><div className="w-10 h-10 bg-slate-100 rounded-full"></div><div className="h-4 bg-slate-100 w-24 rounded"></div></div></td>
     <td className="px-8 py-5"><div className="h-4 bg-slate-100 w-32 rounded"></div></td>
     <td className="px-8 py-5"><div className="h-6 bg-slate-100 w-20 rounded-full"></div></td>
+    <td className="px-8 py-5"><div className="h-4 bg-slate-100 w-20 rounded"></div></td>
     <td className="px-8 py-5"><div className="h-4 bg-slate-100 w-16 rounded"></div></td>
+    <td className="px-8 py-5"><div className="h-4 bg-slate-100 w-24 rounded"></div></td>
     <td className="px-8 py-5"><div className="h-8 bg-slate-100 w-8 rounded ml-auto"></div></td>
   </tr>
 );

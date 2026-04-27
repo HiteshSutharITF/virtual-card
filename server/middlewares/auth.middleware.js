@@ -44,4 +44,23 @@ const protect = async (req, res, next) => {
   }
 };
 
-module.exports = { protect };
+const checkSubscription = (req, res, next) => {
+  if (req.user.role === 'user') {
+    const now = new Date();
+    const expiry = new Date(req.user.subscriptionExpiresAt);
+
+    if (expiry < now) {
+      // Allow profile and affiliate stats even if expired
+      const allowedPaths = ['/api/user/profile', '/api/user/affiliate/stats'];
+      if (!allowedPaths.includes(req.originalUrl)) {
+        return res.status(403).json({ 
+          success: false, 
+          message: 'Your subscription has ended. Please contact admin info@itfuturz.com' 
+        });
+      }
+    }
+  }
+  next();
+};
+
+module.exports = { protect, checkSubscription };

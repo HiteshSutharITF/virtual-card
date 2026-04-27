@@ -1,5 +1,5 @@
 const express = require('express');
-const { protect } = require('../middlewares/auth.middleware');
+const { protect, checkSubscription } = require('../middlewares/auth.middleware');
 const { isUser } = require('../middlewares/role.middleware');
 const {
   getUserProfile,
@@ -16,6 +16,7 @@ const router = express.Router();
 
 router.use(protect);
 router.use(isUser);
+router.use(checkSubscription);
 
 router.route('/profile')
   .get(getUserProfile)

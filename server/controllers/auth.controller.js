@@ -3,7 +3,16 @@ const http = require('http');
 const Admin = require('../models/Admin.model');
 const User = require('../models/User.model');
 const OtpLog = require('../models/OtpLog.model');
+const Settings = require('../models/Settings.model');
 const logger = require('../utils/logger');
+
+const calculateExpiry = (value, unit) => {
+  const date = new Date();
+  if (unit === 'minutes') date.setMinutes(date.getMinutes() + value);
+  else if (unit === 'hours') date.setHours(date.getHours() + value);
+  else if (unit === 'days') date.setDate(date.getDate() + value);
+  return date;
+};
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -241,6 +250,9 @@ const registerUser = async (req, res) => {
       if (referrer) referredBy = referrer._id;
     }
 
+    const settings = await Settings.findOne() || await Settings.create({});
+    const expiryDate = calculateExpiry(settings.trialDuration.value, settings.trialDuration.unit);
+
     const user = await User.create({
       name,
       mobile,
@@ -249,7 +261,9 @@ const registerUser = async (req, res) => {
       customMessage: customMessage || 'Hi {name}! Thanks for connecting.',
       status: 'pending',
       createdBy: 'self',
-      referredBy
+      referredBy,
+      subscriptionExpiresAt: expiryDate,
+      trialStartedAt: new Date()
     });
 
     if (user) {

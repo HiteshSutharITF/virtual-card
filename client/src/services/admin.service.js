@@ -40,3 +40,23 @@ export const deleteAllOtpLogs = async () => {
 export const getReferralsByUserId = async (id) => {
   return await api.get(`/admin/users/${id}/referrals`);
 };
+
+export const getGlobalSettings = async () => {
+  return await api.get('/admin/settings');
+};
+
+export const updateGlobalSettings = async (data) => {
+  return await api.put('/admin/settings', data);
+};
+
+export const getAllSubscriptions = async () => {
+  return await api.get('/admin/subscriptions');
+};
+
+export const addUserPayment = async (id, data) => {
+  return await api.post(`/admin/users/${id}/payment`, data);
+};
+
+export const updateSubscriptionExpiry = async (id, data) => {
+  return await api.put(`/admin/users/${id}/expiry`, data);
+};

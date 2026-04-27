@@ -85,6 +85,28 @@ const userSchema = new mongoose.Schema(
       type: [String],
       default: ['Hi! I am using VirtualCard to automate my networking. Create your own smart vCard here: {link}'],
     },
+    subscriptionExpiresAt: {
+      type: Date,
+      default: null,
+    },
+    trialStartedAt: {
+      type: Date,
+      default: null,
+    },
+    payments: [{
+      amount: Number,
+      status: {
+        type: String,
+        enum: ['pending', 'done'],
+        default: 'pending'
+      },
+      description: String,
+      receiptImage: String,
+      date: {
+        type: Date,
+        default: Date.now
+      }
+    }]
   },
   { timestamps: true }
 );

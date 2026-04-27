@@ -46,11 +46,11 @@ const PendingApproval = ({ user }) => {
             </div>
             <div>
               <h4 className="font-bold text-slate-800 tracking-tight">
-                {user?.status === 'rejected' ? "Application Status" : "Identity Verification"}
+                {user?.status === 'rejected' ? "Rejection Notice" : "Identity Verification"}
               </h4>
               <p className="text-xs text-slate-400 mt-1 leading-relaxed">
                 {user?.status === 'rejected'
-                  ? "Your application does not meet our current requirements. Please contact the administrator for more details regarding your account status."
+                  ? "Your account application has been rejected after review. Please contact our support team at info@itfuturz.com for further information or to appeal this decision."
                   : "We are verifying your business details to ensure the security of the VirtualCard network. This typically takes 2-24 hours."
                 }
               </p>

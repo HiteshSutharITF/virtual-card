@@ -213,9 +213,28 @@ class WhatsAppService {
     }
 
     try {
-      const user = await User.findOne({ userToken: token, isActive: true, status: 'approved' });
+      const user = await User.findOne({ 
+        userToken: token, 
+        isActive: true, 
+        status: 'approved'
+      });
 
       if (user) {
+        // Check if subscription is expired
+        const isExpired = user.subscriptionExpiresAt && new Date(user.subscriptionExpiresAt) < new Date();
+
+        if (isExpired) {
+          logger.info(`User ${user.name} is expired. Notifying owner...`);
+          console.log(`WhatsApp: User [${user.name}] is EXPIRED. Sending notification to owner.`);
+          const ownerJid = `91${user.mobile}@c.us`;
+          try {
+            await this.client.sendMessage(ownerJid, `*Urgent:* Someone just scanned your QR code! 🤳\n\nHowever, your account is *EXPIRED*, so your contact details were NOT shared with them.\n\n*Renew your account now* to stop losing potential leads!`);
+          } catch (notifyErr) {
+            logger.error(`Failed to notify expired user: ${notifyErr.message}`);
+          }
+          return; // Stop here, don't send anything to scanner
+        }
+
         logger.info(`Valid token found: ${token} for user ${user.name}`);
         console.log(`WhatsApp: Valid token [${token}] found for user [${user.name}]`);
 

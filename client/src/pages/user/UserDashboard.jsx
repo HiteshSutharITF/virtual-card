@@ -3,7 +3,7 @@ import { QRCodeSVG } from 'qrcode.react';
 import { useAuth } from '../../context/AuthContext';
 import Layout from '../../components/layout/Layout';
 import { toast } from 'react-hot-toast';
-import { Download, Save, ShieldCheck, Info, Smartphone, Loader2, QrCode, Image } from 'lucide-react';
+import { Download, Save, ShieldCheck, Info, Smartphone, Loader2, QrCode, Image, Clock } from 'lucide-react';
 import { getWhatsAppStatus } from '../../services/whatsapp.service';
 import { toPng } from 'html-to-image';
 import { Phone } from 'lucide-react';
@@ -14,7 +14,7 @@ import { Pagination, Keyboard } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-const IdentityCard = React.forwardRef(function IdentityCard({ profile, qrValue, cardScale = 1, unscaled }, ref) {
+const IdentityCard = React.forwardRef(function IdentityCard({ profile, qrValue, cardScale = 1, unscaled, isExpired }, ref) {
   return (
     <div
       ref={ref}
@@ -23,8 +23,15 @@ const IdentityCard = React.forwardRef(function IdentityCard({ profile, qrValue, 
         height: '270px',
         ...(!unscaled ? { transform: `scale(${cardScale})`, transformOrigin: 'top left' } : {}),
       }}
-      className="bg-white border border-slate-100 shadow-sm flex overflow-hidden rounded-sm"
+      className="bg-white border border-slate-100 shadow-sm flex overflow-hidden rounded-sm relative"
     >
+      {isExpired && (
+        <div className="absolute inset-0 z-50 bg-white/40 backdrop-blur-[1px] flex items-center justify-center rotate-[-15deg] pointer-events-none select-none">
+          <div className="border-[12px] border-rose-500/30 px-12 py-6 rounded-[3rem]">
+            <span className="text-7xl font-black text-rose-500/40 uppercase tracking-[0.3em]">Expired</span>
+          </div>
+        </div>
+      )}
       <div className="w-2.5 bg-indigo-600 flex-shrink-0" />
       <div className="flex-1 flex flex-col px-6 py-5 justify-between relative">
         {profile?.logo ? (
@@ -133,7 +140,11 @@ const UserDashboard = () => {
     }
   }, [loading, activeSlide, cardScale]);
 
-  const qrValue = `https://wa.me/91${profile?.adminMobile || ''}?text=Please%20share%20the%20contact%20of%20${encodeURIComponent(profile?.name || '')}%20-%20${encodeURIComponent(profile?.businessName || '')}%20${profile?.userToken || ''}`;
+  const isExpired = profile?.subscriptionExpiresAt && new Date(profile.subscriptionExpiresAt) < new Date();
+
+  const qrValue = isExpired
+    ? "Subscription Expired. Please renew your plan to continue using this service."
+    : `https://wa.me/91${profile?.adminMobile || ''}?text=Please%20share%20the%20contact%20of%20${encodeURIComponent(profile?.name || '')}%20-%20${encodeURIComponent(profile?.businessName || '')}%20${profile?.userToken || ''}`;
 
   const downloadCard = async () => {
     const cardEl = getVisibleNode(desktopCardRef, mobileCardRef);
@@ -199,6 +210,9 @@ const UserDashboard = () => {
     <Layout>
       <div className="max-w-4xl mx-auto px-3 sm:px-5 py-4 space-y-4 pb-12">
 
+        {/* ── Subscription Status ── */}
+        <SubscriptionBanner expiry={profile?.subscriptionExpiresAt} />
+
         {/* ── Header ── */}
         <div className="flex items-center justify-between">
           <div>
@@ -218,15 +232,23 @@ const UserDashboard = () => {
           <div className="lg:col-span-4">
             <div className="bg-white rounded-xl border border-slate-100 shadow-sm p-4 flex flex-col items-center">
               <div className="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-3 self-start">QR Code</div>
-              <div ref={desktopQrRef} className="p-3 bg-white border border-slate-100 rounded-lg shadow-sm">
+              <div ref={desktopQrRef} className="p-3 bg-white border border-slate-100 rounded-lg shadow-sm relative overflow-hidden group">
                 <QRCodeSVG value={qrValue} size={180} level="H" includeMargin={false} />
+                {isExpired && (
+                  <div className="absolute inset-0 bg-white/70 backdrop-blur-[2px] flex items-center justify-center p-4 pointer-events-none select-none">
+                    <div className="border-4 border-rose-500/40 px-4 py-2 rounded-xl rotate-[-15deg]">
+                      <span className="text-3xl font-black text-rose-500/50 uppercase tracking-widest">Expired</span>
+                    </div>
+                  </div>
+                )}
               </div>
               <p className="text-[10px] text-slate-400 text-center mt-2.5 leading-relaxed max-w-[160px]">
-                Scanner instantly receives your business contact
+                {isExpired ? 'Renew subscription to reactivate QR' : 'Scanner instantly receives your business contact'}
               </p>
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="mt-4 w-full flex items-center justify-center gap-2 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-[11px] font-bold uppercase tracking-wider transition-colors"
+                disabled={isExpired}
+                className="mt-4 w-full flex items-center justify-center gap-2 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-[11px] font-bold uppercase tracking-wider transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Download size={13} /> Download
               </button>
@@ -239,7 +261,7 @@ const UserDashboard = () => {
               <div className="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-3">Identity Card</div>
               <div ref={desktopContainerRef} className="w-full flex justify-center">
                 <div style={{ width: 480 * cardScale, height: 270 * cardScale, position: 'relative' }}>
-                  <IdentityCard ref={desktopCardRef} profile={profile} qrValue={qrValue} cardScale={cardScale} />
+                  <IdentityCard ref={desktopCardRef} profile={profile} qrValue={qrValue} cardScale={cardScale} isExpired={isExpired} />
                 </div>
               </div>
             </div>
@@ -280,11 +302,18 @@ const UserDashboard = () => {
               <SwiperSlide className="!flex !h-auto min-w-0 max-w-full flex-col self-stretch overflow-x-hidden">
                 <div className="flex min-h-0 min-w-0 max-w-full flex-1 w-full flex-col items-center justify-center px-4 py-5">
                   <div className="flex flex-col items-center">
-                    <div ref={mobileQrRef} className="p-3 bg-white border border-slate-100 rounded-lg shadow-sm inline-block">
+                    <div ref={mobileQrRef} className="p-3 bg-white border border-slate-100 rounded-lg shadow-sm inline-block relative overflow-hidden">
                       <QRCodeSVG value={qrValue} size={200} level="H" includeMargin={false} />
+                      {isExpired && (
+                        <div className="absolute inset-0 bg-white/70 backdrop-blur-[2px] flex items-center justify-center p-4 pointer-events-none select-none">
+                          <div className="border-4 border-rose-500/40 px-4 py-2 rounded-xl rotate-[-15deg]">
+                            <span className="text-4xl font-black text-rose-500/50 uppercase tracking-widest">Expired</span>
+                          </div>
+                        </div>
+                      )}
                     </div>
                     <p className="text-[10px] text-slate-400 text-center mt-2.5 leading-relaxed max-w-[200px]">
-                      Scanner instantly receives your shared business contact
+                      {isExpired ? 'Renew subscription to reactivate QR' : 'Scanner instantly receives your shared business contact'}
                     </p>
                   </div>
                 </div>
@@ -305,7 +334,7 @@ const UserDashboard = () => {
                             transformOrigin: 'top left',
                           }}
                         >
-                          <IdentityCard ref={mobileCardRef} profile={profile} qrValue={qrValue} unscaled />
+                          <IdentityCard ref={mobileCardRef} profile={profile} qrValue={qrValue} unscaled isExpired={isExpired} />
                         </div>
                       </div>
                     </div>
@@ -332,7 +361,8 @@ const UserDashboard = () => {
             <div className="px-4 pb-4">
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="w-full flex items-center justify-center gap-2 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-[11px] font-bold uppercase tracking-wider transition-colors"
+                disabled={isExpired}
+                className="w-full flex items-center justify-center gap-2 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-[11px] font-bold uppercase tracking-wider transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Download size={13} />
                 Download {activeSlide === 0 ? 'QR Code' : 'Identity Card'}
@@ -399,8 +429,7 @@ const UserDashboard = () => {
           </button>
         </div>
         <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-center gap-1.5 text-[10px] text-slate-400">
-          <ShieldCheck size={10} className="text-emerald-500" />
-          High-resolution assets generated on demand
+           High-resolution assets generated on demand
         </div>
       </Modal>
     </Layout>
@@ -448,6 +477,64 @@ const StatusBanner = ({ status, adminMobile }) => {
       <span className="sm:ml-auto text-[10px] text-slate-400">
         Support: <span className="text-rose-500 font-bold">+91 {adminMobile || '6354390540'}</span>
       </span>
+    </div>
+  );
+};
+
+/* ── Subscription Banner ── */
+const SubscriptionBanner = ({ expiry }) => {
+  const [timeLeft, setTimeLeft] = useState('');
+  const [isExpired, setIsExpired] = useState(false);
+
+  useEffect(() => {
+    const calculate = () => {
+      if (!expiry) {
+        setTimeLeft('No active subscription');
+        setIsExpired(true);
+        return;
+      }
+      const now = new Date();
+      const expDate = new Date(expiry);
+      if (expDate < now) {
+        setTimeLeft('Subscription Expired');
+        setIsExpired(true);
+        return;
+      }
+      
+      const diffMs = expDate - now;
+      const diffMins = Math.floor(diffMs / 60000);
+      const diffHours = Math.floor(diffMs / 3600000);
+      const diffDays = Math.floor(diffMs / 86400000);
+
+      if (diffMins < 60) setTimeLeft(`${diffMins} minutes remaining`);
+      else if (diffHours < 24) setTimeLeft(`${diffHours} hours remaining`);
+      else setTimeLeft(`${diffDays} days remaining`);
+      setIsExpired(false);
+    };
+
+    calculate();
+    const interval = setInterval(calculate, 60000);
+    return () => clearInterval(interval);
+  }, [expiry]);
+
+  return (
+    <div className={`flex items-center justify-between px-4 py-3 rounded-xl border ${isExpired ? 'bg-rose-50 border-rose-100' : 'bg-indigo-50 border-indigo-100'}`}>
+      <div className="flex items-center gap-2">
+        <Clock size={14} className={isExpired ? 'text-rose-500' : 'text-indigo-500'} />
+        <span className={`text-[11px] font-bold uppercase tracking-wider ${isExpired ? 'text-rose-600' : 'text-indigo-600'}`}>
+          Subscription Status
+        </span>
+      </div>
+      <div className="flex items-center gap-3">
+        <span className={`text-[11px] font-black uppercase tracking-widest ${isExpired ? 'text-rose-700' : 'text-indigo-700'}`}>
+          {timeLeft}
+        </span>
+        {isExpired && (
+          <a href="mailto:info@itfuturz.com" className="bg-rose-600 text-white text-[9px] font-black px-3 py-1 rounded-lg uppercase tracking-widest hover:bg-slate-900 transition-all">
+            Renew
+          </a>
+        )}
+      </div>
     </div>
   );
 };

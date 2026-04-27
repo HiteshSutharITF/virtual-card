@@ -3,13 +3,14 @@ import { useAuth } from '../../context/AuthContext';
 import { getAllUsers } from '../../services/admin.service';
 import { getWhatsAppStatus } from '../../services/whatsapp.service';
 import Layout from '../../components/layout/Layout';
-import { Users, UserCheck, MessageSquare, Smartphone, ArrowRight, Activity, ShieldCheck } from 'lucide-react';
+import { Users, UserCheck, MessageSquare, Smartphone, ArrowRight, Activity, ShieldCheck, Clock, BarChart3 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const AdminDashboard = () => {
   const [stats, setStats] = useState({
     totalUsers: 0,
     pendingUsers: 0,
+    expiredUsers: 0,
     totalScans: 0,
   });
   const [waStatus, setWaStatus] = useState('disconnected');
@@ -20,10 +21,12 @@ const AdminDashboard = () => {
       const usersRes = await getAllUsers();
       if (usersRes.success) {
         const users = usersRes.data;
+        const now = new Date();
         setStats({
           totalUsers: users.length,
           pendingUsers: users.filter(u => u.status === 'pending').length,
-          totalScans: 0, // In a real app, this would be an aggregation API call
+          expiredUsers: users.filter(u => u.subscriptionExpiresAt && new Date(u.subscriptionExpiresAt) < now).length,
+          totalScans: users.reduce((sum, u) => sum + (u.scansCount || 0), 0),
         });
       }
 
@@ -77,9 +80,9 @@ const AdminDashboard = () => {
         {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <StatCard icon={<Users />} label="Total Users" value={stats.totalUsers} color="bg-indigo-600" />
-          <StatCard icon={<UserCheck />} label="Pending" value={stats.pendingUsers} color="bg-pink-500" highlight={stats.pendingUsers > 0} />
-          <StatCard icon={<Activity />} label="Live Scans" value="24h" color="bg-violet-500" />
-          <StatCard icon={<ShieldCheck />} label="Security" value="Active" color="bg-slate-800" />
+          <StatCard icon={<UserCheck />} label="Pending" value={stats.pendingUsers} color="bg-amber-500" highlight={stats.pendingUsers > 0} />
+          <StatCard icon={<Clock />} label="Expired" value={stats.expiredUsers} color="bg-rose-500" highlight={stats.expiredUsers > 0} />
+          <StatCard icon={<BarChart3 />} label="Total Scans" value={stats.totalScans} color="bg-violet-600" />
         </div>
 
         {/* Action Sections */}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../../components/layout/Layout';
 import { getAllUsers, getReferralsByUserId, updateUserStatus } from '../../services/admin.service';
 import { toast } from 'react-hot-toast';
-import { Gift, Copy, Eye, Users, TrendingUp, Search, Clock, ArrowRight, User as UserIcon, Loader2, UserCheck, UserX } from 'lucide-react';
+import { Gift, Copy, Eye, Users, TrendingUp, Search, Clock, ArrowRight, User as UserIcon, Loader2, UserCheck, UserX, RefreshCw } from 'lucide-react';
 import Modal from '../../components/common/Modal';
 
 const AffiliateManagement = () => {
@@ -89,15 +89,25 @@ const AffiliateManagement = () => {
             <p className="text-slate-500 font-medium">Monitor referral trees and user network growth</p>
           </div>
 
-          <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-            <input
-              type="text"
-              placeholder="Search by name, mobile or code..."
-              className="glass rounded-2xl py-3.5 pl-12 pr-6 border-slate-200 text-sm focus:ring-4 focus:ring-indigo-500/10 outline-none w-full sm:w-80 transition-all shadow-sm"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+          <div className="flex items-center space-x-3 w-full sm:w-auto">
+            <button
+              onClick={fetchData}
+              disabled={loading}
+              className="p-3.5 bg-white border border-slate-200 rounded-2xl text-slate-400 hover:text-indigo-600 hover:border-indigo-100 transition-all shadow-sm active:scale-95 disabled:opacity-50"
+              title="Refresh Data"
+            >
+              <RefreshCw size={20} className={loading ? 'animate-spin' : ''} />
+            </button>
+            <div className="relative flex-1 sm:w-80">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+              <input
+                type="text"
+                placeholder="Search by name, mobile or code..."
+                className="glass rounded-2xl py-3.5 pl-12 pr-6 border-slate-200 text-sm focus:ring-4 focus:ring-indigo-500/10 outline-none w-full transition-all shadow-sm"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
           </div>
         </div>
 
