@@ -17,6 +17,8 @@ export const USER_ENDPOINTS = {
   PROFILE: '/user/profile',
   SCANNED: '/user/scanned',
   SCANNED_EXPORT: '/user/scanned/export',
+  AFFILIATE_STATS: '/user/affiliate/stats',
+  AFFILIATE_TEMPLATES: '/user/affiliate/templates',
 };
 
 export const WHATSAPP_ENDPOINTS = {

@@ -226,13 +226,19 @@ const forgotPassword = async (req, res) => {
 // @desc    User Self-Registration
 // @route   POST /api/auth/register
 const registerUser = async (req, res) => {
-  const { name, mobile, businessName, password, customMessage } = req.body;
+  const { name, mobile, businessName, password, customMessage, referralCode } = req.body;
 
   try {
     const userExists = await User.findOne({ mobile });
 
     if (userExists) {
       return res.status(400).json({ success: false, message: 'User with this mobile already exists' });
+    }
+
+    let referredBy = null;
+    if (referralCode) {
+      const referrer = await User.findOne({ userToken: referralCode, isDeleted: false });
+      if (referrer) referredBy = referrer._id;
     }
 
     const user = await User.create({
@@ -243,6 +249,7 @@ const registerUser = async (req, res) => {
       customMessage: customMessage || 'Hi {name}! Thanks for connecting.',
       status: 'pending',
       createdBy: 'self',
+      referredBy
     });
 
     if (user) {

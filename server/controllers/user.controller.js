@@ -103,9 +103,58 @@ const exportScannedContacts = async (req, res) => {
   }
 };
 
+// @desc    Get Affiliate Stats
+// @route   GET /api/user/affiliate/stats
+const getAffiliateStats = async (req, res) => {
+  try {
+    const referredUsers = await User.find({ referredBy: req.user._id, isDeleted: false }, 'name mobile createdAt status');
+    
+    let referrerInfo = { name: 'Direct', mobile: '' };
+    if (req.user.referredBy) {
+      const referrer = await User.findById(req.user.referredBy, 'name mobile');
+      if (referrer) {
+        referrerInfo = { name: referrer.name, mobile: referrer.mobile };
+      }
+    }
+
+    res.json({
+      success: true,
+      data: {
+        totalReferred: referredUsers.length,
+        referredUsers,
+        referrerInfo
+      }
+    });
+  } catch (error) {
+    logger.error(`Get Affiliate Stats Error: ${error.message}`);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+// @desc    Update Affiliate Templates
+// @route   PUT /api/user/affiliate/templates
+const updateAffiliateTemplates = async (req, res) => {
+  const { templates } = req.body;
+  try {
+    const user = await User.findById(req.user._id);
+    if (user) {
+      user.affiliateTemplates = templates;
+      await user.save();
+      res.json({ success: true, message: 'Affiliate templates updated successfully' });
+    } else {
+      res.status(404).json({ success: false, message: 'User not found' });
+    }
+  } catch (error) {
+    logger.error(`Update Affiliate Templates Error: ${error.message}`);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
 module.exports = {
   getUserProfile,
   updateUserProfile,
   getScannedContacts,
   exportScannedContacts,
+  getAffiliateStats,
+  updateAffiliateTemplates,
 };

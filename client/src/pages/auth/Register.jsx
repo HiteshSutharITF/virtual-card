@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { registerUser } from '../../services/auth.service';
 import { useAuth } from '../../context/AuthContext';
 import { toast } from 'react-hot-toast';
@@ -7,12 +7,17 @@ import { User, Phone, Briefcase, Lock, FileText, UserPlus, ArrowLeft, Loader2, Q
 import AuthIllustration from '../../components/illustrations/AuthIllustration';
 
 const Register = () => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const refCode = queryParams.get('ref');
+
   const [formData, setFormData] = useState({
     name: '',
     mobile: '',
     businessName: '',
     password: '',
     customMessage: 'Hi {name}! Thanks for connecting.',
+    referralCode: refCode || '',
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -130,19 +135,30 @@ const Register = () => {
               </div>
               
               <InputBox icon={<Phone size={18} />} label="WhatsApp Mobile" name="mobile" placeholder="9876543210" value={formData.mobile} onChange={handleChange} error={errors.mobile} required maxLength={10} inputMode="numeric" />
-              <InputBox 
-                icon={<Lock size={18} />} 
-                label="Access Password" 
-                name="password" 
-                type={showPassword ? "text" : "password"} 
-                placeholder="••••••••" 
-                value={formData.password} 
-                onChange={handleChange} 
-                error={errors.password} 
-                required 
-                togglePassword={() => setShowPassword(!showPassword)}
-                showPassword={showPassword}
-              />
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <InputBox 
+                  icon={<Lock size={18} />} 
+                  label="Access Password" 
+                  name="password" 
+                  type={showPassword ? "text" : "password"} 
+                  placeholder="••••••••" 
+                  value={formData.password} 
+                  onChange={handleChange} 
+                  error={errors.password} 
+                  required 
+                  togglePassword={() => setShowPassword(!showPassword)}
+                  showPassword={showPassword}
+                />
+                <InputBox 
+                  icon={<UserPlus size={18} />} 
+                  label="Referral Code (Optional)" 
+                  name="referralCode" 
+                  placeholder="CODE123" 
+                  value={formData.referralCode} 
+                  onChange={handleChange} 
+                />
+              </div>
               
               <div className="space-y-3">
                 <label className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400 ml-1">Custom Welcome Reply</label>

@@ -36,3 +36,7 @@ export const getOtpLogs = async () => {
 export const deleteAllOtpLogs = async () => {
   return await api.delete('/admin/otp-logs');
 };
+
+export const getReferralsByUserId = async (id) => {
+  return await api.get(`/admin/users/${id}/referrals`);
+};

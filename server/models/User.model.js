@@ -76,6 +76,15 @@ const userSchema = new mongoose.Schema(
       enum: ['user'],
       default: 'user',
     },
+    referredBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      default: null,
+    },
+    affiliateTemplates: {
+      type: [String],
+      default: ['Hi! I am using VirtualCard to automate my networking. Create your own smart vCard here: {link}'],
+    },
   },
   { timestamps: true }
 );

@@ -14,10 +14,12 @@ import WhatsAppConnect from './pages/admin/WhatsAppConnect';
 import AdminProfile from './pages/admin/AdminProfile';
 import UserScannedContacts from './pages/admin/UserScannedContacts';
 import AdminOtpLogs from './pages/admin/OtpLogs';
+import AffiliateManagement from './pages/admin/AffiliateManagement';
 
 import UserDashboard from './pages/user/UserDashboard';
 import ScannedContacts from './pages/user/ScannedContacts';
 import UserProfile from './pages/user/UserProfile';
+import Affiliate from './pages/user/Affiliate';
 import NotFound from './pages/errors/NotFound';
 
 function App() {
@@ -46,6 +48,7 @@ function App() {
               <Route path="/admin/profile" element={<AdminProfile />} />
               <Route path="/admin/users/:id/scanned" element={<UserScannedContacts />} />
               <Route path="/admin/otp-logs" element={<AdminOtpLogs />} />
+              <Route path="/admin/affiliate" element={<AffiliateManagement />} />
             </Route>
 
             {/* User Routes */}
@@ -53,6 +56,7 @@ function App() {
               <Route path="/user" element={<UserDashboard />} />
               <Route path="/user/scanned" element={<ScannedContacts />} />
               <Route path="/user/profile" element={<UserProfile />} />
+              <Route path="/user/affiliate" element={<Affiliate />} />
             </Route>
 
             {/* Redirects */}

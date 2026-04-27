@@ -3,7 +3,7 @@ import { useAuth } from '../../context/AuthContext';
 import { getAllUsers, updateUserStatus, adminCreateUser, adminUpdateUser } from '../../services/admin.service';
 import Layout from '../../components/layout/Layout';
 import { toast } from 'react-hot-toast';
-import { Search, UserCheck, UserX, Clock, Eye, Briefcase, Phone, MessageSquare, UserPlus, Lock, Loader2, User, AlertCircle, ArrowRight, Pencil, Save, RefreshCw } from 'lucide-react';
+import { Search, UserCheck, UserX, Clock, Eye, EyeOff, Briefcase, Phone, MessageSquare, UserPlus, Lock, Loader2, User, AlertCircle, ArrowRight, Pencil, Save, RefreshCw, Gift, Copy } from 'lucide-react';
 import Modal from '../../components/common/Modal';
 import { QRCodeSVG } from 'qrcode.react';
 import { Link } from 'react-router-dom';
@@ -223,6 +223,7 @@ const UsersManagement = () => {
                   <th className="px-8 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Business</th>
                   <th className="px-8 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Status</th>
                   <th className="px-8 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Scans</th>
+                  <th className="px-8 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Affiliate</th>
                   <th className="px-8 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] text-right">Actions</th>
                 </tr>
               </thead>
@@ -231,7 +232,7 @@ const UsersManagement = () => {
                   Array(5).fill(0).map((_, i) => <SkeletonRow key={i} />)
                 ) : filteredUsers.length === 0 ? (
                   <tr>
-                    <td colSpan="5" className="px-8 py-24 text-center">
+                    <td colSpan="6" className="px-8 py-24 text-center">
                       <div className="flex flex-col items-center">
                         <div className="w-16 h-16 bg-slate-50 text-slate-300 rounded-2xl flex items-center justify-center mb-4">
                           <Search size={32} />
@@ -263,6 +264,24 @@ const UsersManagement = () => {
                       </td>
                       <td className="px-8 py-6">
                         <span className="text-sm font-black text-indigo-600 bg-indigo-50/50 px-3 py-1.5 rounded-lg border border-indigo-100/50">{user.scansCount || 0}</span>
+                      </td>
+                       <td className="px-8 py-6">
+                        <div className="flex flex-col">
+                          <div className="flex items-center space-x-2">
+                            <p className="text-[10px] font-black text-slate-700 tracking-tight">Ref By: <span className="text-indigo-600">{user.referrerName}</span></p>
+                            <button 
+                              onClick={() => {
+                                navigator.clipboard.writeText(`${window.location.origin}/register?ref=${user.userToken}`);
+                                toast.success('Link copied!');
+                              }}
+                              className="p-1 bg-indigo-50 text-indigo-600 rounded-md hover:bg-indigo-600 hover:text-white transition-all"
+                              title="Copy Affiliate Link"
+                            >
+                              <Copy size={10} />
+                            </button>
+                          </div>
+                          <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest mt-0.5">Total Ref: {user.referralsCount || 0}</p>
+                        </div>
                       </td>
                       <td className="px-8 py-6 text-right">
                         <div className="flex items-center justify-end space-x-3">
@@ -547,6 +566,40 @@ const UsersManagement = () => {
                 <DetailItem icon={<Clock size={16} />} label="Status" value={selectedUser.status} color={selectedUser.status === 'approved' ? 'text-emerald-500' : 'text-amber-500'} />
               </div>
 
+              <div className="bg-indigo-50/50 rounded-[2rem] p-6 border border-indigo-100/50 space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2 text-indigo-600">
+                    <Gift size={18} />
+                    <h4 className="text-sm font-black uppercase tracking-widest">Affiliate Program</h4>
+                  </div>
+                  <span className="text-[10px] font-black text-indigo-500 bg-white px-3 py-1 rounded-full border border-indigo-100 shadow-sm">
+                    {selectedUser.referralsCount || 0} TOTAL REFS
+                  </span>
+                </div>
+                
+                <div className="space-y-2">
+                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Unique Referral Link</p>
+                  <div className="flex items-center bg-white border border-indigo-100 rounded-xl p-3 shadow-sm group">
+                    <input 
+                      type="text" 
+                      readOnly 
+                      value={`${window.location.origin}/register?ref=${selectedUser.userToken}`} 
+                      className="flex-1 bg-transparent border-none outline-none text-[11px] font-bold text-slate-600 truncate"
+                    />
+                    <button 
+                      onClick={() => {
+                        navigator.clipboard.writeText(`${window.location.origin}/register?ref=${selectedUser.userToken}`);
+                        toast.success('Affiliate link copied!');
+                      }}
+                      className="ml-2 p-2 bg-indigo-50 text-indigo-600 rounded-lg hover:bg-indigo-600 hover:text-white transition-all active:scale-95"
+                    >
+                      <Copy size={14} />
+                    </button>
+                  </div>
+                  <p className="text-[9px] text-slate-400 font-bold ml-1 italic">Joined via: <span className="text-indigo-600 not-italic">{selectedUser.referrerName || 'Direct'}</span></p>
+                </div>
+              </div>
+
               <div className="pt-6 border-t border-slate-100">
                 <p className="text-[11px] uppercase tracking-widest font-bold text-slate-400 mb-3 ml-1">Automated Welcome Message</p>
                 <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100 italic text-slate-600 text-sm leading-relaxed">
@@ -669,28 +722,42 @@ const SkeletonRow = () => (
   </tr>
 );
 
-const InputBox = ({ icon, label, placeholder, value, onChange, type = "text" }) => (
-  <div className="space-y-2">
-    <label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-1">
-      {label.includes('*') ? (
-        <>
-          {label.replace('*', '')} <span className="text-rose-500">*</span>
-        </>
-      ) : label}
-    </label>
-    <div className="relative">
-      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
-        {icon}
+const InputBox = ({ icon, label, placeholder, value, onChange, type = "text" }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const isPasswordType = type === 'password';
+
+  return (
+    <div className="space-y-2">
+      <label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-1">
+        {label.includes('*') ? (
+          <>
+            {label.replace('*', '')} <span className="text-rose-500">*</span>
+          </>
+        ) : label}
+      </label>
+      <div className="relative">
+        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+          {icon}
+        </div>
+        <input
+          type={isPasswordType ? (showPassword ? 'text' : 'password') : type}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-3.5 pl-12 pr-12 text-sm font-medium focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all"
+        />
+        {isPasswordType && (
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-indigo-600 transition-colors"
+          >
+            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+          </button>
+        )}
       </div>
-      <input
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-3.5 pl-12 pr-4 text-sm font-medium focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all"
-      />
     </div>
-  </div>
-);
+  );
+};
 
 export default UsersManagement;

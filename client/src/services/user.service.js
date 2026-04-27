@@ -22,3 +22,11 @@ export const exportScannedContacts = async () => {
     responseType: 'blob',
   });
 };
+
+export const getAffiliateStats = async () => {
+  return await api.get(USER_ENDPOINTS.AFFILIATE_STATS);
+};
+
+export const updateAffiliateTemplates = async (templates) => {
+  return await api.put(USER_ENDPOINTS.AFFILIATE_TEMPLATES, { templates });
+};

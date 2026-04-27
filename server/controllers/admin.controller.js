@@ -70,12 +70,30 @@ const getAllUsers = async (req, res) => {
         }
       },
       {
-        $addFields: {
-          scansCount: { $size: '$scans' }
+        $lookup: {
+          from: 'users',
+          localField: 'referredBy',
+          foreignField: '_id',
+          as: 'referrer'
         }
       },
-      { $project: { scans: 0 } },
-      { $sort: { createdAt: -1 } }
+      {
+        $lookup: {
+          from: 'users',
+          localField: '_id',
+          foreignField: 'referredBy',
+          as: 'referrals'
+        }
+      },
+      {
+        $addFields: {
+          scansCount: { $size: '$scans' },
+          referrerName: { $ifNull: [{ $arrayElemAt: ['$referrer.name', 0] }, 'Direct'] },
+          referralsCount: { $size: '$referrals' }
+        }
+      },
+      { $project: { scans: 0, referrer: 0, referrals: 0 } },
+      { $sort: { referralsCount: -1, createdAt: -1 } }
     ]);
     res.json({ success: true, data: users });
   } catch (error) {
@@ -248,6 +266,18 @@ const deleteAllOtpLogs = async (req, res) => {
   }
 };
 
+// @desc    Get Referrals by User ID
+// @route   GET /api/admin/users/:id/referrals
+const getReferralsByUserId = async (req, res) => {
+  try {
+    const referrals = await User.find({ referredBy: req.params.id, isDeleted: false }).sort({ createdAt: -1 });
+    res.json({ success: true, data: referrals });
+  } catch (error) {
+    logger.error(`Get Referrals Error: ${error.message}`);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
 module.exports = {
   getAdminProfile,
   updateAdminProfile,
@@ -258,4 +288,5 @@ module.exports = {
   updateUser,
   getOtpLogs,
   deleteAllOtpLogs,
+  getReferralsByUserId,
 };
