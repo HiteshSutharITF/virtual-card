@@ -9,6 +9,8 @@ const {
   getUserScannedContacts,
   createUser,
   updateUser,
+  getOtpLogs,
+  deleteAllOtpLogs,
 } = require('../controllers/admin.controller');
 
 const router = express.Router();
@@ -21,5 +23,6 @@ router.route('/users').get(getAllUsers).post(createUser);
 router.route('/users/:id').put(updateUser);
 router.route('/users/:id/status').put(updateUserStatus);
 router.route('/users/:id/scanned').get(getUserScannedContacts);
+router.route('/otp-logs').get(getOtpLogs).delete(deleteAllOtpLogs);
 
 module.exports = router;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { LogOut, User, LayoutDashboard, QrCode, Settings, Users, Menu, X } from 'lucide-react';
+import { LogOut, User, LayoutDashboard, QrCode, Settings, Users, Menu, X, ShieldCheck } from 'lucide-react';
 import Modal from '../common/Modal';
 
 const Navbar = () => {
@@ -28,6 +28,7 @@ const Navbar = () => {
         <>
           <NavLink icon={<LayoutDashboard size={18} />} label="Dashboard" to="/admin" />
           <NavLink icon={<Users size={18} />} label="Users" to="/admin/users" />
+          <NavLink icon={<ShieldCheck size={18} />} label="OTP Logs" to="/admin/otp-logs" />
           <NavLink icon={<Settings size={18} />} label="WhatsApp" to="/admin/whatsapp" />
           <NavLink icon={<User size={18} />} label="Profile" to="/admin/profile" />
         </>

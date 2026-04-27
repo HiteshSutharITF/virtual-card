@@ -13,6 +13,7 @@ import UsersManagement from './pages/admin/Users';
 import WhatsAppConnect from './pages/admin/WhatsAppConnect';
 import AdminProfile from './pages/admin/AdminProfile';
 import UserScannedContacts from './pages/admin/UserScannedContacts';
+import AdminOtpLogs from './pages/admin/OtpLogs';
 
 import UserDashboard from './pages/user/UserDashboard';
 import ScannedContacts from './pages/user/ScannedContacts';
@@ -24,7 +25,14 @@ function App() {
     <Router>
       <AuthProvider>
         <SocketProvider>
-          <Toaster position="top-right" />
+          <Toaster 
+            position="top-right" 
+            toastOptions={{
+              style: {
+                zIndex: 99999,
+              },
+            }}
+          />
           <Routes>
             {/* Public Routes */}
             <Route path="/login" element={<Login />} />
@@ -37,6 +45,7 @@ function App() {
               <Route path="/admin/whatsapp" element={<WhatsAppConnect />} />
               <Route path="/admin/profile" element={<AdminProfile />} />
               <Route path="/admin/users/:id/scanned" element={<UserScannedContacts />} />
+              <Route path="/admin/otp-logs" element={<AdminOtpLogs />} />
             </Route>
 
             {/* User Routes */}

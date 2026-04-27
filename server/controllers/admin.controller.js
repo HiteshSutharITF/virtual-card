@@ -1,6 +1,7 @@
 const Admin = require('../models/Admin.model');
 const User = require('../models/User.model');
 const ScannedContact = require('../models/ScannedContact.model');
+const OtpLog = require('../models/OtpLog.model');
 const logger = require('../utils/logger');
 
 // @desc    Get Admin Profile
@@ -42,6 +43,7 @@ const updateAdminProfile = async (req, res) => {
           email: updatedAdmin.email,
           mobile: updatedAdmin.mobile,
           role: 'admin',
+          token: admin.generateToken ? admin.generateToken() : undefined,
         },
       });
     } else {
@@ -57,7 +59,24 @@ const updateAdminProfile = async (req, res) => {
 // @route   GET /api/admin/users
 const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find({ isDeleted: false }).sort({ createdAt: -1 });
+    const users = await User.aggregate([
+      { $match: { isDeleted: false } },
+      {
+        $lookup: {
+          from: 'scannedcontacts',
+          localField: '_id',
+          foreignField: 'userId',
+          as: 'scans'
+        }
+      },
+      {
+        $addFields: {
+          scansCount: { $size: '$scans' }
+        }
+      },
+      { $project: { scans: 0 } },
+      { $sort: { createdAt: -1 } }
+    ]);
     res.json({ success: true, data: users });
   } catch (error) {
     logger.error(`Get Users Error: ${error.message}`);
@@ -89,7 +108,7 @@ const updateUserStatus = async (req, res) => {
 // @desc    Create New User (Admin)
 // @route   POST /api/admin/users
 const createUser = async (req, res) => {
-  const { name, mobile, businessName, password } = req.body;
+  const { name, mobile, businessName, password, customMessage } = req.body;
 
   try {
     const userExists = await User.findOne({ mobile });
@@ -103,6 +122,7 @@ const createUser = async (req, res) => {
       mobile,
       businessName,
       password,
+      customMessage: customMessage || 'Hi {name}! Thanks for connecting.',
       createdBy: 'admin',
       status: 'approved',
     });
@@ -144,7 +164,7 @@ const getUserScannedContacts = async (req, res) => {
 // @desc    Update User (Admin)
 // @route   PUT /api/admin/users/:id
 const updateUser = async (req, res) => {
-  const { name, mobile, businessName, password, customMessage, isActive, isContactSharingEnabled } = req.body;
+  const { name, mobile, businessName, password, customMessage, isActive, isContactSharingEnabled, status } = req.body;
 
   try {
     const user = await User.findById(req.params.id);
@@ -157,6 +177,7 @@ const updateUser = async (req, res) => {
       if (customMessage !== undefined) user.customMessage = customMessage;
       if (isActive !== undefined) user.isActive = isActive;
       if (isContactSharingEnabled !== undefined) user.isContactSharingEnabled = isContactSharingEnabled;
+      if (status !== undefined) user.status = status;
 
       if (password) {
         user.password = password;
@@ -180,8 +201,49 @@ const updateUser = async (req, res) => {
   } catch (error) {
     logger.error(`Admin Update User Error: ${error.message}`);
     if (error.code === 11000) {
-      return res.status(400).json({ success: false, message: 'Mobile number already in use' });
+      return res.status(400).json({ success: false, message: 'Mobile number or Email already in use' });
     }
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+// @desc    Get OTP Logs
+// @route   GET /api/admin/otp-logs
+const getOtpLogs = async (req, res) => {
+  try {
+    const logs = await OtpLog.aggregate([
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'mobile',
+          foreignField: 'mobile',
+          as: 'user'
+        }
+      },
+      {
+        $addFields: {
+          userName: { $ifNull: [{ $arrayElemAt: ['$user.name', 0] }, 'Guest/System'] }
+        }
+      },
+      { $project: { user: 0 } },
+      { $sort: { createdAt: -1 } },
+      { $limit: 100 }
+    ]);
+    res.json({ success: true, data: logs });
+  } catch (error) {
+    logger.error(`Get OTP Logs Error: ${error.message}`);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+// @desc    Delete All OTP Logs
+// @route   DELETE /api/admin/otp-logs
+const deleteAllOtpLogs = async (req, res) => {
+  try {
+    await OtpLog.deleteMany({});
+    res.json({ success: true, message: 'All OTP logs cleared successfully' });
+  } catch (error) {
+    logger.error(`Delete OTP Logs Error: ${error.message}`);
     res.status(500).json({ success: false, message: 'Server error' });
   }
 };
@@ -194,4 +256,6 @@ module.exports = {
   getUserScannedContacts,
   createUser,
   updateUser,
+  getOtpLogs,
+  deleteAllOtpLogs,
 };

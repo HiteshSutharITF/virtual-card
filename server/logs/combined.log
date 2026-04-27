@@ -763,3 +763,839 @@
 {"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-25 15:43:59"}
 {"level":"info","message":"Server running on port 5000","timestamp":"2026-04-25 15:43:59"}
 {"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-04-25 15:43:59"}
+{"level":"info","message":"Environment: Production (Loaded .env)","timestamp":"2026-04-27 11:33:18"}
+{"level":"info","message":"Server running on port 8003","timestamp":"2026-04-27 11:33:18"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-27 11:33:18"}
+{"level":"info","message":"Restoring previous WhatsApp session...","timestamp":"2026-04-27 11:33:18"}
+{"level":"info","message":"Initializing WhatsApp Client with enhanced stability options...","timestamp":"2026-04-27 11:33:18"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-27 11:33:22"}
+{"level":"info","message":"Starting WhatsApp Watchdog...","timestamp":"2026-04-27 11:33:22"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 11:33:34"}
+{"level":"info","message":"Environment: Production (Loaded .env)","timestamp":"2026-04-27 11:34:14"}
+{"level":"info","message":"Server running on port 8003","timestamp":"2026-04-27 11:34:14"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-27 11:34:14"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 11:39:45"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 11:39:48"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 11:39:48"}
+{"level":"error","message":"MongoDB Connection Error: The `uri` parameter to `openUri()` must be a string, got \"undefined\". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.","timestamp":"2026-04-27 11:39:48"}
+{"level":"error","message":"Unhandled Rejection: Cannot read properties of undefined (reading 'split')","timestamp":"2026-04-27 11:39:48"}
+{"level":"error","message":"Error during WhatsApp auto-reconnect: Operation `admins.findOne()` buffering timed out after 10000ms","stack":"MongooseError: Operation `admins.findOne()` buffering timed out after 10000ms\n    at Timeout._onTimeout (/home/mark-ii/Desktop/Whatshapp-Bot/virtual-card/server/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:142:25)\n    at listOnTimeout (node:internal/timers:585:17)\n    at process.processTimers (node:internal/timers:521:7)","timestamp":"2026-04-27 11:39:58"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 11:41:13"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 11:41:22"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 11:41:22"}
+{"level":"error","message":"Error during WhatsApp auto-reconnect: Operation `admins.findOne()` buffering timed out after 10000ms","stack":"MongooseError: Operation `admins.findOne()` buffering timed out after 10000ms\n    at Timeout._onTimeout (/home/mark-ii/Desktop/Whatshapp-Bot/virtual-card/server/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:142:25)\n    at listOnTimeout (node:internal/timers:585:17)\n    at process.processTimers (node:internal/timers:521:7)","timestamp":"2026-04-27 11:41:32"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 11:41:47"}
+{"level":"info","message":"Environment: Production (Loaded .env)","timestamp":"2026-04-27 11:41:51"}
+{"level":"info","message":"Server running on port 8003","timestamp":"2026-04-27 11:41:51"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-27 11:41:51"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 11:41:51"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 11:41:56"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 11:41:56"}
+{"level":"error","message":"Error during WhatsApp auto-reconnect: Operation `admins.findOne()` buffering timed out after 10000ms","stack":"MongooseError: Operation `admins.findOne()` buffering timed out after 10000ms\n    at Timeout._onTimeout (/home/mark-ii/Desktop/Whatshapp-Bot/virtual-card/server/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:142:25)\n    at listOnTimeout (node:internal/timers:585:17)\n    at process.processTimers (node:internal/timers:521:7)","timestamp":"2026-04-27 11:42:06"}
+{"level":"error","message":"MongoDB Connection Error: connect ECONNREFUSED 127.0.0.1:27017","timestamp":"2026-04-27 11:42:26"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 11:43:57"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 11:43:57"}
+{"level":"error","message":"Error during WhatsApp auto-reconnect: Operation `admins.findOne()` buffering timed out after 10000ms","stack":"MongooseError: Operation `admins.findOne()` buffering timed out after 10000ms\n    at Timeout._onTimeout (/home/mark-ii/Desktop/Whatshapp-Bot/virtual-card/server/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:142:25)\n    at listOnTimeout (node:internal/timers:585:17)\n    at process.processTimers (node:internal/timers:521:7)","timestamp":"2026-04-27 11:44:07"}
+{"level":"error","message":"Admin Login Error: Operation `admins.findOne()` buffering timed out after 10000ms","timestamp":"2026-04-27 11:44:19"}
+{"level":"error","message":"MongoDB Connection Error: connect ECONNREFUSED 127.0.0.1:27017","timestamp":"2026-04-27 11:44:27"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 11:44:37"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 11:44:37"}
+{"level":"error","message":"Error during WhatsApp auto-reconnect: Operation `admins.findOne()` buffering timed out after 10000ms","stack":"MongooseError: Operation `admins.findOne()` buffering timed out after 10000ms\n    at Timeout._onTimeout (/home/mark-ii/Desktop/Whatshapp-Bot/virtual-card/server/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:142:25)\n    at listOnTimeout (node:internal/timers:585:17)\n    at process.processTimers (node:internal/timers:521:7)","timestamp":"2026-04-27 11:44:47"}
+{"level":"error","message":"Admin Login Error: Operation `admins.findOne()` buffering timed out after 10000ms","timestamp":"2026-04-27 11:44:56"}
+{"level":"error","message":"MongoDB Connection Error: connect ECONNREFUSED 127.0.0.1:27017","timestamp":"2026-04-27 11:45:07"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 11:48:22"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 11:48:22"}
+{"level":"error","message":"Error during WhatsApp auto-reconnect: Operation `admins.findOne()` buffering timed out after 10000ms","stack":"MongooseError: Operation `admins.findOne()` buffering timed out after 10000ms\n    at Timeout._onTimeout (/home/mark-ii/Desktop/Whatshapp-Bot/virtual-card/server/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:142:25)\n    at listOnTimeout (node:internal/timers:585:17)\n    at process.processTimers (node:internal/timers:521:7)","timestamp":"2026-04-27 11:48:33"}
+{"level":"error","message":"MongoDB Connection Error: connect ECONNREFUSED 127.0.0.1:27017","timestamp":"2026-04-27 11:48:52"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 11:49:27"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 11:49:27"}
+{"level":"error","message":"Error during WhatsApp auto-reconnect: Operation `admins.findOne()` buffering timed out after 10000ms","stack":"MongooseError: Operation `admins.findOne()` buffering timed out after 10000ms\n    at Timeout._onTimeout (/home/mark-ii/Desktop/Whatshapp-Bot/virtual-card/server/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:142:25)\n    at listOnTimeout (node:internal/timers:585:17)\n    at process.processTimers (node:internal/timers:521:7)","timestamp":"2026-04-27 11:49:37"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 11:49:44"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 11:49:47"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 11:49:47"}
+{"level":"error","message":"Error during WhatsApp auto-reconnect: Operation `admins.findOne()` buffering timed out after 10000ms","stack":"MongooseError: Operation `admins.findOne()` buffering timed out after 10000ms\n    at Timeout._onTimeout (/home/mark-ii/Desktop/Whatshapp-Bot/virtual-card/server/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:142:25)\n    at listOnTimeout (node:internal/timers:585:17)\n    at process.processTimers (node:internal/timers:521:7)","timestamp":"2026-04-27 11:49:57"}
+{"level":"error","message":"MongoDB Connection Error: connect ECONNREFUSED 127.0.0.1:27017","timestamp":"2026-04-27 11:50:17"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 11:51:23"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 11:51:23"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-27 11:51:23"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:16"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:17"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:18"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:19"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:19"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:19"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:20"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:21"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:21"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:22"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:32"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:35"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:51"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:51"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:51"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:51"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:52"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:52"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 11:54:13"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 11:54:25"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 11:54:25"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-27 11:54:25"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:22:54"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:22:55"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:22:55"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:22:55"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:22:56"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:22:56"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:22:56"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:22:56"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:22:56"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:22:56"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:22:57"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:23:00"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:23:04"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:23:04"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:23:04"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:23:05"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:23:05"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:23:05"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:23:05"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:23:05"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:23:05"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:28:00"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:28:01"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:28:01"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:28:01"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:28:03"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:28:03"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:28:04"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:28:04"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:18:25"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:18:25"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:18:25"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:18:25"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-27 14:19:36"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 14:20:25"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 14:20:25"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-27 14:20:25"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 14:22:52"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 14:22:52"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-27 14:22:52"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 14:22:58"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 14:22:58"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-27 14:22:58"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 14:23:28"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 14:23:28"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-27 14:23:28"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 14:23:56"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 14:23:56"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-27 14:23:56"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 14:24:02"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 14:24:02"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-27 14:24:02"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 14:24:10"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 14:24:10"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-27 14:24:10"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 14:29:26"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 14:29:26"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-27 14:29:26"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 14:29:32"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 14:29:32"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-27 14:29:32"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 14:29:39"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 14:29:39"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-27 14:29:39"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 14:44:11"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 14:44:11"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-27 14:44:11"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 14:44:18"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 14:44:18"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-27 14:44:19"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:13"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:13"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:13"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:14"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:14"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:16"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:17"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:17"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:17"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:17"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:17"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:17"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:18"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:18"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:18"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:18"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:18"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:19"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:19"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:19"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:19"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:19"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:20"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:20"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:20"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:29"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:30"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:30"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:30"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:30"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:35"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:36"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:36"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:36"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:36"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:36"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:50:34"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:50:34"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:50:34"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:50:34"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:50:35"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:50:35"}

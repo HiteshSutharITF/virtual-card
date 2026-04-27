@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { adminLogin, userLogin } from '../../services/auth.service';
+import { adminLogin, userLogin, sendOTP, verifyOTP, forgotPassword } from '../../services/auth.service';
 import { toast } from 'react-hot-toast';
-import { Mail, Lock, Phone, LogIn, ArrowRight, Loader2, QrCode, Eye, EyeOff } from 'lucide-react';
+import { Mail, Lock, Phone, LogIn, ArrowRight, Loader2, QrCode, Eye, EyeOff, ShieldCheck, Key } from 'lucide-react';
 import AuthIllustration from '../../components/illustrations/AuthIllustration';
 
 const Login = () => {
   const [isAdmin, setIsAdmin] = useState(false);
+  const [loginMethod, setLoginMethod] = useState('password'); // 'password' or 'otp'
+  const [showOtpInput, setShowOtpInput] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     mobile: '',
     password: '',
+    otp: '',
   });
   const [loading, setLoading] = useState(false);
+  const [otpLoading, setOtpLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const { login, token, user, loading: authLoading } = useAuth();
+  const { login: authLogin, token, user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,10 +28,62 @@ const Login = () => {
     }
   }, [token, user, navigate, authLoading]);
 
+  const handleSendOTP = async () => {
+    if (!formData.mobile) {
+      toast.error('Please enter mobile number');
+      return;
+    }
+    setOtpLoading(true);
+    try {
+      const response = await sendOTP(formData.mobile);
+      if (response.success) {
+        toast.success(response.message);
+        setShowOtpInput(true);
+      } else {
+        toast.error(response.message || 'Failed to send OTP');
+      }
+    } catch (error) {
+      toast.error(error.message || 'Failed to send OTP');
+    } finally {
+      setOtpLoading(false);
+    }
+  };
+
+  const handleVerifyOTP = async (e) => {
+    e.preventDefault();
+    if (!formData.otp) {
+      toast.error('Please enter OTP');
+      return;
+    }
+    setLoading(true);
+    try {
+      const response = await verifyOTP(formData.mobile, formData.otp);
+      if (response.success) {
+        authLogin(response.data, response.data.token);
+        toast.success(response.message);
+        navigate('/user');
+      } else {
+        toast.error(response.message || 'Invalid OTP');
+      }
+    } catch (error) {
+      toast.error(error.message || 'Verification failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    if (loginMethod === 'otp' && !showOtpInput) {
+      handleSendOTP();
+      return;
+    }
+    if (loginMethod === 'otp' && showOtpInput) {
+      handleVerifyOTP(e);
+      return;
+    }
 
+    setLoading(true);
     try {
       let response;
       if (isAdmin) {
@@ -37,7 +93,7 @@ const Login = () => {
       }
 
       if (response.success) {
-        login(response.data, response.data.token);
+        authLogin(response.data, response.data.token);
         toast.success(response.message);
         navigate(isAdmin ? '/admin' : '/user');
       } else {
@@ -50,9 +106,28 @@ const Login = () => {
     }
   };
 
+  const handleForgotPassword = async () => {
+    if (!formData.mobile) {
+      toast.error('Please enter your registered mobile number');
+      return;
+    }
+    try {
+      const response = await forgotPassword(formData.mobile);
+      if (response.success) {
+        toast.success('OTP sent for password reset. Please check your SMS.');
+        setLoginMethod('otp');
+        setShowOtpInput(true);
+      } else {
+        toast.error(response.message || 'Failed to initiate password reset');
+      }
+    } catch (error) {
+      toast.error(error.message || 'Request failed');
+    }
+  };
+
   return (
     <div className="h-screen bg-white flex flex-col md:flex-row overflow-hidden">
-      {/* Left Side: Hero / Illustration (Fixed) */}
+      {/* Left Side: Hero / Illustration */}
       <div className="hidden lg:flex lg:w-1/2 bg-[#4f46e5] relative flex-shrink-0 h-full">
         <div className="absolute top-10 left-10 z-20 flex items-center space-x-3">
           <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-2xl">
@@ -82,14 +157,14 @@ const Login = () => {
                 Hello <span className="text-indigo-600 underline decoration-indigo-100 underline-offset-[6px]">Again.</span>
               </h1>
               <p className="text-slate-500 font-medium text-lg leading-relaxed max-w-sm mx-auto lg:mx-0">
-                Access your virtual card manager and track your connections in real-time.
+                {isAdmin ? 'Admin control center access protocol.' : 'Access your virtual card manager and track your connections.'}
               </p>
             </div>
 
             <div className="flex p-1.5 bg-white border border-slate-200 rounded-[2rem] shadow-sm">
               <button
                 type="button"
-                onClick={() => setIsAdmin(false)}
+                onClick={() => { setIsAdmin(false); setShowOtpInput(false); }}
                 className={`flex-1 py-4 text-[10px] font-black uppercase tracking-[0.25em] rounded-[1.5rem] transition-all duration-500 ${!isAdmin ? 'bg-indigo-600 text-white shadow-xl scale-100' : 'text-slate-400 hover:text-slate-600 scale-95'
                   }`}
               >
@@ -97,7 +172,7 @@ const Login = () => {
               </button>
               <button
                 type="button"
-                onClick={() => setIsAdmin(true)}
+                onClick={() => { setIsAdmin(true); setLoginMethod('password'); setShowOtpInput(false); }}
                 className={`flex-1 py-4 text-[10px] font-black uppercase tracking-[0.25em] rounded-[1.5rem] transition-all duration-500 ${isAdmin ? 'bg-indigo-600 text-white shadow-xl scale-100' : 'text-slate-400 hover:text-slate-600 scale-95'
                   }`}
               >
@@ -105,7 +180,26 @@ const Login = () => {
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {!isAdmin && !showOtpInput && (
+                <div className="flex justify-center space-x-4 mb-4">
+                  <button
+                    type="button"
+                    onClick={() => setLoginMethod('password')}
+                    className={`px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${loginMethod === 'password' ? 'bg-indigo-100 text-indigo-600 shadow-sm' : 'text-slate-400'}`}
+                  >
+                    Password
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setLoginMethod('otp')}
+                    className={`px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${loginMethod === 'otp' ? 'bg-indigo-100 text-indigo-600 shadow-sm' : 'text-slate-400'}`}
+                  >
+                    OTP Login
+                  </button>
+                </div>
+              )}
+
               {isAdmin ? (
                 <div className="space-y-2">
                   <label className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400 ml-1">Admin Email</label>
@@ -122,58 +216,93 @@ const Login = () => {
                   </div>
                 </div>
               ) : (
+                <div className="space-y-4">
+                  {!showOtpInput && (
+                    <div className="space-y-2">
+                      <label className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400 ml-1">Mobile Number</label>
+                      <div className="relative group">
+                        <Phone className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-indigo-600 transition-all duration-300" size={18} />
+                        <input
+                          type="text"
+                          required
+                          placeholder="9876543210"
+                          className="w-full bg-white border border-slate-200 rounded-2xl py-3.5 pl-14 pr-4 text-slate-900 placeholder-slate-300 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-600 transition-all font-bold text-sm shadow-sm"
+                          value={formData.mobile}
+                          onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  {showOtpInput && (
+                    <div className="space-y-2 animate-slide-up">
+                      <label className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400 ml-1">Enter 4-Digit OTP</label>
+                      <div className="relative group">
+                        <ShieldCheck className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-indigo-600 transition-all duration-300" size={18} />
+                        <input
+                          type="text"
+                          required
+                          maxLength={4}
+                          placeholder="0000"
+                          className="w-full bg-white border border-slate-200 rounded-2xl py-3.5 pl-14 pr-4 text-slate-900 placeholder-slate-300 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-600 transition-all font-black text-center text-xl tracking-[0.5em] shadow-sm"
+                          value={formData.otp}
+                          onChange={(e) => setFormData({ ...formData, otp: e.target.value })}
+                        />
+                      </div>
+                      <p className="text-[10px] text-slate-400 font-bold text-center mt-2">
+                        Didn't receive OTP? <button type="button" onClick={handleSendOTP} className="text-indigo-600 hover:underline">Resend</button>
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {loginMethod === 'password' && !showOtpInput && (
                 <div className="space-y-2">
-                  <label className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400 ml-1">Mobile Number</label>
+                  <div className="flex items-center justify-between ml-1">
+                    <label className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400">Security Key</label>
+                    {!isAdmin && (
+                      <button 
+                        type="button" 
+                        onClick={handleForgotPassword}
+                        className="text-[9px] uppercase font-black text-indigo-500 hover:text-indigo-700 tracking-tighter transition-colors"
+                      >
+                        Forgot Password?
+                      </button>
+                    )}
+                  </div>
                   <div className="relative group">
-                    <Phone className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-indigo-600 transition-all duration-300" size={18} />
+                    <Lock className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-indigo-600 transition-all duration-300" size={18} />
                     <input
-                      type="text"
+                      type={showPassword ? "text" : "password"}
                       required
-                      placeholder="9876543210"
-                      className="w-full bg-white border border-slate-200 rounded-2xl py-3.5 pl-14 pr-4 text-slate-900 placeholder-slate-300 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-600 transition-all font-bold text-sm shadow-sm"
-                      value={formData.mobile}
-                      onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
+                      placeholder="••••••••"
+                      className="w-full bg-white border border-slate-200 rounded-2xl py-3.5 pl-14 pr-12 text-slate-900 placeholder-slate-300 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-600 transition-all font-bold text-sm shadow-sm"
+                      value={formData.password}
+                      onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                     />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-indigo-600 transition-colors"
+                    >
+                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
                   </div>
                 </div>
               )}
 
-              <div className="space-y-2">
-                {/* <div className="flex items-center justify-between ml-1">
-                  <label className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400">Security Key</label>
-                  <button type="button" className="text-[9px] uppercase font-black text-indigo-500 hover:text-indigo-700 tracking-tighter transition-colors">Forgot Password?</button>
-                </div> */}
-                <div className="relative group">
-                  <Lock className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-indigo-600 transition-all duration-300" size={18} />
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    required
-                    placeholder="••••••••"
-                    className="w-full bg-white border border-slate-200 rounded-2xl py-3.5 pl-14 pr-12 text-slate-900 placeholder-slate-300 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-600 transition-all font-bold text-sm shadow-sm"
-                    value={formData.password}
-                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-indigo-600 transition-colors"
-                  >
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
-                </div>
-              </div>
-
               <div className="pt-2">
                 <button
                   type="submit"
-                  disabled={loading}
+                  disabled={loading || otpLoading}
                   className="w-full py-4 bg-indigo-600 text-white font-black uppercase tracking-[0.2em] text-[10px] rounded-2xl shadow-xl shadow-indigo-100 hover:bg-slate-900 transition-all flex items-center justify-center space-x-3 disabled:opacity-50 active:scale-[0.98]"
                 >
-                  {loading ? (
+                  {loading || otpLoading ? (
                     <Loader2 className="w-5 h-5 animate-spin" />
                   ) : (
                     <>
-                      <span>Enter Workspace</span>
+                      <span>{showOtpInput ? 'Verify & Login' : (loginMethod === 'otp' ? 'Send OTP Code' : 'Enter Workspace')}</span>
                       <ArrowRight size={18} />
                     </>
                   )}
@@ -192,10 +321,6 @@ const Login = () => {
               )}
             </div>
           </div>
-
-          {/* <p className="mt-20 text-[10px] font-black uppercase tracking-[0.5em] text-slate-200 whitespace-nowrap">
-            SECURE ACCESS PROTOCOL &bull; 2026
-          </p> */}
         </div>
       </div>
     </div>

@@ -28,3 +28,11 @@ export const updateUserStatus = async (id, status) => {
 export const getUserScannedContacts = async (id) => {
   return await api.get(ADMIN_ENDPOINTS.USER_SCANNED(id));
 };
+
+export const getOtpLogs = async () => {
+  return await api.get('/admin/otp-logs');
+};
+
+export const deleteAllOtpLogs = async () => {
+  return await api.delete('/admin/otp-logs');
+};

@@ -2,3 +2,435 @@
 {"level":"error","message":"Auth Error: invalid signature","timestamp":"2026-04-22 16:44:00"}
 {"level":"error","message":"WhatsApp Initialization Error: The browser is already running for C:\\Hitesh\\VIRTUAL CARD\\server\\sessions\\session. Use a different `userDataDir` or stop the running browser first.","timestamp":"2026-04-22 17:49:46"}
 {"level":"error","message":"Error sharing scanner contact: Cannot read properties of undefined (reading 'isNewsletter')\nObject.<anonymous> (https://static.whatsapp.net/rsrc.php/v4iQRS4/y0/l/en_US-j/flalRglzsKk.js:651:4722)\nGenerator.next (<anonymous>)","timestamp":"2026-04-22 18:13:35"}
+{"level":"error","message":"MongoDB Connection Error: The `uri` parameter to `openUri()` must be a string, got \"undefined\". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.","timestamp":"2026-04-27 11:39:48"}
+{"level":"error","message":"Unhandled Rejection: Cannot read properties of undefined (reading 'split')","timestamp":"2026-04-27 11:39:48"}
+{"level":"error","message":"Error during WhatsApp auto-reconnect: Operation `admins.findOne()` buffering timed out after 10000ms","stack":"MongooseError: Operation `admins.findOne()` buffering timed out after 10000ms\n    at Timeout._onTimeout (/home/mark-ii/Desktop/Whatshapp-Bot/virtual-card/server/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:142:25)\n    at listOnTimeout (node:internal/timers:585:17)\n    at process.processTimers (node:internal/timers:521:7)","timestamp":"2026-04-27 11:39:58"}
+{"level":"error","message":"Error during WhatsApp auto-reconnect: Operation `admins.findOne()` buffering timed out after 10000ms","stack":"MongooseError: Operation `admins.findOne()` buffering timed out after 10000ms\n    at Timeout._onTimeout (/home/mark-ii/Desktop/Whatshapp-Bot/virtual-card/server/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:142:25)\n    at listOnTimeout (node:internal/timers:585:17)\n    at process.processTimers (node:internal/timers:521:7)","timestamp":"2026-04-27 11:41:32"}
+{"level":"error","message":"Error during WhatsApp auto-reconnect: Operation `admins.findOne()` buffering timed out after 10000ms","stack":"MongooseError: Operation `admins.findOne()` buffering timed out after 10000ms\n    at Timeout._onTimeout (/home/mark-ii/Desktop/Whatshapp-Bot/virtual-card/server/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:142:25)\n    at listOnTimeout (node:internal/timers:585:17)\n    at process.processTimers (node:internal/timers:521:7)","timestamp":"2026-04-27 11:42:06"}
+{"level":"error","message":"MongoDB Connection Error: connect ECONNREFUSED 127.0.0.1:27017","timestamp":"2026-04-27 11:42:26"}
+{"level":"error","message":"Error during WhatsApp auto-reconnect: Operation `admins.findOne()` buffering timed out after 10000ms","stack":"MongooseError: Operation `admins.findOne()` buffering timed out after 10000ms\n    at Timeout._onTimeout (/home/mark-ii/Desktop/Whatshapp-Bot/virtual-card/server/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:142:25)\n    at listOnTimeout (node:internal/timers:585:17)\n    at process.processTimers (node:internal/timers:521:7)","timestamp":"2026-04-27 11:44:07"}
+{"level":"error","message":"Admin Login Error: Operation `admins.findOne()` buffering timed out after 10000ms","timestamp":"2026-04-27 11:44:19"}
+{"level":"error","message":"MongoDB Connection Error: connect ECONNREFUSED 127.0.0.1:27017","timestamp":"2026-04-27 11:44:27"}
+{"level":"error","message":"Error during WhatsApp auto-reconnect: Operation `admins.findOne()` buffering timed out after 10000ms","stack":"MongooseError: Operation `admins.findOne()` buffering timed out after 10000ms\n    at Timeout._onTimeout (/home/mark-ii/Desktop/Whatshapp-Bot/virtual-card/server/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:142:25)\n    at listOnTimeout (node:internal/timers:585:17)\n    at process.processTimers (node:internal/timers:521:7)","timestamp":"2026-04-27 11:44:47"}
+{"level":"error","message":"Admin Login Error: Operation `admins.findOne()` buffering timed out after 10000ms","timestamp":"2026-04-27 11:44:56"}
+{"level":"error","message":"MongoDB Connection Error: connect ECONNREFUSED 127.0.0.1:27017","timestamp":"2026-04-27 11:45:07"}
+{"level":"error","message":"Error during WhatsApp auto-reconnect: Operation `admins.findOne()` buffering timed out after 10000ms","stack":"MongooseError: Operation `admins.findOne()` buffering timed out after 10000ms\n    at Timeout._onTimeout (/home/mark-ii/Desktop/Whatshapp-Bot/virtual-card/server/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:142:25)\n    at listOnTimeout (node:internal/timers:585:17)\n    at process.processTimers (node:internal/timers:521:7)","timestamp":"2026-04-27 11:48:33"}
+{"level":"error","message":"MongoDB Connection Error: connect ECONNREFUSED 127.0.0.1:27017","timestamp":"2026-04-27 11:48:52"}
+{"level":"error","message":"Error during WhatsApp auto-reconnect: Operation `admins.findOne()` buffering timed out after 10000ms","stack":"MongooseError: Operation `admins.findOne()` buffering timed out after 10000ms\n    at Timeout._onTimeout (/home/mark-ii/Desktop/Whatshapp-Bot/virtual-card/server/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:142:25)\n    at listOnTimeout (node:internal/timers:585:17)\n    at process.processTimers (node:internal/timers:521:7)","timestamp":"2026-04-27 11:49:37"}
+{"level":"error","message":"Error during WhatsApp auto-reconnect: Operation `admins.findOne()` buffering timed out after 10000ms","stack":"MongooseError: Operation `admins.findOne()` buffering timed out after 10000ms\n    at Timeout._onTimeout (/home/mark-ii/Desktop/Whatshapp-Bot/virtual-card/server/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:142:25)\n    at listOnTimeout (node:internal/timers:585:17)\n    at process.processTimers (node:internal/timers:521:7)","timestamp":"2026-04-27 11:49:57"}
+{"level":"error","message":"MongoDB Connection Error: connect ECONNREFUSED 127.0.0.1:27017","timestamp":"2026-04-27 11:50:17"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:16"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:17"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:18"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:19"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:19"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:19"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:20"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:21"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:21"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:22"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:32"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:35"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:51"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:51"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:51"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:51"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:52"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 11:53:52"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:22:54"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:22:55"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:22:55"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:22:55"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:22:56"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:22:56"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:22:56"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:22:56"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:22:56"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:22:56"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:22:57"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 12:23:00"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:23:04"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:23:04"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:23:04"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:23:05"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:23:05"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:23:05"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:23:05"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:23:05"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:23:05"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:28:00"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:28:01"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:28:01"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:28:01"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:28:03"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:28:03"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:28:04"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, password: Password is required","timestamp":"2026-04-27 12:28:04"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:18:25"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:18:25"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:18:25"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:18:25"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Uncaught Exception: write EIO","timestamp":"2026-04-27 14:19:36"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:13"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:13"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:13"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:14"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:14"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:16"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:17"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:17"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:17"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:17"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:17"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:17"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:18"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:18"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:18"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:18"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:18"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:19"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:19"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:19"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:19"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:19"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:20"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:20"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:20"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:29"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:30"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:30"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:30"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:30"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:35"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:36"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:36"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:36"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:36"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:45:36"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:50:34"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:50:34"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:50:34"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:50:34"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:50:35"}
+{"level":"error","message":"Admin Create User Error: User validation failed: name: Name is required, mobile: Mobile number is required, businessName: Business Name is required, password: Password is required","timestamp":"2026-04-27 14:50:35"}

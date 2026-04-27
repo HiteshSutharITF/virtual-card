@@ -3,7 +3,7 @@ import { useAuth } from '../../context/AuthContext';
 import { getAllUsers, updateUserStatus, adminCreateUser, adminUpdateUser } from '../../services/admin.service';
 import Layout from '../../components/layout/Layout';
 import { toast } from 'react-hot-toast';
-import { Search, UserCheck, UserX, Clock, Eye, Briefcase, Phone, MessageSquare, UserPlus, Lock, Loader2, User, AlertCircle, ArrowRight, Pencil, Save } from 'lucide-react';
+import { Search, UserCheck, UserX, Clock, Eye, Briefcase, Phone, MessageSquare, UserPlus, Lock, Loader2, User, AlertCircle, ArrowRight, Pencil, Save, RefreshCw } from 'lucide-react';
 import Modal from '../../components/common/Modal';
 import { QRCodeSVG } from 'qrcode.react';
 import { Link } from 'react-router-dom';
@@ -24,6 +24,7 @@ const UsersManagement = () => {
     mobile: '',
     businessName: '',
     password: '',
+    customMessage: 'Hi {name}! Thanks for connecting.',
   });
   const [confirmModal, setConfirmModal] = useState({
     isOpen: false,
@@ -133,7 +134,13 @@ const UsersManagement = () => {
       if (response.success) {
         toast.success('Professional account created and approved!');
         setIsCreateModalOpen(false);
-        setNewUser({ name: '', mobile: '', businessName: '', password: '' });
+        setNewUser({ 
+          name: '', 
+          mobile: '', 
+          businessName: '', 
+          password: '',
+          customMessage: 'Hi {name}! Thanks for connecting.'
+        });
         fetchUsers();
       }
     } catch (error) {
@@ -161,6 +168,14 @@ const UsersManagement = () => {
           </div>
 
           <div className="flex flex-wrap items-center gap-4">
+            <button
+              onClick={() => fetchUsers()}
+              disabled={loading}
+              className="p-3 bg-white border border-slate-200 text-slate-600 rounded-2xl hover:bg-slate-50 transition-all shadow-sm active:scale-95 disabled:opacity-50"
+              title="Refresh Directory"
+            >
+              <RefreshCw size={18} className={loading ? 'animate-spin' : ''} />
+            </button>
             <button
               onClick={() => setIsCreateModalOpen(true)}
               className="flex items-center space-x-2 bg-indigo-600 text-white px-6 py-3 rounded-2xl font-bold hover:bg-slate-900 transition-all shadow-xl shadow-indigo-100 hover:scale-[1.02] active:scale-[0.98]"
@@ -207,7 +222,7 @@ const UsersManagement = () => {
                   <th className="px-8 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Profile</th>
                   <th className="px-8 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Business</th>
                   <th className="px-8 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Status</th>
-                  <th className="px-8 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Access ID</th>
+                  <th className="px-8 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Scans</th>
                   <th className="px-8 py-6 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] text-right">Actions</th>
                 </tr>
               </thead>
@@ -247,7 +262,7 @@ const UsersManagement = () => {
                         <StatusBadge status={user.status} />
                       </td>
                       <td className="px-8 py-6">
-                        <code className="text-[11px] font-mono font-black text-indigo-600 bg-indigo-50/50 px-3 py-1.5 rounded-lg border border-indigo-100/50">{user.userToken}</code>
+                        <span className="text-sm font-black text-indigo-600 bg-indigo-50/50 px-3 py-1.5 rounded-lg border border-indigo-100/50">{user.scansCount || 0}</span>
                       </td>
                       <td className="px-8 py-6 text-right">
                         <div className="flex items-center justify-end space-x-3">
@@ -319,7 +334,7 @@ const UsersManagement = () => {
               <button
                 type="submit"
                 form="create-user-form"
-                disabled={createLoading}
+                disabled={createLoading || !newUser.name || !newUser.mobile || !newUser.businessName || !newUser.password}
                 className="flex-1 py-3.5 bg-indigo-600 text-white font-bold rounded-2xl hover:bg-slate-900 shadow-xl shadow-indigo-100 transition-all flex items-center justify-center space-x-2 disabled:opacity-50 active:scale-[0.98] text-sm"
               >
                 {createLoading ? <Loader2 size={18} className="animate-spin text-white" /> : <span>Create Account</span>}
@@ -331,14 +346,14 @@ const UsersManagement = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <InputBox
                 icon={<User size={18} />}
-                label="Full Name"
+                label="Full Name *"
                 placeholder="John Doe"
                 value={newUser.name}
                 onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
               />
               <InputBox
                 icon={<Briefcase size={18} />}
-                label="Business Name"
+                label="Business Name *"
                 placeholder="Acme Corp"
                 value={newUser.businessName}
                 onChange={(e) => setNewUser({ ...newUser, businessName: e.target.value })}
@@ -346,19 +361,33 @@ const UsersManagement = () => {
             </div>
             <InputBox
               icon={<Phone size={18} />}
-              label="WhatsApp Mobile"
+              label="WhatsApp Mobile *"
               placeholder="9876543210"
               value={newUser.mobile}
               onChange={(e) => setNewUser({ ...newUser, mobile: e.target.value })}
             />
             <InputBox
               icon={<Lock size={18} />}
-              label="Temporary Password"
+              label="Temporary Password *"
               type="password"
               placeholder="••••••••"
               value={newUser.password}
               onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
             />
+            <div className="space-y-2">
+              <label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-1">Custom Reply Message</label>
+              <div className="relative">
+                <div className="absolute left-4 top-4 text-slate-400">
+                  <MessageSquare size={18} />
+                </div>
+                <textarea
+                  value={newUser.customMessage}
+                  onChange={(e) => setNewUser({ ...newUser, customMessage: e.target.value })}
+                  className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-3.5 pl-12 pr-4 text-sm font-medium focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all h-24 resize-none"
+                  placeholder="Hi {name}! Thanks for connecting."
+                />
+              </div>
+            </div>
           </form>
         </Modal>
 
@@ -393,14 +422,14 @@ const UsersManagement = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <InputBox
                 icon={<User size={18} />}
-                label="Full Name"
+                label="Full Name *"
                 placeholder="Name"
                 value={editFormData.name}
                 onChange={(e) => setEditFormData({ ...editFormData, name: e.target.value })}
               />
               <InputBox
                 icon={<Briefcase size={18} />}
-                label="Business Name"
+                label="Business Name *"
                 placeholder="Business"
                 value={editFormData.businessName}
                 onChange={(e) => setEditFormData({ ...editFormData, businessName: e.target.value })}
@@ -408,7 +437,7 @@ const UsersManagement = () => {
             </div>
             <InputBox
               icon={<Phone size={18} />}
-              label="WhatsApp Mobile"
+              label="WhatsApp Mobile *"
               placeholder="Mobile"
               value={editFormData.mobile}
               onChange={(e) => setEditFormData({ ...editFormData, mobile: e.target.value })}
@@ -456,6 +485,19 @@ const UsersManagement = () => {
                   enabled={editFormData.isContactSharingEnabled}
                   onChange={(v) => setEditFormData({ ...editFormData, isContactSharingEnabled: v })}
                 />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-1">Account Status</label>
+                <select
+                  value={editFormData.status || 'pending'}
+                  onChange={(e) => setEditFormData({ ...editFormData, status: e.target.value })}
+                  className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-3.5 px-4 text-sm font-medium focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all"
+                >
+                  <option value="pending">Pending</option>
+                  <option value="approved">Approved</option>
+                  <option value="rejected">Rejected</option>
+                </select>
               </div>
             </div>
           </form>
@@ -629,7 +671,13 @@ const SkeletonRow = () => (
 
 const InputBox = ({ icon, label, placeholder, value, onChange, type = "text" }) => (
   <div className="space-y-2">
-    <label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-1">{label}</label>
+    <label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-1">
+      {label.includes('*') ? (
+        <>
+          {label.replace('*', '')} <span className="text-rose-500">*</span>
+        </>
+      ) : label}
+    </label>
     <div className="relative">
       <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
         {icon}
