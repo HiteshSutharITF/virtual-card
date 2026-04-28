@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { getAllUsers, updateUserStatus, adminCreateUser, adminUpdateUser, updateSubscriptionExpiry } from '../../services/admin.service';
+import { getAllUsers, updateUserStatus, adminCreateUser, adminUpdateUser, updateSubscriptionExpiry, getReferralsByUserId } from '../../services/admin.service';
 import Layout from '../../components/layout/Layout';
 import { toast } from 'react-hot-toast';
 import { Search, UserCheck, UserX, Clock, Eye, EyeOff, Briefcase, Phone, MessageSquare, UserPlus, Lock, Loader2, User, AlertCircle, ArrowRight, Pencil, Save, RefreshCw, Gift, Copy } from 'lucide-react';
@@ -47,6 +47,9 @@ const UsersManagement = () => {
     isContactSharingEnabled: true,
     subscriptionExpiresAt: '',
   });
+  const [isReferralsModalOpen, setIsReferralsModalOpen] = useState(false);
+  const [referralsList, setReferralsList] = useState([]);
+  const [referralsLoading, setReferralsLoading] = useState(false);
 
   const fetchUsers = async () => {
     try {
@@ -195,6 +198,22 @@ const UsersManagement = () => {
     }
   };
 
+  const handleViewReferrals = async (user) => {
+    setSelectedUser(user);
+    setIsReferralsModalOpen(true);
+    setReferralsLoading(true);
+    try {
+      const response = await getReferralsByUserId(user._id);
+      if (response.success) {
+        setReferralsList(response.data);
+      }
+    } catch (error) {
+      toast.error('Failed to load referrals');
+    } finally {
+      setReferralsLoading(false);
+    }
+  };
+
   const filteredUsers = users.filter(user => {
     const nameMatch = user.name?.toLowerCase().includes(searchTerm.toLowerCase());
     const mobileMatch = user.mobile?.includes(searchTerm);
@@ -327,13 +346,15 @@ const UsersManagement = () => {
                         </div>
                       </td>
                       <td className="px-8 py-6">
-                        <span className="text-sm font-black text-indigo-600 bg-indigo-50/50 px-3 py-1.5 rounded-lg border border-indigo-100/50">{user.scansCount || 0}</span>
+                        <Link to={`/admin/users/${user._id}/scanned`} className="text-sm font-black text-indigo-600 bg-indigo-50/50 hover:bg-indigo-600 hover:text-white transition-all px-3 py-1.5 rounded-lg border border-indigo-100/50 inline-block shadow-sm">
+                          {user.scansCount || 0}
+                        </Link>
                       </td>
                        <td className="px-8 py-6">
                         <div className="flex flex-col">
                           <div className="flex items-center space-x-2">
                             <p className="text-[10px] font-black text-slate-700 tracking-tight">Ref By: <span className="text-indigo-600">{user.referrerName}</span></p>
-                            <button 
+                            {/* <button 
                               onClick={() => {
                                 navigator.clipboard.writeText(`${window.location.origin}/register?ref=${user.userToken}`);
                                 toast.success('Link copied!');
@@ -342,9 +363,14 @@ const UsersManagement = () => {
                               title="Copy Affiliate Link"
                             >
                               <Copy size={10} />
-                            </button>
+                            </button> */}
                           </div>
-                          <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest mt-0.5">Total Ref: {user.referralsCount || 0}</p>
+                          <button 
+                            onClick={() => handleViewReferrals(user)}
+                            className="text-[9px] text-slate-400 hover:text-indigo-600 transition-colors font-bold uppercase tracking-widest mt-0.5 text-left"
+                          >
+                            Total Ref: {user.referralsCount || 0}
+                          </button>
                         </div>
                       </td>
                       <td className="px-8 py-6 text-right">
@@ -367,13 +393,7 @@ const UsersManagement = () => {
                               </button>
                             </>
                           )}
-                          <Link
-                            to={`/admin/users/${user._id}/scanned`}
-                            className="p-2.5 bg-indigo-50 text-indigo-600 rounded-xl hover:bg-indigo-600 hover:text-white transition-all shadow-sm"
-                            title="Analytics History"
-                          >
-                            <Clock size={18} />
-                          </Link>
+
                           <button
                             onClick={() => handleViewUser(user)}
                             className="p-2.5 bg-slate-50 text-slate-500 rounded-xl hover:bg-slate-800 hover:text-white transition-all shadow-sm"
@@ -565,7 +585,35 @@ const UsersManagement = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-1">Subscription Expiry</label>
+                <div className="flex items-center justify-between">
+                  <label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-1">Subscription Expiry</label>
+                  <div className="flex flex-wrap gap-2 mt-1">
+                    {[
+                      { label: '7 Days', days: 7 },
+                      { label: '1 Month', days: 30 },
+                      { label: '2 Months', days: 60 },
+                      { label: '1 Year', days: 365 },
+                      { label: '2 Years', days: 730 },
+                    ].map((d) => {
+                      const date = new Date(Date.now() + d.days * 24 * 60 * 60 * 1000);
+                      const isSelected = editFormData.subscriptionExpiresAt === formatForDateTimeLocal(date);
+                      return (
+                        <button
+                          key={d.label}
+                          type="button"
+                          onClick={() => setEditFormData({ ...editFormData, subscriptionExpiresAt: formatForDateTimeLocal(date) })}
+                          className={`px-3 py-1.5 text-[9px] font-black uppercase tracking-widest rounded-lg transition-all shadow-sm active:scale-95 border ${
+                            isSelected 
+                              ? 'bg-indigo-600 text-white border-indigo-600 shadow-lg' 
+                              : 'bg-indigo-50 text-indigo-600 border-indigo-100 hover:bg-indigo-600 hover:text-white'
+                          }`}
+                        >
+                          {d.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
                 <input
                   type="datetime-local"
                   value={editFormData.subscriptionExpiresAt}
@@ -743,6 +791,7 @@ const UsersManagement = () => {
                     {[
                       { label: '7 Days', days: 7 },
                       { label: '1 Month', days: 30 },
+                      { label: '2 Months', days: 60 },
                       { label: '1 Year', days: 365 },
                       { label: '2 Years', days: 730 },
                     ].map((d) => {
@@ -752,7 +801,7 @@ const UsersManagement = () => {
                         <button
                           key={d.label}
                           onClick={() => setConfirmModal(p => ({ ...p, expiryDate: formatForDateTimeLocal(date) }))}
-                          className={`py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest border transition-all ${
+                          className={`py-2.5 px-1 rounded-xl text-[10px] font-black uppercase tracking-widest border transition-all ${
                             isSelected 
                               ? 'bg-indigo-600 text-white border-indigo-600 shadow-lg' 
                               : 'bg-slate-50 text-slate-600 border-slate-100 hover:border-indigo-200'
@@ -793,6 +842,52 @@ const UsersManagement = () => {
                 </p>
               </div>
             </div>
+          </div>
+        </Modal>
+        {/* Referrals Modal */}
+        <Modal
+          isOpen={isReferralsModalOpen}
+          onClose={() => setIsReferralsModalOpen(false)}
+          title="Referred Users"
+          icon={<UserPlus size={20} className="text-indigo-600" />}
+          size="md"
+          footer={
+            <div className="flex justify-end">
+              <button
+                onClick={() => setIsReferralsModalOpen(false)}
+                className="px-8 py-3 bg-slate-100 text-slate-600 rounded-xl font-bold hover:bg-slate-200 transition-all active:scale-[0.98] text-sm"
+              >
+                Close
+              </button>
+            </div>
+          }
+        >
+          <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
+            {referralsLoading ? (
+              <div className="flex items-center justify-center py-10">
+                <Loader2 className="animate-spin text-indigo-600" size={30} />
+              </div>
+            ) : referralsList.length === 0 ? (
+              <div className="text-center py-10 text-slate-400 font-bold uppercase tracking-widest text-xs">
+                No referrals found for this user
+              </div>
+            ) : (
+              referralsList.map((refUser) => (
+                <div key={refUser._id} className="bg-slate-50 border border-slate-100 rounded-2xl p-4 flex items-center space-x-4 shadow-sm">
+                  <div className="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center font-black text-sm">
+                    {refUser.name?.charAt(0).toUpperCase()}
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm font-bold text-slate-800">{refUser.name}</p>
+                    <p className="text-xs text-slate-500 font-medium">{refUser.businessName}</p>
+                  </div>
+                  <div className="text-right">
+                    <StatusBadge status={refUser.status} />
+                    <p className="text-[10px] text-slate-400 mt-1 font-bold">{new Date(refUser.createdAt).toLocaleDateString()}</p>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </Modal>
       </div>
