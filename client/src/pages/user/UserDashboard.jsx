@@ -517,6 +517,8 @@ const SubscriptionBanner = ({ expiry }) => {
     return () => clearInterval(interval);
   }, [expiry]);
 
+  if (!isExpired) return null;
+
   return (
     <div className={`flex items-center justify-between px-4 py-3 rounded-xl border ${isExpired ? 'bg-rose-50 border-rose-100' : 'bg-indigo-50 border-indigo-100'}`}>
       <div className="flex items-center gap-2">

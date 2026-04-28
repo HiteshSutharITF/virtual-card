@@ -6,13 +6,13 @@ import { toast } from 'react-hot-toast';
 import { Copy, Share2, MessageSquare, Users, TrendingUp, Save, Plus, Trash2, ExternalLink, Loader2, User as UserIcon, Mail, AlertCircle } from 'lucide-react';
 
 const Affiliate = () => {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const [stats, setStats] = useState({ totalReferred: 0, referredUsers: [], referrerInfo: { name: 'Direct', mobile: '' } });
   const [templates, setTemplates] = useState([]);
   const [loading, setLoading] = useState(true);
   const [saveLoading, setSaveLoading] = useState(false);
 
-  const affiliateLink = `${window.location.origin}/register?ref=${user?.userToken}`;
+  const affiliateLink = user?.userToken ? `${window.location.origin}/register?ref=${user?.userToken}` : '';
 
   const fetchAffiliateData = async () => {
     try {
@@ -35,11 +35,13 @@ const Affiliate = () => {
   }, [user]);
 
   const handleCopyLink = () => {
+    if (!affiliateLink) return;
     navigator.clipboard.writeText(affiliateLink);
     toast.success('Affiliate link copied!');
   };
 
   const handleShareWhatsApp = (message) => {
+    if (!affiliateLink) return;
     const finalMessage = message.replace('{link}', affiliateLink);
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(finalMessage)}`;
     window.open(whatsappUrl, '_blank');
@@ -73,6 +75,17 @@ const Affiliate = () => {
       setSaveLoading(false);
     }
   };
+
+  if (authLoading || (loading && !stats.referredUsers.length)) {
+    return (
+      <Layout>
+        <div className="flex flex-col items-center justify-center h-[60vh] space-y-4">
+          <div className="w-12 h-12 border-4 border-indigo-100 border-t-indigo-600 rounded-full animate-spin" />
+          <p className="text-slate-400 font-bold text-sm animate-pulse">Syncing affiliate data...</p>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
@@ -124,7 +137,7 @@ const Affiliate = () => {
             </div>
             <div>
               <p className="text-[11px] font-black uppercase tracking-widest text-slate-400">Active Link</p>
-              <h3 className="text-sm font-black text-slate-800 truncate">{user?.userToken}</h3>
+              <h3 className="text-sm font-black text-slate-800 truncate">{user?.userToken || 'Generating...'}</h3>
             </div>
           </div>
         </div>
@@ -144,12 +157,13 @@ const Affiliate = () => {
                   <input
                     type="text"
                     readOnly
-                    value={affiliateLink}
+                    value={affiliateLink || 'Your link is being generated...'}
                     className="flex-1 bg-transparent border-none outline-none text-sm font-bold text-slate-600 truncate"
                   />
                   <button
                     onClick={handleCopyLink}
-                    className="ml-3 p-2.5 bg-white text-indigo-600 rounded-xl shadow-sm hover:shadow-md transition-all active:scale-95"
+                    disabled={!affiliateLink}
+                    className="ml-3 p-2.5 bg-white text-indigo-600 rounded-xl shadow-sm hover:shadow-md transition-all active:scale-95 disabled:opacity-50"
                   >
                     <Copy size={18} />
                   </button>
@@ -176,7 +190,7 @@ const Affiliate = () => {
                           value={template}
                           onChange={(e) => handleTemplateChange(index, e.target.value)}
                           placeholder="Write your message here. Use {link} for your affiliate link."
-                          className="w-full bg-slate-50 border border-slate-100 rounded-2xl p-4 text-sm font-medium focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all h-28 resize-none"
+                          className="w-full bg-slate-50 border border-slate-100 rounded-2xl p-4 text-sm font-medium focus:ring-4 focus:ring-indigo-50/10 outline-none transition-all h-28 resize-none"
                         />
                         <button
                           onClick={() => handleRemoveTemplate(index)}
@@ -188,7 +202,8 @@ const Affiliate = () => {
                       <div className="flex justify-end space-x-2">
                         <button
                           onClick={() => handleShareWhatsApp(template)}
-                          className="flex items-center space-x-2 px-4 py-2 bg-emerald-50 text-emerald-600 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-emerald-600 hover:text-white transition-all shadow-sm"
+                          disabled={!affiliateLink}
+                          className="flex items-center space-x-2 px-4 py-2 bg-emerald-50 text-emerald-600 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-emerald-600 hover:text-white transition-all shadow-sm disabled:opacity-50"
                         >
                           <MessageSquare size={14} />
                           <span>Share on WhatsApp</span>
