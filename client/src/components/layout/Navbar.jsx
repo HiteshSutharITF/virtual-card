@@ -28,7 +28,7 @@ const Navbar = () => {
         <>
           <NavLink icon={<LayoutDashboard size={18} />} label="Dashboard" to="/admin" />
           <NavLink icon={<Users size={18} />} label="Users" to="/admin/users" />
-          <NavLink icon={<DollarSign size={18} />} label="Earnings" to="/admin/earnings" />
+          {/* <NavLink icon={<DollarSign size={18} />} label="Earnings" to="/admin/earnings" /> */}
           <NavLink icon={<Gift size={18} />} label="Affiliates" to="/admin/affiliate" />
           <NavLink icon={<ShieldCheck size={18} />} label="OTP Logs" to="/admin/otp-logs" />
           <NavLink icon={<Settings size={18} />} label="WhatsApp" to="/admin/whatsapp" />

@@ -23,7 +23,6 @@ const UsersManagement = () => {
     name: '',
     mobile: '',
     businessName: '',
-    password: '',
     customMessage: 'Hi {name}! Thanks for connecting.',
   });
   const [confirmModal, setConfirmModal] = useState({
@@ -42,7 +41,7 @@ const UsersManagement = () => {
     name: '',
     mobile: '',
     businessName: '',
-    password: '',
+
     customMessage: '',
     isActive: true,
     isContactSharingEnabled: true,
@@ -141,7 +140,6 @@ const UsersManagement = () => {
       name: user.name || '',
       mobile: user.mobile || '',
       businessName: user.businessName || '',
-      password: '',
       customMessage: user.customMessage || '',
       isActive: user.isActive ?? true,
       isContactSharingEnabled: user.isContactSharingEnabled ?? true,
@@ -185,7 +183,7 @@ const UsersManagement = () => {
           name: '', 
           mobile: '', 
           businessName: '', 
-          password: '',
+
           customMessage: 'Hi {name}! Thanks for connecting.'
         });
         fetchUsers();
@@ -419,7 +417,7 @@ const UsersManagement = () => {
               <button
                 type="submit"
                 form="create-user-form"
-                disabled={createLoading || !newUser.name || !newUser.mobile || !newUser.businessName || !newUser.password}
+                disabled={createLoading || !newUser.name || !newUser.mobile || !newUser.businessName}
                 className="flex-1 py-3.5 bg-indigo-600 text-white font-bold rounded-2xl hover:bg-slate-900 shadow-xl shadow-indigo-100 transition-all flex items-center justify-center space-x-2 disabled:opacity-50 active:scale-[0.98] text-sm"
               >
                 {createLoading ? <Loader2 size={18} className="animate-spin text-white" /> : <span>Create Account</span>}
@@ -451,14 +449,7 @@ const UsersManagement = () => {
               value={newUser.mobile}
               onChange={(e) => setNewUser({ ...newUser, mobile: e.target.value })}
             />
-            <InputBox
-              icon={<Lock size={18} />}
-              label="Temporary Password *"
-              type="password"
-              placeholder="••••••••"
-              value={newUser.password}
-              onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
-            />
+
             <div className="space-y-2">
               <label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-1">Custom Reply Message</label>
               <div className="relative">
@@ -527,19 +518,7 @@ const UsersManagement = () => {
               value={editFormData.mobile}
               onChange={(e) => setEditFormData({ ...editFormData, mobile: e.target.value })}
             />
-            <div className="bg-amber-50 rounded-2xl p-4 border border-amber-100">
-               <InputBox
-                icon={<Lock size={18} />}
-                label="Update Password"
-                type="password"
-                placeholder="Leave empty to keep current"
-                value={editFormData.password}
-                onChange={(e) => setEditFormData({ ...editFormData, password: e.target.value })}
-              />
-              <p className="text-[9px] text-amber-600 font-bold uppercase tracking-wider mt-2 ml-1 flex items-center gap-1.5">
-                <AlertCircle size={10} /> Password update will take effect on next login
-              </p>
-            </div>
+
 
             <div className="space-y-4">
               <div className="space-y-2">

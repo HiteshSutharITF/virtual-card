@@ -15,7 +15,6 @@ const UserProfile = () => {
     name: '',
     businessName: '',
     mobile: '',
-    password: '',
     customMessage: '',
     isActive: true,
     isContactSharingEnabled: true,
@@ -35,7 +34,6 @@ const UserProfile = () => {
           name: p.name || '',
           businessName: p.businessName || '',
           mobile: p.mobile || '',
-          password: '',
           customMessage: p.customMessage || '',
           isActive: p.isActive,
           isContactSharingEnabled: p.isContactSharingEnabled,
@@ -103,9 +101,6 @@ const UserProfile = () => {
       data.append('isActive', formData.isActive);
       data.append('isContactSharingEnabled', formData.isContactSharingEnabled);
 
-      if (formData.password) {
-        data.append('password', formData.password);
-      }
 
       if (selectedFile) {
         data.append('logo', selectedFile);
@@ -122,7 +117,7 @@ const UserProfile = () => {
           businessName: response.data.businessName,
           logo: response.data.logo
         });
-        setFormData(prev => ({ ...prev, password: '', logo: response.data.logo }));
+        setFormData(prev => ({ ...prev, logo: response.data.logo }));
         const baseUrl = import.meta.env.VITE_API_BASE_URL.split('/api')[0];
         setLogoPreview(`${baseUrl}${response.data.logo}`);
         setSelectedFile(null);
@@ -337,22 +332,7 @@ const UserProfile = () => {
                         />
                       </div>
                     </div>
-                    <div className="space-y-2 md:col-span-2">
-                      <label className="text-xs font-bold text-slate-500 uppercase ml-1 text-indigo-600 flex items-center">
-                        <Lock size={12} className="mr-1" /> New Password
-                      </label>
-                      <div className="relative">
-                        <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                        <input
-                          name="password"
-                          type="password"
-                          value={formData.password}
-                          onChange={handleChange}
-                          className="w-full glass rounded-2xl py-3 pl-12 pr-4 border-slate-200 focus:ring-2 focus:ring-indigo-500/20 outline-none text-sm font-medium"
-                          placeholder="Leave blank to keep current"
-                        />
-                      </div>
-                    </div>
+
                   </div>
                 </section>
 

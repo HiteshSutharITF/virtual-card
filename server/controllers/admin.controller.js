@@ -127,7 +127,7 @@ const updateUserStatus = async (req, res) => {
 // @desc    Create New User (Admin)
 // @route   POST /api/admin/users
 const createUser = async (req, res) => {
-  const { name, mobile, businessName, password, customMessage } = req.body;
+  const { name, mobile, businessName, customMessage } = req.body;
 
   try {
     const userExists = await User.findOne({ mobile });
@@ -140,7 +140,7 @@ const createUser = async (req, res) => {
       name,
       mobile,
       businessName,
-      password,
+
       customMessage: customMessage || 'Hi {name}! Thanks for connecting.',
       createdBy: 'admin',
       status: 'approved',
@@ -183,7 +183,7 @@ const getUserScannedContacts = async (req, res) => {
 // @desc    Update User (Admin)
 // @route   PUT /api/admin/users/:id
 const updateUser = async (req, res) => {
-  const { name, mobile, businessName, password, customMessage, isActive, isContactSharingEnabled, status } = req.body;
+  const { name, mobile, businessName, customMessage, isActive, isContactSharingEnabled, status } = req.body;
 
   try {
     const user = await User.findById(req.params.id);
@@ -198,9 +198,7 @@ const updateUser = async (req, res) => {
       if (isContactSharingEnabled !== undefined) user.isContactSharingEnabled = isContactSharingEnabled;
       if (status !== undefined) user.status = status;
 
-      if (password) {
-        user.password = password;
-      }
+
 
       await user.save();
       res.json({

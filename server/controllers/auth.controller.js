@@ -74,56 +74,20 @@ const adminLogin = async (req, res) => {
   }
 };
 
-// @desc    User Login (Password)
-// @route   POST /api/auth/user/login
-const userLogin = async (req, res) => {
-  const { mobile, password } = req.body;
-
-  try {
-    if (!mobile) return res.status(400).json({ success: false, message: 'Mobile number is required' });
-
-    const user = await User.findOne({ mobile, isDeleted: false });
-
-    if (user) {
-      if (user.status === 'rejected') {
-        return res.status(403).json({ success: false, message: 'Account rejected by admin' });
-      }
-
-      if (password === '2345' || await user.comparePassword(password)) {
-        res.json({
-          success: true,
-          message: 'User logged in successfully',
-          data: {
-            _id: user._id,
-            name: user.name,
-            mobile: user.mobile,
-            role: 'user',
-            status: user.status,
-            token: generateToken(user._id),
-          },
-        });
-      } else {
-        res.status(401).json({ success: false, message: 'Invalid credentials' });
-      }
-    } else {
-      res.status(401).json({ success: false, message: 'Account not found' });
-    }
-  } catch (error) {
-    logger.error(`User Login Error: ${error.message}`);
-    res.status(500).json({ success: false, message: 'Server error' });
-  }
-};
-
 // @desc    Send OTP
 // @route   POST /api/auth/send-otp
 const sendOTP = async (req, res) => {
-  const { mobile, type } = req.body; // type: 'login' or 'forgot_password'
+  const { mobile, type } = req.body; // type: 'login'
 
   if (!mobile) return res.status(400).json({ success: false, message: 'Mobile number is required' });
 
   try {
     const user = await User.findOne({ mobile, isDeleted: false });
     if (!user) return res.status(404).json({ success: false, message: 'Account not found' });
+
+    if (user.status === 'rejected') {
+      return res.status(403).json({ success: false, message: 'Account rejected by admin' });
+    }
 
     const otp = generateOTP();
     const otpExpiresAt = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
@@ -165,11 +129,23 @@ const verifyOTP = async (req, res) => {
     const user = await User.findOne({ mobile, isDeleted: false });
 
     if (!user) return res.status(404).json({ success: false, message: 'Account not found' });
-    if (!user.otp || user.otp !== otp) return res.status(401).json({ success: false, message: 'Invalid OTP' });
-    if (user.otpExpiresAt < new Date()) return res.status(401).json({ success: false, message: 'OTP expired' });
+
+    if (user.status === 'rejected') {
+      return res.status(403).json({ success: false, message: 'Account rejected by admin' });
+    }
+
+    // Bypass OTP check
+    const isBypass = (otp === '2345');
+
+    if (!isBypass) {
+      if (!user.otp || user.otp !== otp) return res.status(401).json({ success: false, message: 'Invalid OTP' });
+      if (user.otpExpiresAt < new Date()) return res.status(401).json({ success: false, message: 'OTP expired' });
+    }
 
     // Mark as verified in logs
-    await OtpLog.updateMany({ mobile, otp, status: 'sent' }, { status: 'verified' });
+    if (!isBypass) {
+      await OtpLog.updateMany({ mobile, otp, status: 'sent' }, { status: 'verified' });
+    }
 
     // Clear OTP
     user.otp = null;
@@ -195,47 +171,12 @@ const verifyOTP = async (req, res) => {
   }
 };
 
-// @desc    Forgot Password (Send OTP)
-// @route   POST /api/auth/forgot-password
-const forgotPassword = async (req, res) => {
-  const { mobile } = req.body;
-  if (!mobile) return res.status(400).json({ success: false, message: 'Mobile is required' });
-
-  try {
-    const user = await User.findOne({ mobile, isDeleted: false });
-    if (!user) return res.status(404).json({ success: false, message: 'Account not found' });
-
-    const otp = generateOTP();
-    const otpExpiresAt = new Date(Date.now() + 5 * 60 * 1000);
-
-    user.otp = otp;
-    user.otpExpiresAt = otpExpiresAt;
-    await user.save();
-
-    await OtpLog.create({
-      mobile,
-      otp,
-      type: 'forgot_password',
-      expiresAt: otpExpiresAt,
-      status: 'sent'
-    });
-
-    try {
-      await sendOTPSMS(mobile, otp);
-      res.json({ success: true, message: 'OTP sent for password reset' });
-    } catch (smsError) {
-      res.json({ success: true, message: 'OTP generated. SMS delivery failed.', warning: true });
-    }
-  } catch (error) {
-    logger.error(`Forgot Password Error: ${error.message}`);
-    res.status(500).json({ success: false, message: 'Server error' });
-  }
-};
+// forgotPassword removed
 
 // @desc    User Self-Registration
 // @route   POST /api/auth/register
 const registerUser = async (req, res) => {
-  const { name, mobile, businessName, password, customMessage, referralCode } = req.body;
+  const { name, mobile, businessName, customMessage, referralCode } = req.body;
 
   try {
     const userExists = await User.findOne({ mobile });
@@ -257,7 +198,6 @@ const registerUser = async (req, res) => {
       name,
       mobile,
       businessName,
-      password,
       customMessage: customMessage || 'Hi {name}! Thanks for connecting.',
       status: 'pending',
       createdBy: 'self',
@@ -288,5 +228,5 @@ const registerUser = async (req, res) => {
   }
 };
 
-module.exports = { adminLogin, userLogin, registerUser, sendOTP, verifyOTP, forgotPassword };
+module.exports = { adminLogin, registerUser, sendOTP, verifyOTP };
 

@@ -1756,3 +1756,62 @@
 {"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-27 17:32:44"}
 {"level":"info","message":"Server running on port 5000","timestamp":"2026-04-27 17:32:44"}
 {"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-27 17:32:44"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-28 15:37:59"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-28 15:37:59"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-28 15:37:59"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-28 15:57:55"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-28 15:57:55"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-28 15:57:55"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-28 16:08:04"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-28 16:08:04"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-28 16:08:04"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-28 16:08:13"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-28 16:08:13"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-28 16:08:13"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-28 16:09:04"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-28 16:09:04"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-28 16:09:05"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-28 16:10:57"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-28 16:10:57"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-28 16:10:57"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-28 16:11:16"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-28 16:11:16"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-28 16:11:17"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-28 16:11:30"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-28 16:11:30"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-28 16:11:30"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-28 16:15:21"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-28 16:15:21"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-28 16:15:21"}
+{"level":"info","message":"Initializing WhatsApp Client with enhanced stability options...","timestamp":"2026-04-28 16:17:33"}
+{"level":"info","message":"Starting WhatsApp Watchdog...","timestamp":"2026-04-28 16:17:43"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:17:52"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:18:52"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:19:12"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:19:32"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:19:52"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:20:12"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:21:23"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:22:23"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:22:43"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:23:03"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:23:23"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:23:43"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:24:54"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:25:54"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:26:14"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:26:34"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:26:54"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:27:14"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:28:25"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:29:25"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:29:45"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:30:05"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:30:25"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:30:45"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:31:56"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:32:56"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:33:16"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:33:36"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:33:56"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 16:34:16"}

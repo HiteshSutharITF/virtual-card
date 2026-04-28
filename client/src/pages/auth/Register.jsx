@@ -3,7 +3,7 @@ import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { registerUser } from '../../services/auth.service';
 import { useAuth } from '../../context/AuthContext';
 import { toast } from 'react-hot-toast';
-import { User, Phone, Briefcase, Lock, FileText, UserPlus, ArrowLeft, Loader2, QrCode, Eye, EyeOff } from 'lucide-react';
+import { User, Phone, Briefcase, FileText, UserPlus, ArrowLeft, Loader2, QrCode } from 'lucide-react';
 import AuthIllustration from '../../components/illustrations/AuthIllustration';
 
 const Register = () => {
@@ -15,7 +15,6 @@ const Register = () => {
     name: '',
     mobile: '',
     businessName: '',
-    password: '',
     customMessage: 'Hi {name}! Thanks for connecting.',
     referralCode: refCode || '',
   });
@@ -23,7 +22,6 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { login, token, user, loading: authLoading } = useAuth();
-  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     if (!authLoading && token && user) {
@@ -43,11 +41,7 @@ const Register = () => {
 
     if (!formData.businessName.trim()) newErrors.businessName = 'Business name is required';
     
-    if (!formData.password.trim()) {
-      newErrors.password = 'Password is required';
-    } else if (formData.password.length < 6) {
-      newErrors.password = 'Minimum 6 characters required';
-    }
+
 
     setErrors(newErrors);
     
@@ -131,25 +125,12 @@ const Register = () => {
             <form onSubmit={handleSubmit} className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <InputBox icon={<User size={18} />} label="Full Name" name="name" placeholder="John Doe" value={formData.name} onChange={handleChange} error={errors.name} required />
-                <InputBox icon={<Briefcase size={18} />} label="Business" name="businessName" placeholder="Acme Corp" value={formData.businessName} onChange={handleChange} error={errors.businessName} required />
+                <InputBox icon={<Briefcase size={18} />} label="Business Name" name="businessName" placeholder="Acme Corp" value={formData.businessName} onChange={handleChange} error={errors.businessName} required />
               </div>
               
               <InputBox icon={<Phone size={18} />} label="WhatsApp Mobile" name="mobile" placeholder="9876543210" value={formData.mobile} onChange={handleChange} error={errors.mobile} required maxLength={10} inputMode="numeric" />
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <InputBox 
-                  icon={<Lock size={18} />} 
-                  label="Access Password" 
-                  name="password" 
-                  type={showPassword ? "text" : "password"} 
-                  placeholder="••••••••" 
-                  value={formData.password} 
-                  onChange={handleChange} 
-                  error={errors.password} 
-                  required 
-                  togglePassword={() => setShowPassword(!showPassword)}
-                  showPassword={showPassword}
-                />
                 <InputBox 
                   icon={<UserPlus size={18} />} 
                   label="Referral Code (Optional)" 

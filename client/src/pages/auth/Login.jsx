@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { adminLogin, userLogin, sendOTP, verifyOTP, forgotPassword } from '../../services/auth.service';
+import { adminLogin, sendOTP, verifyOTP } from '../../services/auth.service';
 import { toast } from 'react-hot-toast';
-import { Mail, Lock, Phone, LogIn, ArrowRight, Loader2, QrCode, Eye, EyeOff, ShieldCheck, Key } from 'lucide-react';
+import { Mail, Lock, Phone, LogIn, ArrowRight, Loader2, QrCode, ShieldCheck, Eye, EyeOff } from 'lucide-react';
 import AuthIllustration from '../../components/illustrations/AuthIllustration';
 
 const Login = () => {
   const [isAdmin, setIsAdmin] = useState(false);
-  const [loginMethod, setLoginMethod] = useState('password'); // 'password' or 'otp'
   const [showOtpInput, setShowOtpInput] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
-    mobile: '',
     password: '',
+    mobile: '',
     otp: '',
   });
   const [loading, setLoading] = useState(false);
@@ -61,7 +60,7 @@ const Login = () => {
       if (response.success) {
         authLogin(response.data, response.data.token);
         toast.success(response.message);
-        navigate('/user');
+        navigate(response.data.role === 'admin' ? '/admin' : '/user');
       } else {
         toast.error(response.message || 'Invalid OTP');
       }
@@ -74,54 +73,32 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (loginMethod === 'otp' && !showOtpInput) {
+    if (isAdmin) {
+      setLoading(true);
+      try {
+        const response = await adminLogin({ email: formData.email, password: formData.password });
+        if (response.success) {
+          authLogin(response.data, response.data.token);
+          toast.success(response.message);
+          navigate('/admin');
+        } else {
+          toast.error(response.message || 'Login failed');
+        }
+      } catch (error) {
+        toast.error(error.message || 'Login failed');
+      } finally {
+        setLoading(false);
+      }
+      return;
+    }
+
+    if (!showOtpInput) {
       handleSendOTP();
       return;
     }
-    if (loginMethod === 'otp' && showOtpInput) {
+    if (showOtpInput) {
       handleVerifyOTP(e);
       return;
-    }
-
-    setLoading(true);
-    try {
-      let response;
-      if (isAdmin) {
-        response = await adminLogin({ email: formData.email, password: formData.password });
-      } else {
-        response = await userLogin({ mobile: formData.mobile, password: formData.password });
-      }
-
-      if (response.success) {
-        authLogin(response.data, response.data.token);
-        toast.success(response.message);
-        navigate(isAdmin ? '/admin' : '/user');
-      } else {
-        toast.error(response.message || 'Login failed');
-      }
-    } catch (error) {
-      toast.error(error.message || 'Login failed');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleForgotPassword = async () => {
-    if (!formData.mobile) {
-      toast.error('Please enter your registered mobile number');
-      return;
-    }
-    try {
-      const response = await forgotPassword(formData.mobile);
-      if (response.success) {
-        toast.success('OTP sent for password reset. Please check your SMS.');
-        setLoginMethod('otp');
-        setShowOtpInput(true);
-      } else {
-        toast.error(response.message || 'Failed to initiate password reset');
-      }
-    } catch (error) {
-      toast.error(error.message || 'Request failed');
     }
   };
 
@@ -172,7 +149,7 @@ const Login = () => {
               </button>
               <button
                 type="button"
-                onClick={() => { setIsAdmin(true); setLoginMethod('password'); setShowOtpInput(false); }}
+                onClick={() => { setIsAdmin(true); setShowOtpInput(false); }}
                 className={`flex-1 py-4 text-[10px] font-black uppercase tracking-[0.25em] rounded-[1.5rem] transition-all duration-500 ${isAdmin ? 'bg-indigo-600 text-white shadow-xl scale-100' : 'text-slate-400 hover:text-slate-600 scale-95'
                   }`}
               >
@@ -181,38 +158,42 @@ const Login = () => {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              {!isAdmin && !showOtpInput && (
-                <div className="flex justify-center space-x-4 mb-4">
-                  {/* <button
-                    type="button"
-                    onClick={() => setLoginMethod('password')}
-                    className={`px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${loginMethod === 'password' ? 'bg-indigo-100 text-indigo-600 shadow-sm' : 'text-slate-400'}`}
-                  >
-                    Password
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setLoginMethod('otp')}
-                    className={`px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${loginMethod === 'otp' ? 'bg-indigo-100 text-indigo-600 shadow-sm' : 'text-slate-400'}`}
-                  >
-                    OTP Login
-                  </button> */}
-                </div>
-              )}
-
               {isAdmin ? (
-                <div className="space-y-2">
-                  <label className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400 ml-1">Admin Email</label>
-                  <div className="relative group">
-                    <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-indigo-600 transition-all duration-300" size={18} />
-                    <input
-                      type="email"
-                      required
-                      placeholder="admin@virtualcard.com"
-                      className="w-full bg-white border border-slate-200 rounded-2xl py-3.5 pl-14 pr-4 text-slate-900 placeholder-slate-300 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-600 transition-all font-bold text-sm shadow-sm"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    />
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <label className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400 ml-1">Admin Email</label>
+                    <div className="relative group">
+                      <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-indigo-600 transition-all duration-300" size={18} />
+                      <input
+                        type="email"
+                        required
+                        placeholder="admin@virtualcard.com"
+                        className="w-full bg-white border border-slate-200 rounded-2xl py-3.5 pl-14 pr-4 text-slate-900 placeholder-slate-300 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-600 transition-all font-bold text-sm shadow-sm"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400 ml-1">Password</label>
+                    <div className="relative group">
+                      <Lock className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-indigo-600 transition-all duration-300" size={18} />
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        required
+                        placeholder="••••••••"
+                        className="w-full bg-white border border-slate-200 rounded-2xl py-3.5 pl-14 pr-12 text-slate-900 placeholder-slate-300 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-600 transition-all font-bold text-sm shadow-sm"
+                        value={formData.password}
+                        onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-indigo-600 transition-colors focus:outline-none"
+                      >
+                        {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                      </button>
+                    </div>
                   </div>
                 </div>
               ) : (
@@ -257,41 +238,6 @@ const Login = () => {
                 </div>
               )}
 
-              {loginMethod === 'password' && !showOtpInput && (
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between ml-1">
-                    <label className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400">Security Key</label>
-                    {!isAdmin && (
-                      <button 
-                        type="button" 
-                        onClick={handleForgotPassword}
-                        className="text-[9px] uppercase font-black text-indigo-500 hover:text-indigo-700 tracking-tighter transition-colors"
-                      >
-                        Login with OTP?
-                      </button>
-                    )}
-                  </div>
-                  <div className="relative group">
-                    <Lock className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-indigo-600 transition-all duration-300" size={18} />
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      required
-                      placeholder="••••••••"
-                      className="w-full bg-white border border-slate-200 rounded-2xl py-3.5 pl-14 pr-12 text-slate-900 placeholder-slate-300 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-600 transition-all font-bold text-sm shadow-sm"
-                      value={formData.password}
-                      onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-indigo-600 transition-colors"
-                    >
-                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                    </button>
-                  </div>
-                </div>
-              )}
-
               <div className="pt-2">
                 <button
                   type="submit"
@@ -302,7 +248,7 @@ const Login = () => {
                     <Loader2 className="w-5 h-5 animate-spin" />
                   ) : (
                     <>
-                      <span>{showOtpInput ? 'Verify & Login' : (loginMethod === 'otp' ? 'Send OTP Code' : 'Enter Workspace')}</span>
+                      <span>{isAdmin ? 'Enter Admin Area' : (showOtpInput ? 'Verify & Login' : 'Send OTP Code')}</span>
                       <ArrowRight size={18} />
                     </>
                   )}
