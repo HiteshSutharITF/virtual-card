@@ -184,7 +184,7 @@ const ScannedContacts = () => {
 
 const ContactCard = ({ contact }) => {
   const openWhatsApp = () => {
-    const whatsappUrl = `https://wa.me/91${contact.scannerMobile}`;
+    const whatsappUrl = `https://wa.me/${contact.scannerMobile}`;
     window.open(whatsappUrl, '_blank');
   };
 
