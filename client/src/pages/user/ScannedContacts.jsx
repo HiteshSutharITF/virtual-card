@@ -70,42 +70,44 @@ const ScannedContacts = () => {
 
   return (
     <Layout>
-      <div className="space-y-8">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+      <div className="space-y-8 pb-10">
+        <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-6">
           <div>
             <h1 className="text-3xl font-extrabold text-slate-800 tracking-tight">Connection History</h1>
             <p className="text-slate-500 font-medium">People who have scanned your professional QR code</p>
           </div>
           
-          <div className="flex flex-wrap items-center gap-4">
-            <button
-              onClick={() => fetchContacts(true)}
-              disabled={refreshing || loading}
-              className="p-3.5 bg-white border border-slate-200 rounded-2xl text-slate-600 hover:text-indigo-600 hover:border-indigo-100 transition-all shadow-sm active:scale-95 disabled:opacity-50"
-              title="Refresh Registry"
-            >
-              <RefreshCcw size={20} className={refreshing ? 'animate-spin' : ''} />
-            </button>
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <div className="flex items-center gap-2 flex-1 sm:flex-initial">
+              <button
+                onClick={() => fetchContacts(true)}
+                disabled={refreshing || loading}
+                className="p-3.5 bg-white border border-slate-200 rounded-2xl text-slate-600 hover:text-indigo-600 hover:border-indigo-100 transition-all shadow-sm active:scale-95 disabled:opacity-50"
+                title="Refresh Registry"
+              >
+                <RefreshCcw size={20} className={refreshing ? 'animate-spin' : ''} />
+              </button>
 
-            <button
-              onClick={handleDownloadExcel}
-              disabled={downloading || contacts.length === 0}
-              className="flex items-center space-x-2 bg-slate-900 text-white px-6 py-3.5 rounded-2xl font-bold text-sm hover:bg-indigo-600 transition-all shadow-xl shadow-slate-200 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {downloading ? (
-                <Loader2 size={18} className="animate-spin" />
-              ) : (
-                <Download size={18} />
-              )}
-              <span>Download Registry</span>
-            </button>
+              <button
+                onClick={handleDownloadExcel}
+                disabled={downloading || contacts.length === 0}
+                className="flex-1 flex items-center justify-center space-x-2 bg-slate-900 text-white px-5 py-3.5 rounded-2xl font-bold text-sm hover:bg-indigo-600 transition-all shadow-xl shadow-slate-200 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+              >
+                {downloading ? (
+                  <Loader2 size={18} className="animate-spin" />
+                ) : (
+                  <Download size={18} />
+                )}
+                <span>Download Registry</span>
+              </button>
+            </div>
 
-            <div className="relative">
+            <div className="relative flex-1 sm:min-w-[280px]">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
               <input 
                 type="text" 
                 placeholder="Search Index..."
-                className="glass rounded-2xl py-3.5 pl-12 pr-6 border-slate-200 text-sm focus:ring-4 focus:ring-indigo-500/10 outline-none w-full sm:w-64 transition-all shadow-sm"
+                className="w-full glass rounded-2xl py-3.5 pl-12 pr-6 border-slate-200 text-sm focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all shadow-sm"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -114,7 +116,7 @@ const ScannedContacts = () => {
         </div>
 
         {/* Stats Summary */}
-        <div className="flex items-center space-x-6 overflow-x-auto pb-2 scrollbar-hide">
+        <div className="flex items-center space-x-4 overflow-x-auto pb-2 scrollbar-hide -mx-1 px-1">
           <HistoryStat label="Total Scans" value={contacts.length} icon={<ArrowUpRight size={20} />} />
           <HistoryStat label="This Week" value={contacts.filter(c => new Date(c.scannedAt) > new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)).length} icon={<Calendar size={20} />} />
         </div>
@@ -180,42 +182,52 @@ const ScannedContacts = () => {
   );
 };
 
-const ContactCard = ({ contact }) => (
-  <div className="glass rounded-[2rem] p-6 card-hover group border border-slate-100">
-    <div className="flex items-start justify-between mb-6">
-      <div className="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center font-bold text-xl ring-8 ring-indigo-50/30 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 shadow-sm">
-        {contact.scannerName.charAt(0)}
-      </div>
-      <div className="flex flex-col items-end">
-        <span className="text-[10px] uppercase tracking-widest font-bold text-slate-400 flex items-center mb-1">
-          <Clock size={10} className="mr-1" /> {new Date(contact.scannedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-        </span>
-        <span className="text-xs font-bold text-slate-700">
-          {new Date(contact.scannedAt).toLocaleDateString()}
-        </span>
-      </div>
-    </div>
-    
-    <div className="space-y-4">
-      <div>
-        <h4 className="text-lg font-bold text-slate-800 leading-tight group-hover:text-indigo-600 transition-colors uppercase truncate">
-          {contact.scannerName}
-        </h4>
-        <div className="flex items-center text-slate-500 text-sm mt-1">
-          <Phone size={14} className="mr-2" />
-          <span className="font-medium">{contact.scannerMobile}</span>
+const ContactCard = ({ contact }) => {
+  const openWhatsApp = () => {
+    const whatsappUrl = `https://wa.me/91${contact.scannerMobile}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  return (
+    <div 
+      onClick={openWhatsApp}
+      className="glass rounded-[2rem] p-6 card-hover group border border-slate-100 cursor-pointer transition-all active:scale-[0.98]"
+    >
+      <div className="flex items-start justify-between mb-6">
+        <div className="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center font-bold text-xl ring-8 ring-indigo-50/30 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 shadow-sm">
+          {contact.scannerName.charAt(0)}
+        </div>
+        <div className="flex flex-col items-end">
+          <span className="text-[10px] uppercase tracking-widest font-bold text-slate-400 flex items-center mb-1">
+            <Clock size={10} className="mr-1" /> {new Date(contact.scannedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+          </span>
+          <span className="text-xs font-bold text-slate-700">
+            {new Date(contact.scannedAt).toLocaleDateString()}
+          </span>
         </div>
       </div>
       
-      <div className="pt-4 border-t border-slate-100 flex justify-between items-center">
-        <span className="text-[10px] text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded-full uppercase tracking-tighter">Verified Connection</span>
-        <button className="text-indigo-600 p-1 hover:bg-indigo-50 rounded-lg transition-colors">
-          <ArrowUpRight size={18} />
-        </button>
+      <div className="space-y-4">
+        <div>
+          <h4 className="text-lg font-bold text-slate-800 leading-tight group-hover:text-indigo-600 transition-colors uppercase truncate">
+            {contact.scannerName}
+          </h4>
+          <div className="flex items-center text-slate-500 text-sm mt-1">
+            <Phone size={14} className="mr-2 text-emerald-500" />
+            <span className="font-medium">{contact.scannerMobile}</span>
+          </div>
+        </div>
+        
+        <div className="pt-4 border-t border-slate-100 flex justify-between items-center">
+          <span className="text-[10px] text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded-full uppercase tracking-tighter">Verified Connection</span>
+          <div className="text-indigo-600 p-1 bg-indigo-50 group-hover:bg-indigo-600 group-hover:text-white rounded-lg transition-colors">
+            <ArrowUpRight size={18} />
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const HistoryStat = ({ label, value, icon }) => (
   <div className="glass px-6 py-4 rounded-2xl flex items-center space-x-4 border-slate-200 shadow-sm min-w-[200px]">

@@ -1824,3 +1824,14 @@
 {"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-28 19:20:29"}
 {"level":"info","message":"Server running on port 5000","timestamp":"2026-04-28 19:20:29"}
 {"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-28 19:20:29"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-04-28 19:23:20"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-28 19:23:22"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-28 19:23:22"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-28 19:23:22"}
+{"level":"info","message":"Restoring previous WhatsApp session...","timestamp":"2026-04-28 19:23:22"}
+{"level":"info","message":"Initializing WhatsApp Client with enhanced stability options...","timestamp":"2026-04-28 19:23:22"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-04-28 19:23:26"}
+{"level":"info","message":"Starting WhatsApp Watchdog...","timestamp":"2026-04-28 19:23:26"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-28 19:24:23"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-04-28 19:24:23"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-28 19:24:23"}
