@@ -1858,3 +1858,6 @@
 {"level":"info","message":"New client connected: 4DhN0X4XcH1wnhDeAAAL","timestamp":"2026-05-05 17:19:39"}
 {"level":"info","message":"Client disconnected: 4DhN0X4XcH1wnhDeAAAL","timestamp":"2026-05-05 17:19:39"}
 {"level":"info","message":"Client disconnected: -esgGF3yo_nUJvhvAAAK","timestamp":"2026-05-05 17:19:39"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-05-05 17:34:37"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-05-05 17:34:37"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-05-05 17:34:37"}
