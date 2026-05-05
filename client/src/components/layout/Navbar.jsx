@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { LogOut, User, LayoutDashboard, QrCode, Settings, Users, Menu, X, ShieldCheck, Gift, DollarSign } from 'lucide-react';
 import Modal from '../common/Modal';
+import logo from '../../assets/logo.png';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -50,11 +51,11 @@ const Navbar = () => {
       <nav className="fixed top-4 left-4 right-4 z-50">
         <div className="max-w-7xl mx-auto glass rounded-2xl px-4 md:px-6 py-3 flex items-center justify-between shadow-xl ring-1 ring-white/20">
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200">
-              <QrCode className="text-white w-6 h-6" />
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-lg shadow-indigo-100 overflow-hidden">
+              <img src={logo} alt="Magic QR Logo" className="w-8 h-8 object-contain" />
             </div>
             <span className="text-xl md:text-2xl font-black text-indigo-600 tracking-tight">
-              Virtual<span className="text-slate-800">Card</span>
+              Magic<span className="text-slate-800">QR</span>
             </span>
           </Link>
 

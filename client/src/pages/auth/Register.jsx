@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import { toast } from 'react-hot-toast';
 import { User, Phone, Briefcase, FileText, UserPlus, ArrowLeft, Loader2, QrCode } from 'lucide-react';
 import AuthIllustration from '../../components/illustrations/AuthIllustration';
+import logo from '../../assets/logo.png';
 
 const Register = () => {
   const location = useLocation();
@@ -102,10 +103,10 @@ const Register = () => {
           {/* Mobile Header */}
           <div className="lg:hidden w-full flex justify-center mb-12">
             <div className="flex items-center space-x-2.5">
-              <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-100">
-                <QrCode size={22} />
+              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-lg shadow-indigo-100 overflow-hidden p-1">
+                <img src={logo} alt="Magic QR Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="text-2xl font-black text-slate-900 tracking-tight">VirtualCard</span>
+              <span className="text-2xl font-black text-slate-900 tracking-tight">Magic QR</span>
             </div>
           </div>
 
@@ -190,9 +191,9 @@ const Register = () => {
       {/* Fixed Hero Column (Right Side) */}
       <div className="hidden lg:flex lg:w-1/2 bg-[#4f46e5] relative flex-shrink-0 h-full order-1 lg:order-2">
         <div className="absolute top-10 right-10 z-20 flex items-center space-x-3">
-          <span className="text-2xl font-black text-white tracking-tight">VirtualCard</span>
-          <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-2xl">
-            <QrCode className="text-[#4f46e5] w-7 h-7" />
+          <span className="text-2xl font-black text-white tracking-tight">Magic QR</span>
+          <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-2xl overflow-hidden p-1">
+            <img src={logo} alt="Magic QR Logo" className="w-full h-full object-contain" />
           </div>
         </div>
         <AuthIllustration type="register" />

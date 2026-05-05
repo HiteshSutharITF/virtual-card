@@ -94,7 +94,7 @@ const Affiliate = () => {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <h1 className="text-3xl font-extrabold text-slate-800 tracking-tight">Affiliate Program</h1>
-            <p className="text-slate-500 font-medium">Earn rewards by inviting others to join VirtualCard</p>
+            <p className="text-slate-500 font-medium">Earn rewards by inviting others to join Magic QR</p>
           </div>
           
           {/* Referrer Info Badge */}

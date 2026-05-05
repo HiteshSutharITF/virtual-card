@@ -52,7 +52,7 @@ const NotFound = () => {
 
         {/* Footer Detail */}
         <div className="mt-16 pt-8 border-t border-white/5 w-full flex justify-center text-slate-500 text-sm">
-          <p>© {new Date().getFullYear()} Virtual Card Platform. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Magic QR Platform. All rights reserved.</p>
         </div>
       </div>
 

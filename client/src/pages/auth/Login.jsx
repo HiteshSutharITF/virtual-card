@@ -5,6 +5,7 @@ import { adminLogin, sendOTP, verifyOTP } from '../../services/auth.service';
 import { toast } from 'react-hot-toast';
 import { Mail, Lock, Phone, LogIn, ArrowRight, Loader2, QrCode, ShieldCheck, Eye, EyeOff } from 'lucide-react';
 import AuthIllustration from '../../components/illustrations/AuthIllustration';
+import logo from '../../assets/logo.png';
 
 const Login = () => {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -107,10 +108,10 @@ const Login = () => {
       {/* Left Side: Hero / Illustration */}
       <div className="hidden lg:flex lg:w-1/2 bg-[#4f46e5] relative flex-shrink-0 h-full">
         <div className="absolute top-10 left-10 z-20 flex items-center space-x-3">
-          <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-2xl">
-            <QrCode className="text-[#4f46e5] w-7 h-7" />
+          <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-2xl overflow-hidden p-1">
+            <img src={logo} alt="Magic QR Logo" className="w-full h-full object-contain" />
           </div>
-          <span className="text-2xl font-black text-white tracking-tight">VirtualCard</span>
+          <span className="text-2xl font-black text-white tracking-tight">Magic QR</span>
         </div>
         <AuthIllustration type="login" />
       </div>
@@ -121,10 +122,10 @@ const Login = () => {
           {/* Mobile Logo */}
           <div className="lg:hidden w-full flex justify-center mb-12">
             <div className="flex items-center space-x-2.5">
-              <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-100">
-                <QrCode size={22} />
+              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-lg shadow-indigo-100 overflow-hidden p-1">
+                <img src={logo} alt="Magic QR Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="text-2xl font-black text-slate-900 tracking-tight">VirtualCard</span>
+              <span className="text-2xl font-black text-slate-900 tracking-tight">Magic QR</span>
             </div>
           </div>
 
@@ -134,7 +135,7 @@ const Login = () => {
                 Hello <span className="text-indigo-600 underline decoration-indigo-100 underline-offset-[6px]">Again.</span>
               </h1>
               <p className="text-slate-500 font-medium text-lg leading-relaxed max-w-sm mx-auto lg:mx-0">
-                {isAdmin ? 'Admin control center access protocol.' : 'Access your virtual card manager and track your connections.'}
+                {isAdmin ? 'Admin control center access protocol.' : 'Access your Magic QR manager and track your connections.'}
               </p>
             </div>
 
@@ -167,7 +168,7 @@ const Login = () => {
                       <input
                         type="email"
                         required
-                        placeholder="admin@virtualcard.com"
+                        placeholder="admin@magicqr.com"
                         className="w-full bg-white border border-slate-200 rounded-2xl py-3.5 pl-14 pr-4 text-slate-900 placeholder-slate-300 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-600 transition-all font-bold text-sm shadow-sm"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
