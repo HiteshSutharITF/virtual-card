@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { LogOut, User, LayoutDashboard, QrCode, Settings, Users, Menu, X, ShieldCheck, Gift, DollarSign } from 'lucide-react';
+import { LogOut, User, LayoutDashboard, QrCode, Settings, Users, Menu, X, ShieldCheck, Gift, DollarSign, Download } from 'lucide-react';
 import Modal from '../common/Modal';
 import logo from '../../assets/logo.png';
 
@@ -11,11 +11,74 @@ const Navbar = () => {
   const location = useLocation();
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [isAppInstalled, setIsAppInstalled] = useState(false);
+  const [isIOS, setIsIOS] = useState(false);
+  const [isInstallModalOpen, setIsInstallModalOpen] = useState(false);
 
-  // Close mobile menu when switching routes
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location]);
+
+  useEffect(() => {
+    // Check if app is already installed
+    if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+      setIsAppInstalled(true);
+    }
+    // Check if iOS
+    const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    setIsIOS(ios);
+  }, []);
+
+  useEffect(() => {
+    const handler = (e) => {
+      // Prevent Chrome 67 and earlier from automatically showing the prompt
+      e.preventDefault();
+      // Stash the event so it can be triggered later.
+      setDeferredPrompt(e);
+    };
+
+    window.addEventListener('beforeinstallprompt', handler);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handler);
+    };
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (deferredPrompt) {
+      // Show the prompt
+      deferredPrompt.prompt();
+
+      // Wait for the user to respond to the prompt
+      const { outcome } = await deferredPrompt.userChoice;
+      
+      if (outcome === 'accepted') {
+        console.log('User accepted the install prompt');
+      } else {
+        console.log('User dismissed the install prompt');
+      }
+
+      // We've used the prompt, and can't use it again, throw it away
+      setDeferredPrompt(null);
+    } else {
+      setIsInstallModalOpen(true);
+    }
+  };
+
+  const NavLink = ({ icon, label, to }) => (
+    <Link
+      to={to}
+      className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
+        location.pathname === to
+          ? 'bg-indigo-50 text-indigo-600 font-bold'
+          : 'text-slate-500 hover:bg-slate-50 hover:text-slate-800'
+      }`}
+    >
+      {icon}
+      <span>{label}</span>
+    </Link>
+  );
 
   const handleLogout = () => {
     setIsLogoutModalOpen(false);
@@ -75,6 +138,17 @@ const Navbar = () => {
                 <User size={18} />
               </div>
             </div>
+
+            {/* Install App Button */}
+            {!isAppInstalled && user && (
+              <button
+                onClick={handleInstallClick}
+                className="flex items-center space-x-1.5 md:space-x-2 px-3 md:px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100 font-bold text-[10px] md:text-sm uppercase tracking-wider md:normal-case md:tracking-normal"
+              >
+                <Download size={16} className="md:w-[18px] md:h-[18px]" />
+                <span>Install<span className="hidden sm:inline"> App</span></span>
+              </button>
+            )}
 
             {/* Logout Button (Desktop) */}
             <button
@@ -137,6 +211,16 @@ const Navbar = () => {
                 </div>
               </div>
 
+              {!isAppInstalled && user && (
+                <button
+                  onClick={handleInstallClick}
+                  className="w-full flex items-center justify-center space-x-3 p-4 bg-indigo-50 text-indigo-600 rounded-2xl font-black uppercase text-[10px] tracking-widest hover:bg-indigo-100 transition-colors mb-2"
+                >
+                  <Download size={18} />
+                  <span>Install App</span>
+                </button>
+              )}
+
               <button
                 onClick={() => {
                   setIsMobileMenuOpen(false);
@@ -151,6 +235,33 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+
+      <Modal
+        isOpen={isInstallModalOpen}
+        onClose={() => setIsInstallModalOpen(false)}
+        title="Install Application"
+        size="sm"
+      >
+        <div className="space-y-6 py-2">
+          <div className="bg-indigo-50 border border-indigo-100 rounded-[2rem] p-6 flex flex-col items-center text-center">
+            <div className="bg-white p-4 rounded-2xl shadow-sm text-indigo-600 mb-4">
+              <Download size={32} />
+            </div>
+            <h4 className="text-lg font-black text-slate-800 tracking-tight">Install Magic QR</h4>
+            <p className="text-slate-500 text-sm mt-2 leading-relaxed">
+              {isIOS 
+                ? "To install on iPhone: Tap the 'Share' icon in your browser and select 'Add to Home Screen' from the menu."
+                : "To install: Open your browser's menu and select 'Install app' or 'Add to Home screen'."}
+            </p>
+          </div>
+          <button
+            onClick={() => setIsInstallModalOpen(false)}
+            className="w-full py-4 bg-indigo-600 text-white rounded-2xl hover:bg-indigo-700 shadow-xl shadow-indigo-100 transition-all font-black uppercase tracking-widest text-[10px]"
+          >
+            Got it
+          </button>
+        </div>
+      </Modal>
 
       <Modal
         isOpen={isLogoutModalOpen}

@@ -1835,3 +1835,26 @@
 {"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-04-28 19:24:23"}
 {"level":"info","message":"Server running on port 5000","timestamp":"2026-04-28 19:24:23"}
 {"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-04-28 19:24:23"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-05-05 17:13:26"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-05-05 17:13:26"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-05-05 17:13:26"}
+{"level":"error","message":"Auth Error: invalid signature","timestamp":"2026-05-05 17:15:13"}
+{"level":"error","message":"Auth Error: invalid signature","timestamp":"2026-05-05 17:15:13"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-05-05 17:16:09"}
+{"level":"info","message":"Environment: Production (Loaded .env)","timestamp":"2026-05-05 17:16:14"}
+{"level":"info","message":"Server running on port 8003","timestamp":"2026-05-05 17:16:14"}
+{"level":"info","message":"MongoDB Connected: 147.79.70.177","timestamp":"2026-05-05 17:16:15"}
+{"level":"info","message":"Restoring previous WhatsApp session...","timestamp":"2026-05-05 17:16:15"}
+{"level":"info","message":"Initializing WhatsApp Client with enhanced stability options...","timestamp":"2026-05-05 17:16:15"}
+{"level":"info","message":"Shutting down gracefully...","timestamp":"2026-05-05 17:16:45"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-05-05 17:16:59"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-05-05 17:16:59"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-05-05 17:16:59"}
+{"level":"info","message":"New client connected: 20WaZAWVICNgbVZrAAAE","timestamp":"2026-05-05 17:19:24"}
+{"level":"info","message":"New client connected: 3JYuE71Z5WGkYb7aAAAF","timestamp":"2026-05-05 17:19:24"}
+{"level":"info","message":"Client disconnected: 3JYuE71Z5WGkYb7aAAAF","timestamp":"2026-05-05 17:19:24"}
+{"level":"info","message":"Client disconnected: 20WaZAWVICNgbVZrAAAE","timestamp":"2026-05-05 17:19:24"}
+{"level":"info","message":"New client connected: -esgGF3yo_nUJvhvAAAK","timestamp":"2026-05-05 17:19:39"}
+{"level":"info","message":"New client connected: 4DhN0X4XcH1wnhDeAAAL","timestamp":"2026-05-05 17:19:39"}
+{"level":"info","message":"Client disconnected: 4DhN0X4XcH1wnhDeAAAL","timestamp":"2026-05-05 17:19:39"}
+{"level":"info","message":"Client disconnected: -esgGF3yo_nUJvhvAAAK","timestamp":"2026-05-05 17:19:39"}
