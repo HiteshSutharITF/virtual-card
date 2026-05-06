@@ -24,6 +24,7 @@ const UsersManagement = () => {
     mobile: '',
     businessName: '',
     customMessage: 'Hi {name}! Thanks for connecting.',
+    subscriptionExpiresAt: '',
   });
   const [confirmModal, setConfirmModal] = useState({
     isOpen: false,
@@ -186,8 +187,8 @@ const UsersManagement = () => {
           name: '', 
           mobile: '', 
           businessName: '', 
-
-          customMessage: 'Hi {name}! Thanks for connecting.'
+          customMessage: 'Hi {name}! Thanks for connecting.',
+          subscriptionExpiresAt: ''
         });
         fetchUsers();
       }
@@ -469,6 +470,42 @@ const UsersManagement = () => {
               value={newUser.mobile}
               onChange={(e) => setNewUser({ ...newUser, mobile: e.target.value })}
             />
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-1">Account Validity (Expiry)</label>
+                <div className="flex flex-wrap gap-2 mt-1">
+                  {[
+                    { label: '7 Days', days: 7 },
+                    { label: '1 Month', days: 30 },
+                    { label: '1 Year', days: 365 },
+                  ].map((d) => {
+                    const date = new Date(Date.now() + d.days * 24 * 60 * 60 * 1000);
+                    const isSelected = newUser.subscriptionExpiresAt === formatForDateTimeLocal(date);
+                    return (
+                      <button
+                        key={d.label}
+                        type="button"
+                        onClick={() => setNewUser({ ...newUser, subscriptionExpiresAt: formatForDateTimeLocal(date) })}
+                        className={`px-3 py-1.5 text-[9px] font-black uppercase tracking-widest rounded-lg transition-all shadow-sm active:scale-95 border ${
+                          isSelected 
+                            ? 'bg-indigo-600 text-white border-indigo-600 shadow-lg' 
+                            : 'bg-indigo-50 text-indigo-600 border-indigo-100 hover:bg-indigo-600 hover:text-white'
+                        }`}
+                      >
+                        {d.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+              <input
+                type="datetime-local"
+                value={newUser.subscriptionExpiresAt}
+                onChange={(e) => setNewUser({ ...newUser, subscriptionExpiresAt: e.target.value })}
+                className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-3.5 px-4 text-sm font-bold focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all"
+              />
+            </div>
 
             <div className="space-y-2">
               <label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-1">Custom Reply Message</label>

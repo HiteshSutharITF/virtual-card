@@ -94,7 +94,7 @@ const getAllUsers = async (req, res) => {
         }
       },
       { $project: { scans: 0, referrer: 0, referrals: 0 } },
-      { $sort: { referralsCount: -1, createdAt: -1 } }
+      { $sort: { createdAt: -1 } }
     ]);
     res.json({ success: true, data: users });
   } catch (error) {
@@ -127,7 +127,7 @@ const updateUserStatus = async (req, res) => {
 // @desc    Create New User (Admin)
 // @route   POST /api/admin/users
 const createUser = async (req, res) => {
-  const { name, mobile, businessName, customMessage } = req.body;
+  const { name, mobile, businessName, customMessage, subscriptionExpiresAt } = req.body;
 
   try {
     const userExists = await User.findOne({ mobile });
@@ -140,10 +140,10 @@ const createUser = async (req, res) => {
       name,
       mobile,
       businessName,
-
       customMessage: customMessage || 'Hi {name}! Thanks for connecting.',
       createdBy: 'admin',
       status: 'approved',
+      subscriptionExpiresAt: subscriptionExpiresAt ? new Date(subscriptionExpiresAt) : null,
     });
 
     if (user) {
