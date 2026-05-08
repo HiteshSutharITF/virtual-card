@@ -3,7 +3,7 @@ import { useAuth } from '../../context/AuthContext';
 import { getAllUsers, updateUserStatus, adminCreateUser, adminUpdateUser, updateSubscriptionExpiry, getReferralsByUserId } from '../../services/admin.service';
 import Layout from '../../components/layout/Layout';
 import { toast } from 'react-hot-toast';
-import { Search, UserCheck, UserX, Clock, Eye, EyeOff, Briefcase, Phone, MessageSquare, UserPlus, Lock, Loader2, User, AlertCircle, ArrowRight, Pencil, Save, RefreshCw, Gift, Copy } from 'lucide-react';
+import { Search, UserCheck, UserX, Clock, Eye, EyeOff, Briefcase, Phone, MessageSquare, UserPlus, Lock, Loader2, User, AlertCircle, ArrowRight, Pencil, Save, RefreshCw, Gift, Copy, Plus, Trash2, X } from 'lucide-react';
 import Modal from '../../components/common/Modal';
 import { QRCodeSVG } from 'qrcode.react';
 import { Link } from 'react-router-dom';
@@ -47,6 +47,7 @@ const UsersManagement = () => {
     isActive: true,
     isContactSharingEnabled: true,
     subscriptionExpiresAt: '',
+    additionalContacts: []
   });
   const [isReferralsModalOpen, setIsReferralsModalOpen] = useState(false);
   const [referralsList, setReferralsList] = useState([]);
@@ -149,6 +150,7 @@ const UsersManagement = () => {
       isContactSharingEnabled: user.isContactSharingEnabled ?? true,
       status: user.status || 'pending',
       subscriptionExpiresAt: user.subscriptionExpiresAt ? formatForDateTimeLocal(user.subscriptionExpiresAt) : '',
+      additionalContacts: user.additionalContacts || []
     });
     setIsEditModalOpen(true);
   };
@@ -608,6 +610,59 @@ const UsersManagement = () => {
                 />
               </div>
 
+              <div className="space-y-4 pt-4 border-t border-slate-100">
+                <div className="flex items-center justify-between">
+                  <label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-1">Additional Contacts</label>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const updated = [...(editFormData.additionalContacts || []), { name: '', mobile: '' }];
+                      setEditFormData({ ...editFormData, additionalContacts: updated });
+                    }}
+                    className="px-3 py-1 bg-indigo-50 text-indigo-600 rounded-lg text-[9px] font-black uppercase tracking-widest hover:bg-indigo-600 hover:text-white transition-all flex items-center gap-1"
+                  >
+                    <Plus size={12} /> Add
+                  </button>
+                </div>
+
+                <div className="space-y-3">
+                  {editFormData.additionalContacts?.map((contact, index) => (
+                    <div key={index} className="flex items-center gap-3 bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
+                      <input
+                        value={contact.name}
+                        onChange={(e) => {
+                          const updated = [...editFormData.additionalContacts];
+                          updated[index].name = e.target.value;
+                          setEditFormData({ ...editFormData, additionalContacts: updated });
+                        }}
+                        className="flex-1 bg-slate-50 border-none outline-none text-[11px] font-bold px-2 py-1.5 rounded-lg"
+                        placeholder="Name"
+                      />
+                      <input
+                        value={contact.mobile}
+                        onChange={(e) => {
+                          const updated = [...editFormData.additionalContacts];
+                          updated[index].mobile = e.target.value;
+                          setEditFormData({ ...editFormData, additionalContacts: updated });
+                        }}
+                        className="flex-1 bg-slate-50 border-none outline-none text-[11px] font-bold px-2 py-1.5 rounded-lg"
+                        placeholder="Mobile"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const updated = editFormData.additionalContacts.filter((_, i) => i !== index);
+                          setEditFormData({ ...editFormData, additionalContacts: updated });
+                        }}
+                        className="p-1.5 bg-rose-50 text-rose-500 rounded-lg hover:bg-rose-500 hover:text-white transition-all"
+                      >
+                        <Trash2 size={12} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               <div className="space-y-2">
                 <label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-1">Account Status</label>
                 <select
@@ -705,6 +760,30 @@ const UsersManagement = () => {
                 <DetailItem icon={<MessageSquare size={16} />} label="Created By" value={selectedUser.createdBy} />
                 <DetailItem icon={<Clock size={16} />} label="Status" value={selectedUser.status} color={selectedUser.status === 'approved' ? 'text-emerald-500' : 'text-amber-500'} />
               </div>
+
+              {selectedUser.additionalContacts && selectedUser.additionalContacts.length > 0 && (
+                <div className="space-y-3">
+                  <p className="text-[11px] uppercase tracking-widest font-bold text-slate-400 ml-1">Additional Contacts</p>
+                  <div className="grid grid-cols-1 gap-3">
+                    {selectedUser.additionalContacts.map((contact, i) => (
+                      <div key={i} className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center font-black text-[10px]">
+                            {i + 1}
+                          </div>
+                          <div>
+                            <p className="text-sm font-black text-slate-800 leading-tight">{contact.name}</p>
+                            <p className="text-xs text-indigo-500 font-bold tracking-widest">{contact.mobile}</p>
+                          </div>
+                        </div>
+                        <a href={`tel:${contact.mobile}`} className="p-2 bg-white text-slate-400 hover:text-indigo-600 rounded-xl border border-slate-100 shadow-sm transition-all">
+                           <Phone size={14} />
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <div className="bg-indigo-50/50 rounded-[2rem] p-6 border border-indigo-100/50 space-y-4">
                 <div className="flex items-center justify-between">

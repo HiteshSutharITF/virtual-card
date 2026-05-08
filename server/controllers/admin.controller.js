@@ -183,7 +183,7 @@ const getUserScannedContacts = async (req, res) => {
 // @desc    Update User (Admin)
 // @route   PUT /api/admin/users/:id
 const updateUser = async (req, res) => {
-  const { name, mobile, businessName, customMessage, isActive, isContactSharingEnabled, status } = req.body;
+  const { name, mobile, businessName, customMessage, isActive, isContactSharingEnabled, status, additionalContacts } = req.body;
 
   try {
     const user = await User.findById(req.params.id);
@@ -198,7 +198,13 @@ const updateUser = async (req, res) => {
       if (isContactSharingEnabled !== undefined) user.isContactSharingEnabled = isContactSharingEnabled;
       if (status !== undefined) user.status = status;
 
-
+      if (additionalContacts) {
+        try {
+          user.additionalContacts = typeof additionalContacts === 'string' ? JSON.parse(additionalContacts) : additionalContacts;
+        } catch (e) {
+          logger.error(`Error parsing additionalContacts: ${e.message}`);
+        }
+      }
 
       await user.save();
       res.json({

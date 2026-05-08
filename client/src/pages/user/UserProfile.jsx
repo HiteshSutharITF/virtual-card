@@ -4,7 +4,7 @@ import { getUserProfile, updateUserProfile } from '../../services/user.service';
 import Layout from '../../components/layout/Layout';
 import Toggle from '../../components/common/Toggle';
 import { toast } from 'react-hot-toast';
-import { User, Briefcase, Phone, Lock, MessageSquare, Save, Loader2, ShieldCheck, Zap, Camera, Trash2, Image as ImageIcon, Pencil, Gift, Clock } from 'lucide-react';
+import { User, Briefcase, Phone, Lock, MessageSquare, Save, Loader2, ShieldCheck, Zap, Camera, Trash2, Image as ImageIcon, Pencil, Gift, Clock, Plus, Users } from 'lucide-react';
 import { format } from 'date-fns';
 
 const UserProfile = () => {
@@ -21,6 +21,7 @@ const UserProfile = () => {
     userToken: '',
     logo: '',
     subscriptionExpiresAt: null,
+    additionalContacts: []
   });
   const [logoPreview, setLogoPreview] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
@@ -40,6 +41,7 @@ const UserProfile = () => {
           userToken: p.userToken || '',
           logo: p.logo || '',
           subscriptionExpiresAt: p.subscriptionExpiresAt,
+          additionalContacts: p.additionalContacts || []
         });
         if (p.logo) {
           const baseUrl = import.meta.env.VITE_API_BASE_URL.split('/api')[0];
@@ -100,6 +102,7 @@ const UserProfile = () => {
       data.append('customMessage', formData.customMessage);
       data.append('isActive', formData.isActive);
       data.append('isContactSharingEnabled', formData.isContactSharingEnabled);
+      data.append('additionalContacts', JSON.stringify(formData.additionalContacts || []));
 
 
       if (selectedFile) {
@@ -363,6 +366,80 @@ const UserProfile = () => {
                         "{formData.customMessage.replace(/{name}/g, 'Rahul')}"
                       </p>
                     </div>
+                  </div>
+                </section>
+
+                <hr className="border-slate-100" />
+
+                <section className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center">
+                        <Users size={18} />
+                      </div>
+                      <h4 className="text-lg font-bold text-slate-800">Multiple Contacts</h4>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const updated = [...(formData.additionalContacts || []), { name: '', mobile: '' }];
+                        setFormData({ ...formData, additionalContacts: updated });
+                      }}
+                      className="px-4 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-slate-900 transition-all flex items-center gap-2"
+                    >
+                      <Plus size={14} /> Add New
+                    </button>
+                  </div>
+
+                  <p className="text-xs text-slate-500 ml-1">Add extra contact numbers to share when someone scans your QR.</p>
+
+                  <div className="space-y-4">
+                    {formData.additionalContacts?.map((contact, index) => (
+                      <div key={index} className="flex flex-col md:flex-row gap-4 p-4 bg-slate-50/50 border border-slate-100 rounded-2xl relative group">
+                        <div className="flex-1 space-y-2">
+                          <label className="text-[10px] font-bold text-slate-400 uppercase ml-1">Contact Name</label>
+                          <input
+                            value={contact.name}
+                            onChange={(e) => {
+                              const updated = [...formData.additionalContacts];
+                              updated[index].name = e.target.value;
+                              setFormData({ ...formData, additionalContacts: updated });
+                            }}
+                            className="w-full glass rounded-xl py-2.5 px-4 border-slate-200 outline-none text-sm font-medium"
+                            placeholder="e.g. Sales Dept"
+                          />
+                        </div>
+                        <div className="flex-1 space-y-2">
+                          <label className="text-[10px] font-bold text-slate-400 uppercase ml-1">Mobile Number</label>
+                          <input
+                            value={contact.mobile}
+                            onChange={(e) => {
+                              const updated = [...formData.additionalContacts];
+                              updated[index].mobile = e.target.value;
+                              setFormData({ ...formData, additionalContacts: updated });
+                            }}
+                            className="w-full glass rounded-xl py-2.5 px-4 border-slate-200 outline-none text-sm font-medium"
+                            placeholder="e.g. 9876543210"
+                          />
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const updated = formData.additionalContacts.filter((_, i) => i !== index);
+                            setFormData({ ...formData, additionalContacts: updated });
+                          }}
+                          className="absolute -top-2 -right-2 md:static md:mt-6 w-8 h-8 bg-rose-50 text-rose-500 rounded-lg flex items-center justify-center hover:bg-rose-500 hover:text-white transition-all border border-rose-100 md:border-none shadow-sm md:shadow-none"
+                        >
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
+                    ))}
+
+                    {(!formData.additionalContacts || formData.additionalContacts.length === 0) && (
+                      <div className="text-center py-6 border-2 border-dashed border-slate-100 rounded-[2rem]">
+                        <p className="text-xs text-slate-400 font-medium italic">No additional contacts added yet.</p>
+                      </div>
+                    )}
                   </div>
                 </section>
 

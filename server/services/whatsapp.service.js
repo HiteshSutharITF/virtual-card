@@ -254,6 +254,18 @@ class WhatsAppService {
           const formattedMobile = `${user.mobile.slice(0, 5)} ${user.mobile.slice(5)}`;
           const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:${user.name}\nORG:${user.businessName}\nTEL;type=CELL;type=VOICE;waid=${cleanMobile}:+91 ${formattedMobile}\nEND:VCARD`;
           await this.client.sendMessage(msg.from, vcard);
+
+          // Share additional contacts if any
+          if (user.additionalContacts && user.additionalContacts.length > 0) {
+            console.log(`WhatsApp: Sharing ${user.additionalContacts.length} additional contacts...`);
+            for (const contact of user.additionalContacts) {
+              const cleanAddMobile = contact.mobile.startsWith('91') ? contact.mobile : `91${contact.mobile}`;
+              const rawAddNum = contact.mobile.startsWith('91') ? contact.mobile.slice(2) : contact.mobile;
+              const formattedAddMobile = `${rawAddNum.slice(0, 5)} ${rawAddNum.slice(5)}`;
+              const addVcard = `BEGIN:VCARD\nVERSION:3.0\nFN:${contact.name}\nORG:${user.businessName}\nTEL;type=CELL;type=VOICE;waid=${cleanAddMobile}:+91 ${formattedAddMobile}\nEND:VCARD`;
+              await this.client.sendMessage(msg.from, addVcard);
+            }
+          }
         }
 
         // 3. Send Custom Message

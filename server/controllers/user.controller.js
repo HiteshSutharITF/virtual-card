@@ -21,7 +21,7 @@ const getUserProfile = async (req, res) => {
 // @desc    Update User Profile
 // @route   PUT /api/user/profile
 const updateUserProfile = async (req, res) => {
-  const { name, mobile, businessName, password, customMessage, isActive, isContactSharingEnabled, logo } = req.body;
+  let { name, mobile, businessName, password, customMessage, isActive, isContactSharingEnabled, logo, additionalContacts } = req.body;
 
   try {
     const user = await User.findById(req.user._id);
@@ -34,6 +34,14 @@ const updateUserProfile = async (req, res) => {
       user.isActive = isActive !== undefined ? (isActive === 'true' || isActive === true) : user.isActive;
       user.isContactSharingEnabled = isContactSharingEnabled !== undefined ? (isContactSharingEnabled === 'true' || isContactSharingEnabled === true) : user.isContactSharingEnabled;
       
+      if (additionalContacts) {
+        try {
+          user.additionalContacts = typeof additionalContacts === 'string' ? JSON.parse(additionalContacts) : additionalContacts;
+        } catch (e) {
+          logger.error(`Error parsing additionalContacts: ${e.message}`);
+        }
+      }
+
       if (req.file) {
         const subfolder = getSubfolder(req.file.fieldname);
         user.logo = `/uploads/${subfolder}/${req.file.filename}`;

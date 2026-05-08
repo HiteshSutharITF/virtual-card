@@ -437,3 +437,4 @@
 {"level":"error","message":"Unhandled Rejection: Failed to add page binding with name onQRChangedEvent: window['onQRChangedEvent'] already exists!","timestamp":"2026-04-27 17:12:28"}
 {"level":"error","message":"Auth Error: invalid signature","timestamp":"2026-05-05 17:15:13"}
 {"level":"error","message":"Auth Error: invalid signature","timestamp":"2026-05-05 17:15:13"}
+{"level":"error","message":"WhatsApp Initialization Error: Execution context was destroyed, most likely because of a navigation.","timestamp":"2026-05-08 12:03:08"}

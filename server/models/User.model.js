@@ -102,6 +102,10 @@ const userSchema = new mongoose.Schema(
         type: Date,
         default: Date.now
       }
+    }],
+    additionalContacts: [{
+      name: String,
+      mobile: String
     }]
   },
   { timestamps: true }

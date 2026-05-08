@@ -1864,3 +1864,29 @@
 {"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-05-06 12:46:51"}
 {"level":"info","message":"Server running on port 5000","timestamp":"2026-05-06 12:46:51"}
 {"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-05-06 12:46:51"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-05-08 11:49:47"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-05-08 11:49:47"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-05-08 11:49:47"}
+{"level":"info","message":"Initializing WhatsApp Client with enhanced stability options...","timestamp":"2026-05-08 11:59:44"}
+{"level":"info","message":"Starting WhatsApp Watchdog...","timestamp":"2026-05-08 12:00:38"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-05-08 12:00:55"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-05-08 12:02:08"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-05-08 12:02:08"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-05-08 12:02:08"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-05-08 12:02:08"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-05-08 12:02:08"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-05-08 12:02:34"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-05-08 12:02:34"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-05-08 12:02:34"}
+{"level":"info","message":"Initializing WhatsApp Client with enhanced stability options...","timestamp":"2026-05-08 12:03:03"}
+{"level":"error","message":"WhatsApp Initialization Error: Execution context was destroyed, most likely because of a navigation.","timestamp":"2026-05-08 12:03:08"}
+{"level":"info","message":"Existing client found during initialize, destroying...","timestamp":"2026-05-08 12:03:21"}
+{"level":"info","message":"Destroying existing WhatsApp client...","timestamp":"2026-05-08 12:03:21"}
+{"level":"info","message":"Initializing WhatsApp Client with enhanced stability options...","timestamp":"2026-05-08 12:03:22"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-05-08 12:03:29"}
+{"level":"info","message":"Starting WhatsApp Watchdog...","timestamp":"2026-05-08 12:03:29"}
+{"level":"info","message":"Existing client found during initialize, destroying...","timestamp":"2026-05-08 12:03:38"}
+{"level":"info","message":"Destroying existing WhatsApp client...","timestamp":"2026-05-08 12:03:38"}
+{"level":"info","message":"Initializing WhatsApp Client with enhanced stability options...","timestamp":"2026-05-08 12:03:39"}
+{"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-05-08 12:03:47"}
+{"level":"info","message":"Starting WhatsApp Watchdog...","timestamp":"2026-05-08 12:03:47"}
