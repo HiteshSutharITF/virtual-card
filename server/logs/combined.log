@@ -1890,3 +1890,37 @@
 {"level":"info","message":"Initializing WhatsApp Client with enhanced stability options...","timestamp":"2026-05-08 12:03:39"}
 {"level":"info","message":"WhatsApp QR Code Received","timestamp":"2026-05-08 12:03:47"}
 {"level":"info","message":"Starting WhatsApp Watchdog...","timestamp":"2026-05-08 12:03:47"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-05-08 12:04:50"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-05-08 12:04:50"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-05-08 12:04:50"}
+{"level":"info","message":"Initializing WhatsApp Client with enhanced stability options...","timestamp":"2026-05-08 12:05:04"}
+{"level":"info","message":"Starting WhatsApp Watchdog...","timestamp":"2026-05-08 12:05:12"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-05-08 12:05:43"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-05-08 12:05:43"}
+{"level":"info","message":"WhatsApp Authenticated","timestamp":"2026-05-08 12:05:43"}
+{"level":"info","message":"WhatsApp Client is ready!","timestamp":"2026-05-08 12:06:08"}
+{"level":"info","message":"Watchdog check: Client state is CONNECTED","timestamp":"2026-05-08 12:10:12"}
+{"level":"info","message":"Received message: BEGIN:VCARD\nVERSION:3.0\nFN:Yug Agarwal\nTEL;type=CELL;type=VOICE;waid=918160508314:+91 81605 08314\nEND:VCARD from 19718681419847@lid","timestamp":"2026-05-08 12:14:27"}
+{"level":"info","message":"Received message: *Action Needed:* New contact scanned your QR!\n*Name:* Yug Agarwal\n*Number:* 918160508314 from 19718681419847@lid","timestamp":"2026-05-08 12:14:28"}
+{"level":"info","message":"Watchdog check: Client state is CONNECTED","timestamp":"2026-05-08 12:15:12"}
+{"level":"info","message":"Received message: Anitadidi....The most beloved Daughter of our family👸...she has the purest Heart🪬...she is pure gold❤❤ from status@broadcast","timestamp":"2026-05-08 12:16:17"}
+{"level":"info","message":"Received message: Please share the contact of Parth Varma -Parth corporation 7KXKYA from 19718681419847@lid","timestamp":"2026-05-08 12:16:50"}
+{"level":"info","message":"Valid token found: 7KXKYA for user Parth Varma","timestamp":"2026-05-08 12:16:50"}
+{"level":"info","message":"Scanner contact shared with holder: 8347325704","timestamp":"2026-05-08 12:16:53"}
+{"level":"info","message":"Received message: Please share the contact of Parth Varma -Parth corporation 7KXKYA from 11884443005099@lid","timestamp":"2026-05-08 12:17:55"}
+{"level":"info","message":"Valid token found: 7KXKYA for user Parth Varma","timestamp":"2026-05-08 12:17:55"}
+{"level":"info","message":"Scanner contact shared with holder: 8347325704","timestamp":"2026-05-08 12:17:57"}
+{"level":"info","message":"Received message: Please share the contact of Parth Varma -Parth corporation 7KXKYA from 11884443005099@lid","timestamp":"2026-05-08 12:18:16"}
+{"level":"info","message":"Valid token found: 7KXKYA for user Parth Varma","timestamp":"2026-05-08 12:18:16"}
+{"level":"info","message":"Scanner contact shared with holder: 8347325704","timestamp":"2026-05-08 12:18:18"}
+{"level":"info","message":"Watchdog check: Client state is CONNECTED","timestamp":"2026-05-08 12:20:12"}
+{"level":"info","message":"Received message: During submission Submit original Certificate at college from 120363142879252121@g.us","timestamp":"2026-05-08 12:24:58"}
+{"level":"info","message":"Watchdog check: Client state is CONNECTED","timestamp":"2026-05-08 12:25:12"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-05-08 12:27:35"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-05-08 12:27:36"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-05-08 12:27:36"}
+{"level":"info","message":"Restoring previous WhatsApp session...","timestamp":"2026-05-08 12:27:36"}
+{"level":"info","message":"Initializing WhatsApp Client with enhanced stability options...","timestamp":"2026-05-08 12:27:36"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-05-08 12:27:44"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-05-08 12:27:44"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-05-08 12:27:44"}
