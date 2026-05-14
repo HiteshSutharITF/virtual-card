@@ -256,6 +256,7 @@ const ContactCard = ({ contact, onEdit }) => {
                 e.stopPropagation();
                 onEdit(e);
               }}
+              title={contact.notes}
               className="flex items-start text-slate-500 text-sm mt-2 bg-slate-50/50 p-2.5 rounded-xl border border-slate-100 hover:bg-white hover:border-indigo-100 transition-all group/notes"
             >
               <FileText size={14} className="mr-2 text-indigo-500 mt-0.5 shrink-0" />
