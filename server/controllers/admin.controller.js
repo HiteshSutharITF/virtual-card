@@ -180,6 +180,26 @@ const getUserScannedContacts = async (req, res) => {
   }
 };
 
+// @desc    Update Scanned Contact (Admin)
+// @route   PUT /api/admin/scanned/:id
+const updateScannedContact = async (req, res) => {
+  const { scannerName, notes } = req.body;
+  try {
+    const contact = await ScannedContact.findById(req.params.id);
+    if (contact) {
+      contact.scannerName = scannerName || contact.scannerName;
+      contact.notes = notes !== undefined ? notes : contact.notes;
+      await contact.save();
+      res.json({ success: true, message: 'Contact updated successfully', data: contact });
+    } else {
+      res.status(404).json({ success: false, message: 'Contact not found' });
+    }
+  } catch (error) {
+    logger.error(`Admin Update Scanned Contact Error: ${error.message}`);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
 // @desc    Update User (Admin)
 // @route   PUT /api/admin/users/:id
 const updateUser = async (req, res) => {
@@ -394,4 +414,5 @@ module.exports = {
   getAllSubscriptions,
   addPayment,
   updateSubscriptionExpiry,
+  updateScannedContact,
 };

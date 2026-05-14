@@ -17,6 +17,7 @@ const {
   getAllSubscriptions,
   addPayment,
   updateSubscriptionExpiry,
+  updateScannedContact,
 } = require('../controllers/admin.controller');
 
 const { upload } = require('../middlewares/upload.middleware');
@@ -34,6 +35,7 @@ router.route('/users/:id/scanned').get(getUserScannedContacts);
 router.route('/users/:id/referrals').get(getReferralsByUserId);
 router.route('/users/:id/payment').post(upload.single('receiptImage'), addPayment);
 router.route('/users/:id/expiry').put(updateSubscriptionExpiry);
+router.route('/scanned/:id').put(updateScannedContact);
 router.route('/otp-logs').get(getOtpLogs).delete(deleteAllOtpLogs);
 router.route('/settings').get(getGlobalSettings).put(updateGlobalSettings);
 router.route('/subscriptions').get(getAllSubscriptions);

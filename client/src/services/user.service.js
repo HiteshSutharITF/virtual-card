@@ -30,3 +30,7 @@ export const getAffiliateStats = async () => {
 export const updateAffiliateTemplates = async (templates) => {
   return await api.put(USER_ENDPOINTS.AFFILIATE_TEMPLATES, { templates });
 };
+
+export const updateScannedContact = async (id, data) => {
+  return await api.put(USER_ENDPOINTS.UPDATE_SCANNED(id), data);
+};

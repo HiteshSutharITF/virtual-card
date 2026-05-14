@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { getScannedContacts, exportScannedContacts } from '../../services/user.service';
+import { createPortal } from 'react-dom';
+import { getScannedContacts, exportScannedContacts, updateScannedContact } from '../../services/user.service';
 import Layout from '../../components/layout/Layout';
 import { toast } from 'react-hot-toast';
-import { Search, Calendar, Phone, User, Clock, Filter, ArrowUpRight, Download, Loader2, RefreshCcw, AlertCircle } from 'lucide-react';
+import { Search, Calendar, Phone, User, Clock, Filter, ArrowUpRight, Download, Loader2, RefreshCcw, AlertCircle, Edit2, FileText, X } from 'lucide-react';
 
 const ScannedContacts = () => {
   const [contacts, setContacts] = useState([]);
@@ -11,6 +12,8 @@ const ScannedContacts = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [downloading, setDownloading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [editingContact, setEditingContact] = useState(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const fetchContacts = async (isRefresh = false) => {
     if (isRefresh) setRefreshing(true);
@@ -173,16 +176,36 @@ const ScannedContacts = () => {
             </div>
           ) : (
             filteredContacts.map((contact) => (
-              <ContactCard key={contact._id} contact={contact} />
+              <ContactCard 
+                key={contact._id} 
+                contact={contact} 
+                onEdit={(e) => {
+                  e.stopPropagation();
+                  setEditingContact(contact);
+                  setIsEditModalOpen(true);
+                }}
+              />
             ))
           )}
         </div>
+
+        {/* Edit Modal */}
+        {isEditModalOpen && (
+          <EditContactModal 
+            contact={editingContact} 
+            onClose={() => setIsEditModalOpen(false)} 
+            onSuccess={() => {
+              setIsEditModalOpen(false);
+              fetchContacts();
+            }}
+          />
+        )}
       </div>
     </Layout>
   );
 };
 
-const ContactCard = ({ contact }) => {
+const ContactCard = ({ contact, onEdit }) => {
   const openWhatsApp = () => {
     const whatsappUrl = `https://wa.me/${contact.scannerMobile}`;
     window.open(whatsappUrl, '_blank');
@@ -191,7 +214,7 @@ const ContactCard = ({ contact }) => {
   return (
     <div 
       onClick={openWhatsApp}
-      className="glass rounded-[2rem] p-6 card-hover group border border-slate-100 cursor-pointer transition-all active:scale-[0.98]"
+      className="glass rounded-[2rem] p-6 card-hover group border border-slate-100 cursor-pointer transition-all active:scale-[0.98] relative overflow-hidden"
     >
       <div className="flex items-start justify-between mb-6">
         <div className="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center font-bold text-xl ring-8 ring-indigo-50/30 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 shadow-sm">
@@ -209,13 +232,38 @@ const ContactCard = ({ contact }) => {
       
       <div className="space-y-4">
         <div>
-          <h4 className="text-lg font-bold text-slate-800 leading-tight group-hover:text-indigo-600 transition-colors uppercase truncate">
-            {contact.scannerName}
-          </h4>
+          <div className="flex items-center justify-between">
+            <h4 className="text-lg font-bold text-slate-800 leading-tight group-hover:text-indigo-600 transition-colors uppercase truncate max-w-[80%]">
+              {contact.scannerName}
+            </h4>
+            <button 
+              onClick={onEdit}
+              className="p-2 bg-slate-50 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all"
+              title="Edit Contact"
+            >
+              <Edit2 size={16} />
+            </button>
+          </div>
+          
           <div className="flex items-center text-slate-500 text-sm mt-1">
             <Phone size={14} className="mr-2 text-emerald-500" />
             <span className="font-medium">{contact.scannerMobile}</span>
           </div>
+
+          {contact.notes && (
+            <div 
+              onClick={(e) => {
+                e.stopPropagation();
+                onEdit(e);
+              }}
+              className="flex items-start text-slate-500 text-sm mt-2 bg-slate-50/50 p-2.5 rounded-xl border border-slate-100 hover:bg-white hover:border-indigo-100 transition-all group/notes"
+            >
+              <FileText size={14} className="mr-2 text-indigo-500 mt-0.5 shrink-0" />
+              <span className="font-medium text-[11px] leading-relaxed text-slate-600 italic line-clamp-2">
+                "{contact.notes}"
+              </span>
+            </div>
+          )}
         </div>
         
         <div className="pt-4 border-t border-slate-100 flex justify-between items-center">
@@ -227,6 +275,121 @@ const ContactCard = ({ contact }) => {
       </div>
     </div>
   );
+};
+
+const EditContactModal = ({ contact, onClose, onSuccess }) => {
+  const [name, setName] = useState(contact?.scannerName || '');
+  const [notes, setNotes] = useState(contact?.notes || '');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!name.trim()) return toast.error('Name is required');
+
+    setLoading(true);
+    try {
+      const response = await updateScannedContact(contact._id, { 
+        scannerName: name, 
+        notes: notes 
+      });
+      if (response.success) {
+        toast.success('Contact updated successfully');
+        onSuccess();
+      } else {
+        toast.error(response.message || 'Failed to update contact');
+      }
+    } catch (error) {
+      toast.error('Server error. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const modalContent = (
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-in fade-in duration-300">
+      <div className="bg-white rounded-[2.5rem] w-full max-w-lg overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300">
+        <div className="p-8 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+          <div>
+            <h2 className="text-2xl font-black text-slate-800 tracking-tight">Edit Contact</h2>
+            <p className="text-slate-500 text-sm font-medium">Update person details and add notes</p>
+          </div>
+          <button onClick={onClose} className="p-2 hover:bg-white hover:text-red-500 rounded-2xl transition-all text-slate-400 shadow-sm border border-transparent hover:border-slate-100">
+            <X size={20} />
+          </button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="p-8 space-y-6">
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <label className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Contact Name</label>
+              <div className="relative">
+                <User className="absolute left-4 top-1/2 -translate-y-1/2 text-indigo-500" size={18} />
+                <input 
+                  type="text" 
+                  className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl py-3.5 pl-12 pr-6 text-sm font-bold text-slate-800 focus:border-indigo-500 focus:bg-white outline-none transition-all placeholder:text-slate-300"
+                  placeholder="Full Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-xs font-black text-slate-400 uppercase tracking-widest ml-1">Notes (Optional)</label>
+              <div className="relative">
+                <FileText className="absolute left-4 top-4 text-indigo-500" size={18} />
+                <textarea 
+                  className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl py-3.5 pl-12 pr-6 text-sm font-bold text-slate-800 focus:border-indigo-500 focus:bg-white outline-none transition-all placeholder:text-slate-300 min-h-[100px] resize-none"
+                  placeholder="Add any notes about this contact..."
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="p-4 bg-indigo-50 rounded-2xl border border-indigo-100">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-indigo-600 shadow-sm">
+                  <Phone size={18} />
+                </div>
+                <div>
+                  <p className="text-[10px] font-black text-indigo-400 uppercase tracking-widest">Mobile Number</p>
+                  <p className="text-sm font-bold text-indigo-900">{contact.scannerMobile}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex gap-3 pt-2">
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex-1 py-4 px-6 border-2 border-slate-100 text-slate-500 font-bold rounded-2xl hover:bg-slate-50 transition-all text-sm"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              disabled={loading}
+              className="flex-[2] py-4 px-6 bg-slate-900 text-white font-bold rounded-2xl hover:bg-indigo-600 transition-all text-sm shadow-xl shadow-indigo-100 flex items-center justify-center space-x-2 disabled:opacity-50"
+            >
+              {loading ? (
+                <Loader2 size={18} className="animate-spin" />
+              ) : (
+                <>
+                  <span>Save Changes</span>
+                  <ArrowUpRight size={18} />
+                </>
+              )}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+
+  return createPortal(modalContent, document.body);
 };
 
 const HistoryStat = ({ label, value, icon }) => (

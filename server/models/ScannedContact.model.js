@@ -15,6 +15,10 @@ const scannedContactSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    notes: {
+      type: String,
+      default: '',
+    },
     scannedAt: {
       type: Date,
       default: Date.now,

@@ -60,3 +60,7 @@ export const addUserPayment = async (id, data) => {
 export const updateSubscriptionExpiry = async (id, data) => {
   return await api.put(`/admin/users/${id}/expiry`, data);
 };
+
+export const updateScannedContact = async (id, data) => {
+  return await api.put(ADMIN_ENDPOINTS.UPDATE_SCANNED(id), data);
+};

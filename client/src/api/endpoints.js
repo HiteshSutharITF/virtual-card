@@ -11,6 +11,7 @@ export const ADMIN_ENDPOINTS = {
   UPDATE_USER: (id) => `/admin/users/${id}`,
   USER_STATUS: (id) => `/admin/users/${id}/status`,
   USER_SCANNED: (id) => `/admin/users/${id}/scanned`,
+  UPDATE_SCANNED: (id) => `/admin/scanned/${id}`,
 };
 
 export const USER_ENDPOINTS = {
@@ -19,6 +20,7 @@ export const USER_ENDPOINTS = {
   SCANNED_EXPORT: '/user/scanned/export',
   AFFILIATE_STATS: '/user/affiliate/stats',
   AFFILIATE_TEMPLATES: '/user/affiliate/templates',
+  UPDATE_SCANNED: (id) => `/user/scanned/${id}`,
 };
 
 export const WHATSAPP_ENDPOINTS = {
