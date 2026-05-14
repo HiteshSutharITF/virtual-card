@@ -1939,3 +1939,9 @@
 {"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-05-14 14:12:14"}
 {"level":"info","message":"Server running on port 5000","timestamp":"2026-05-14 14:12:14"}
 {"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-05-14 14:12:14"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-05-14 14:12:20"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-05-14 14:12:20"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-05-14 14:12:20"}
+{"level":"info","message":"Environment: Development (Loaded .env.development)","timestamp":"2026-05-14 15:07:36"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2026-05-14 15:07:36"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2026-05-14 15:07:36"}
